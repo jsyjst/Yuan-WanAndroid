@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WanAndroid</string>
+
+    <string name="lead_text">玩安卓，玩出精彩</string>
 </resources>

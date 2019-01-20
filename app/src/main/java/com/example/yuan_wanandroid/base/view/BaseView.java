@@ -15,4 +15,5 @@ public interface BaseView {
     void reLoad(); //重新加载
     void showLoading();  //显示加载布局
     void showToast();  //显示Toast
+    void setStatusBarColor();  //设置状态栏颜色
 }

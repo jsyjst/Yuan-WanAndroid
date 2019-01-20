@@ -23,7 +23,7 @@ ext {
             ButterKnifeVersion     : '8.4.0',
 
             //dagger2
-            Dagger2Version          : '2.14.1',
+            Dagger2Version         : '2.14.1',
 
             //rxjava2
             RxJava2Version         : '2.0.1',
@@ -38,7 +38,8 @@ ext {
             //base
             "appcompat-v7"          : "com.android.support:appcompat-v7:${version.SupportLibraryVersion}",
             "constraintLayout"      : "com.android.support.constraint:constraint-layout:${version.ConstraintLayoutVersion}",
-            "cardview-v7"           : "com.android.support:cardview-v7:${version.supportLibraryVersion}",
+            "cardview-v7"           : "com.android.support:cardview-v7:${version.SupportLibraryVersion}",
+            "design"                : "com.android.support:design:${version.SupportLibraryVersion}",
 
             //network
             "retrofit"              : "com.squareup.retrofit2:retrofit:${version.RetrofitVersion}",
@@ -46,12 +47,12 @@ ext {
             "retrofitRxjava2Adapter": "com.squareup.retrofit2:adapter-rxjava2:${version.RetrofitVersion}",
 
             //rxjava2
-            "rxava2"               : "io.reactivex.rxjava2:rxjava:${version.RxJava2Version}",
+            "rxava2"                : "io.reactivex.rxjava2:rxjava:${version.RxJava2Version}",
             "rxAndroid"             : "io.reactivex.rxjava2:rxandroid:${version.RxJava2Version}",
 
             //黄油刀
             "butterKnife"           : "com.jakewharton:butterknife:${version.ButterKnifeVersion}",
-            "butterKnifeCompiler"  : "com.jakewharton:butterknife-compiler:${version.ButterKnifeVersion}",
+            "butterKnifeCompiler"   : "com.jakewharton:butterknife-compiler:${version.ButterKnifeVersion}",
 
             //dagger
             "dagger2"               : "com.google.dagger:dagger:${version.Dagger2Version}",

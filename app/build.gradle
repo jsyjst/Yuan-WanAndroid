@@ -24,6 +24,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["constraintLayout"]
+    implementation rootProject.ext.dependencies["design"]
 
     //test
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

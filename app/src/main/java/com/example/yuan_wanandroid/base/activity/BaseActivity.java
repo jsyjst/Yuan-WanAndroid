@@ -37,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         setContentView(getLayoutId());
         mBinder = ButterKnife.bind(this);
         ActivityCollector.getInstance().addActivity(this);
+        setStatusBarColor();
         inject();
         initView();
         initData();

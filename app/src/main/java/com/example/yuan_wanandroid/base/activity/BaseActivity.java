@@ -35,8 +35,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        mBinder = ButterKnife.bind(this);t
-        ActivityCollector.getInstance().addActiviy(this);
+        mBinder = ButterKnife.bind(this);
+        ActivityCollector.getInstance().addActivity(this);
         inject();
         initView();
         initData();

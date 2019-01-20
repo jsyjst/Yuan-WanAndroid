@@ -5,6 +5,8 @@ import android.app.Activity;
 import java.util.HashSet;
 import java.util.Set;
 
+
+
 /**
  * <pre>
  *     author : 残渊
@@ -15,24 +17,16 @@ import java.util.Set;
 
 
 public class ActivityCollector {
-    private static ActivityCollector mActivityCollector = null;
     private ActivityCollector(){}
 
     //DCL实现单例
     public static ActivityCollector getInstance(){
-        if(mActivityCollector == null){
-            synchronized (ActivityCollector.class){
-                if(mActivityCollector == null){
-                    mActivityCollector = new ActivityCollector();
-                }
-            }
-        }
-        return mActivityCollector;
+        return ActivityCollectorHolder.mActivityCollector;
     }
 
     private Set<Activity> allActivities;
 
-    public void addActiviy(Activity activity){
+    public void addActivity(Activity activity){
         if(allActivities == null){
             allActivities = new HashSet<>();
         }
@@ -53,5 +47,10 @@ public class ActivityCollector {
                 }
             }
         }
+    }
+
+    //静态内部类单例模式
+    private static class ActivityCollectorHolder{
+        private static final ActivityCollector mActivityCollector = new ActivityCollector();
     }
 }

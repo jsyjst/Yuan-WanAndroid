@@ -1,6 +1,9 @@
 package com.example.yuan_wanandroid.base.presenter;
 
 import com.example.yuan_wanandroid.base.view.BaseView;
+import com.example.yuan_wanandroid.model.DataModel;
+
+import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -16,7 +19,13 @@ import io.reactivex.disposables.Disposable;
 
 public class BasePresenter <T extends BaseView> implements IPresenter<T> {
     protected T mView;
+    protected DataModel mModel;
     private CompositeDisposable mCompositeDisposable;
+
+    @Inject
+    public BasePresenter(DataModel model){
+        mModel = model;
+    }
 
     @Override
     public void attachView(T view) {
@@ -42,5 +51,10 @@ public class BasePresenter <T extends BaseView> implements IPresenter<T> {
             mCompositeDisposable = new CompositeDisposable();
         }
         mCompositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void subscribeEvent() {
+
     }
 }

@@ -32,4 +32,9 @@ public class ProjectFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_nav_project;
     }
+
+    @Override
+    public void showToast(String msg) {
+
+    }
 }

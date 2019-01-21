@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.di.module;
 
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.model.http.api.HomeApis;
 
 import java.util.concurrent.TimeUnit;
 
@@ -64,4 +65,11 @@ public class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
+
+    @Provides
+    @Singleton
+    HomeApis provideHomeApis(Retrofit retrofit){
+        return retrofit.create(HomeApis.class);
+    }
+
 }

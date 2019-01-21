@@ -8,8 +8,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
+import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
+import com.example.yuan_wanandroid.di.component.activity.DaggerMainActivityComponent;
+import com.example.yuan_wanandroid.di.component.activity.MainActivityComponent;
 import com.example.yuan_wanandroid.utils.BottomNavigationViewHelper;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.home.HomeFragment;
@@ -22,16 +25,14 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.searchTv)
-    TextView mSearchTv;
     @BindView(R.id.frameContain)
     FrameLayout mFrameContain;
     @BindView(R.id.BottomBnv)
     BottomNavigationView mBottomBnv;
 
-
     private int mPreFragmentPosition = 0;//上一个被选中的Fragment位置
     private Fragment[] mFragments;
+    private MainActivityComponent mMainActivityComponent;
 
     @Override
     protected int getLayoutId() {
@@ -58,7 +59,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void inject() {
-
+        mMainActivityComponent=DaggerMainActivityComponent.builder()
+                .appComponent(((App)getApplication()).getAppComponent())
+                .build();
+        mMainActivityComponent.inject(this);
     }
 
     @Override
@@ -93,7 +97,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void showToast() {
+    public void showToast(String msg) {
 
     }
 
@@ -152,5 +156,9 @@ public class MainActivity extends BaseActivity {
             }
         }
         transaction.commitAllowingStateLoss();
+    }
+
+    public MainActivityComponent getComponent(){
+        return mMainActivityComponent;
     }
 }

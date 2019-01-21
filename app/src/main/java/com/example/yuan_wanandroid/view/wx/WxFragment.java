@@ -32,4 +32,9 @@ public class WxFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_nav_wx;
     }
+
+    @Override
+    public void showToast(String msg) {
+
+    }
 }

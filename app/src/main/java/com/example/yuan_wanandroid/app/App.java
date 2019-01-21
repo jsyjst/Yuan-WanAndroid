@@ -1,11 +1,12 @@
 package com.example.yuan_wanandroid.app;
 
 import android.app.Application;
-import android.os.Bundle;
+
 
 import com.example.yuan_wanandroid.di.component.AppComponent;
 import com.example.yuan_wanandroid.di.component.DaggerAppComponent;
 import com.example.yuan_wanandroid.di.module.AppModule;
+
 
 /**
  * <pre>

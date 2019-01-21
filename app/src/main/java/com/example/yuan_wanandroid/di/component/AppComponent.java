@@ -2,10 +2,12 @@ package com.example.yuan_wanandroid.di.component;
 
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.di.module.AppModule;
+import com.example.yuan_wanandroid.model.DataModel;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import retrofit2.Retrofit;
 
 /**
  * <pre>
@@ -22,5 +24,7 @@ public interface AppComponent {
 
     //暴露方法
     App getApp();
+    DataModel getDataModel();
+    Retrofit getRetrofit();
 
 }

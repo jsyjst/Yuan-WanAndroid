@@ -86,8 +86,4 @@ public abstract class BaseFragment extends AbstractLazyLoadFragment implements B
 
     }
 
-    @Override
-    public void showToast() {
-
-    }
 }

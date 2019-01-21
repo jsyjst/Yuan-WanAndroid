@@ -32,4 +32,9 @@ public class SystemFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_nav_system;
     }
+
+    @Override
+    public void showToast(String msg) {
+
+    }
 }

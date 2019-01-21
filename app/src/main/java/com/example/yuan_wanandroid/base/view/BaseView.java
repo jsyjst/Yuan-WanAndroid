@@ -15,5 +15,5 @@ public interface BaseView {
     void showErrorView();  //显示错误布局
     void reLoad(); //重新加载
     void showLoading();  //显示加载布局
-    void showToast();  //显示Toast
+    void showToast(String msg);  //显示Toast
 }

@@ -4,6 +4,7 @@ apply from: 'config.gradle'
 buildscript {
     
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }

@@ -11,4 +11,11 @@
     <string name="wx">公众号</string>
     <string name="project">项目</string>
     <string name="person">我的</string>
+    
+    
+    //error
+    <string name="error_unknown">未知错误</string>
+    <string name="error_network">当前网络不可用，请检查网络设置</string>
+    <string name="error_timeout">连接超时，请重试</string>
+    <string name="error_http">网络错误</string>
 </resources>

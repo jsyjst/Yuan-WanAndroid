@@ -48,7 +48,12 @@ dependencies {
 
     //dagger+黄油刀
     implementation rootProject.ext.dependencies["dagger2"]
-    annotationProcessor rootProject.ext.dependencies["dagger2Cpmplier"]
+    annotationProcessor rootProject.ext.dependencies["dagger2Compiler"]
     implementation rootProject.ext.dependencies["butterKnife"]
     annotationProcessor rootProject.ext.dependencies["butterKnifeCompiler"]
+
+    //ui
+    implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["gilde"]
+    annotationProcessor rootProject.ext.dependencies["gildeCompiler"]
 }

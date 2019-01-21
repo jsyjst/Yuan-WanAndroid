@@ -20,4 +20,6 @@ public interface IPresenter<T extends BaseView> {
 
     //管理Rx的订阅事件
     void addRxSubscribe(Disposable disposable);
+    //订阅事件
+    void subscribeEvent();
 }

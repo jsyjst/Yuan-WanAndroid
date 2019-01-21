@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeItem"
+        android:icon="@drawable/selector_bottom_nav_home"
+        android:title="@string/home"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/systemItem"
+        android:icon="@drawable/selector_bottom_nav_system"
+        android:title="@string/system"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/wxItem"
+        android:icon="@drawable/selector_bottom_nav_wx"
+        android:title="@string/wx"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/projectItem"
+        android:icon="@drawable/selector_bottom_nav_project"
+        android:title="@string/project"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/personItem"
+        android:icon="@drawable/selector_bottom_nav_person"
+        android:title="@string/person"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+
+</menu>

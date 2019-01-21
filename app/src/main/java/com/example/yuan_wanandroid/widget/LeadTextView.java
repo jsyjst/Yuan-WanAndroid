@@ -138,7 +138,7 @@ public class LeadTextView extends AppCompatTextView {
     private void createShader() {
 
         if (wave == null) {
-            wave = getResources().getDrawable(R.drawable.wave);
+            wave = getResources().getDrawable(R.drawable.ic_lead_wave);
         }
 
         int waveW = wave.getIntrinsicWidth();

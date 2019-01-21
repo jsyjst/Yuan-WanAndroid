@@ -42,9 +42,9 @@
         android:layout_gravity="bottom"
         android:clickable="true"
         android:focusable="true"
-        android:background="@color/colorPrimary"
-        app:itemIconTint="@drawable/nav_btm_color"
+        app:itemBackground="@color/bottomNavBackground"
         app:itemTextColor="@drawable/nav_btm_color"
+        app:menu="@menu/bottom_nav_main"
         app:elevation="@dimen/dp_5">
     </android.support.design.widget.BottomNavigationView>
 

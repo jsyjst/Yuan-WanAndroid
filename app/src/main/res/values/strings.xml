@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">WanAndroid</string>
 
+    //leader
     <string name="lead_text">玩安卓，玩出精彩</string>
+    
+    //main
     <string name="search_text">发现更多干货</string>
+    <string name="home">首页</string>
+    <string name="system">知识体系</string>
+    <string name="wx">公众号</string>
+    <string name="project">项目</string>
+    <string name="person">我的</string>
 </resources>

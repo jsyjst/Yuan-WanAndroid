@@ -8,5 +8,8 @@
     <color name="black">#000000</color>
     <color name="background">#fafafa</color>
     <color name="colorWanStyle">#01d2fb</color>
-    <color name="colorNavNormal">#dadada</color>
+    <color name="colorNavNormal">#707070</color>
+    <color name="bottomNavBackground">#f9f7f7</color>
+
+
 </resources>

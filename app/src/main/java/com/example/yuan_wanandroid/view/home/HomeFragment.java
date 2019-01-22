@@ -1,6 +1,5 @@
 package com.example.yuan_wanandroid.view.home;
 
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +20,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.List;
 
@@ -51,6 +51,9 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
     @Named("bannerImages")
     List<String> bannerImages;
     @Inject
+    @Named("bannerUrls")
+    List<String> bannerUrls;
+    @Inject
     LinearLayoutManager mLinearLayoutManager;
     @Inject
     List<Article> mArticleList;
@@ -79,7 +82,7 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
         initRefreshView();
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         //添加轮播图到RecyclerView的Header
         View bannerLayout = LayoutInflater.from(mActivity).inflate(R.layout.banner_layout, null);
         banner = bannerLayout.findViewById(R.id.banner);
@@ -87,12 +90,20 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
         mArticlesAdapter.openLoadAnimation();
         mArticlesAdapter.addHeaderView(bannerLayout);
         mRecyclerView.setAdapter(mArticlesAdapter);
+
+        //文章点击效果
+        mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
+            ArticleActivity.startActivityByFragment(mActivity,
+                    this,
+                    mArticleList.get(position).getLink(),
+                    mArticleList.get(position).getTitle());
+        }));
     }
 
-    private void initRefreshView(){
+    private void initRefreshView() {
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mPageNum++;
-            isRefresh =false;
+            isRefresh = false;
             mPresenter.loadMoreArticles(mPageNum);
 
         });
@@ -135,12 +146,14 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
         if (!CommonUtils.isEmptyList(bannerTitles)) {
             bannerTitles.clear();
             bannerImages.clear();
+            bannerUrls.clear();
         }
 
         //获得标题,图片
         for (BannerData bannerData : bannerDataList) {
             bannerTitles.add(bannerData.getTitle());
             bannerImages.add(bannerData.getImagePath());
+            bannerUrls.add(bannerData.getUrl());
         }
         //设置banner
         banner.setImageLoader(new BannerImageLoader())
@@ -150,12 +163,18 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
                 .setBannerTitles(bannerTitles)//设置标题集合
                 .setIndicatorGravity(BannerConfig.RIGHT)//设置指示器位置，右边
                 .setDelayTime(3000)//设置轮播事件间隔
+                .setOnBannerListener(position -> {
+                    ArticleActivity.startActivityByFragment(mActivity,
+                            this,
+                            bannerUrls.get(position),
+                            bannerTitles.get(position));
+                })//点击事件
                 .start();
     }
 
     @Override
     public void showArticles(List<Article> articlesList) {
-        if(!CommonUtils.isEmptyList(mArticleList)){
+        if (!CommonUtils.isEmptyList(mArticleList)) {
             mArticleList.clear();
         }
         mArticleList.addAll(articlesList);
@@ -164,13 +183,17 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
 
     @Override
     public void showMoreArticles(List<Article> articleList) {
-        if(isRefresh){
-            if(!CommonUtils.isEmptyList(mArticleList)){
+        if (isRefresh) {
+            if (!CommonUtils.isEmptyList(mArticleList)) {
                 mArticleList.clear();
             }
             mRefreshLayout.finishRefresh();
-        }else{
-            mRefreshLayout.finishLoadMore();
+        } else {
+            if (CommonUtils.isEmptyList(articleList)) {
+                mRefreshLayout.finishLoadMoreWithNoMoreData();
+            } else {
+                mRefreshLayout.finishLoadMore(1000);
+            }
         }
         mArticleList.addAll(articleList);
         mArticlesAdapter.notifyDataSetChanged();

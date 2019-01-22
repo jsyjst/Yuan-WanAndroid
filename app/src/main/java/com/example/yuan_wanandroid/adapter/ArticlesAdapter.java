@@ -28,6 +28,5 @@ public class ArticlesAdapter extends BaseQuickAdapter<Article, BaseViewHolder> {
                 .setText(R.id.homeItemDateTv,item.getNiceDate())
                 .setText(R.id.homeItemTitleTv,item.getTitle())
                 .setText(R.id.homeItemTypeTv,item.getSuperChapterName()+" / "+item.getChapterName());
-
     }
 }

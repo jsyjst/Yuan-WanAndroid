@@ -43,6 +43,13 @@ public class HomeFragmentModule {
 
     @Provides
     @PerFragment
+    @Named("bannerUrls")
+    List<String> provideBannerUrls() {
+        return new ArrayList<>();
+    }
+
+    @Provides
+    @PerFragment
     LinearLayoutManager provideLinearLayoutManager(){
         return new LinearLayoutManager(App.getContext());
     }

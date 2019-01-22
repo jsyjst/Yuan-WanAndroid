@@ -35,6 +35,7 @@ ext {
             Gilde                  : "4.8.0",
             BaseAdapterVersion     : "2.9.40",
             SmartrefreshVersion    : "1.1.0-alpha-14",
+            AgentWebVersion        : "4.0.2",
     ]
 
     dependencies = [
@@ -67,6 +68,7 @@ ext {
             "gildeCompiler"         : "com.github.bumptech.glide:compiler:${version.Gilde}",
             "baseAdapter"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${version.BaseAdapterVersion}",
             "smartrefresh"          : "com.scwang.smartrefresh:SmartRefreshLayout:${version.SmartrefreshVersion}",
+            "agentWeb"              : "com.just.agentweb:agentweb:${version.AgentWebVersion}",
 
             //test
             "junit"                 : "junit:junit:${version.JunitVersion}",

@@ -3,7 +3,7 @@
 
     //leader
     <string name="lead_text">玩安卓，玩出精彩</string>
-    
+
     //main
     <string name="search_text">发现更多干货</string>
     <string name="home">首页</string>
@@ -11,11 +11,16 @@
     <string name="wx">公众号</string>
     <string name="project">项目</string>
     <string name="person">我的</string>
-    
-    
+
+
     //error
     <string name="error_unknown">未知错误</string>
     <string name="error_network">当前网络不可用，请检查网络设置</string>
     <string name="error_timeout">连接超时，请重试</string>
     <string name="error_http">网络错误</string>
+
+    //home
+    <string name="article_share">分享</string>
+    <string name="article_collect">收藏</string>
+    <string name="article_browser">用系统浏览器打开</string>
 </resources>

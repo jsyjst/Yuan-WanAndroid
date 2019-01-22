@@ -12,4 +12,8 @@ package com.example.yuan_wanandroid.app;
 public class Constant {
     //Url
     public final static String BASE_URL = "http://www.wanandroid.com/";
+
+    //文章详细的url的key
+    public final static String KEY_ARTICLE_URL="article_url";
+    public final static String KEY_ARTICLE_TITLE="article_title";
 }

@@ -3,6 +3,7 @@
     package="com.example.yuan_wanandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".app.App"
@@ -19,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity"></activity>
+        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.home.ArticleActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/searchRelative"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimaryDark">
+
+    <TextView
+        android:id="@+id/searchTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_20"
+        android:background="@drawable/bg_search_text"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_30"
+        android:paddingTop="@dimen/dp_10"
+        android:text="@string/search_text" />
+
+</RelativeLayout>

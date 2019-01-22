@@ -25,6 +25,4 @@ public interface AppComponent {
     //暴露方法
     App getApp();
     DataModel getDataModel();
-    Retrofit getRetrofit();
-
 }

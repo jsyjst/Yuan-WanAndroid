@@ -62,8 +62,23 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                             @Override
                             public void onNext(Articles articles) {
                                 super.onNext(articles);
-                                Log.d(TAG, "onNext: "+articles.isOver());
                                 mView.showArticles(articles.getDatas());
+                            }
+                        })
+        );
+    }
+
+    @Override
+    public void loadMoreArticles(int pageNum) {
+        addRxSubscribe(
+                mModel.getArticles(pageNum)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribeWith(new BaseObserver<Articles>(mView,false,false) {
+                            @Override
+                            public void onNext(Articles articles) {
+                                super.onNext(articles);
+                                mView.showMoreArticles(articles.getDatas());
                             }
                         })
         );

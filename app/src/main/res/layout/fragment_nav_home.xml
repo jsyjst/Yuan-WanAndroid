@@ -7,15 +7,20 @@
 
     <include layout="@layout/include_search_toolbar" />
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarSize="@dimen/dp_10"
-        android:scrollbars="vertical"
-        android:layout_below="@+id/searchRelative"
-        tools:listitem="@layout/item_home_list" />
+        android:layout_below="@+id/searchRelative">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="@dimen/dp_10"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_home_list" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 package com.example.yuan_wanandroid.view.home;
 
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -16,10 +16,8 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.presenter.HomeFragmentPresenter;
 import com.example.yuan_wanandroid.utils.BannerImageLoader;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
-import com.github.jdsjlzx.recyclerview.LRecyclerView;
-import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -62,8 +60,12 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout mRefreshLayout;
 
     private Banner banner;
+    private int mPageNum = 0;//首页文章页数
+    private boolean isRefresh = false; //是否在上拉刷新
 
     @Override
     protected int getLayoutId() {
@@ -74,6 +76,7 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
     protected void initView() {
         super.initView();
         initRecyclerView();
+        initRefreshView();
     }
 
     private void initRecyclerView(){
@@ -84,6 +87,21 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
         mArticlesAdapter.openLoadAnimation();
         mArticlesAdapter.addHeaderView(bannerLayout);
         mRecyclerView.setAdapter(mArticlesAdapter);
+    }
+
+    private void initRefreshView(){
+        mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
+            mPageNum++;
+            isRefresh =false;
+            mPresenter.loadMoreArticles(mPageNum);
+
+        });
+        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            mPageNum = 0;
+            isRefresh = true;
+            mPresenter.loadMoreArticles(mPageNum);
+
+        });
     }
 
     @Override
@@ -141,6 +159,20 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
             mArticleList.clear();
         }
         mArticleList.addAll(articlesList);
+        mArticlesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMoreArticles(List<Article> articleList) {
+        if(isRefresh){
+            if(!CommonUtils.isEmptyList(mArticleList)){
+                mArticleList.clear();
+            }
+            mRefreshLayout.finishRefresh();
+        }else{
+            mRefreshLayout.finishLoadMore();
+        }
+        mArticleList.addAll(articleList);
         mArticlesAdapter.notifyDataSetChanged();
     }
 

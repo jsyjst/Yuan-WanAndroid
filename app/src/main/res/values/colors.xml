@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0f36c1</color>
+    <color name="colorPrimary">#01d2fb</color>
     <color name="colorPrimaryDark">#01d2fb</color>
     <color name="colorAccent">#FF4081</color>
 
@@ -13,6 +13,7 @@
 
     <color name="while_short">#e4e4e4</color>
     <color name="black_trans">#5c000000</color>
+    <color name="gray">#e2e2e2</color>
 
 
 </resources>

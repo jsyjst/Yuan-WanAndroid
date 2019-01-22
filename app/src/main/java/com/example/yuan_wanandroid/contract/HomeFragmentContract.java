@@ -20,11 +20,14 @@ public interface HomeFragmentContract {
     interface View extends BaseView{
         void showBannerData(List<BannerData> bannerDataList); //展示轮播图
         void showArticles(List<Article> articlesList); //展示首页文章
+        void showMoreArticles(List<Article> articleList);  //加载更多文章
+
     }
 
 
     interface Presenter extends IPresenter<HomeFragmentContract.View>{
         void loadBannerData();//加载首页banner数据
         void loadArticles(int pageNum);//加载首页文章数据
+        void loadMoreArticles(int pageNum);//加载更多首页文章数据
     }
 }

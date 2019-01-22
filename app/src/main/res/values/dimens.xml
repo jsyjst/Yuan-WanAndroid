@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--尺寸 dp 从小到大-->
+    <dimen name="dp_0.1">0.1dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_05">0.5dp</dimen>
     <dimen name="dp_1">1dp</dimen>

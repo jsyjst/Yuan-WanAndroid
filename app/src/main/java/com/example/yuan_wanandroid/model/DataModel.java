@@ -1,7 +1,8 @@
 package com.example.yuan_wanandroid.model;
 
-import com.example.yuan_wanandroid.model.entiy.BannerData;
-import com.example.yuan_wanandroid.model.entiy.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BannerData;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.http.NetworkHelper;
 import com.example.yuan_wanandroid.model.http.NetworkHelperImpl;
 
@@ -31,5 +32,10 @@ public class DataModel implements NetworkHelper {
 
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mNetworkHelper.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getArticles(int pageNum) {
+        return mNetworkHelper.getArticles(pageNum);
     }
 }

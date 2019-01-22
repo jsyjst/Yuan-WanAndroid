@@ -1,4 +1,4 @@
-package com.example.yuan_wanandroid.model.entiy;
+package com.example.yuan_wanandroid.model.entity;
 
 /**
  * <pre>

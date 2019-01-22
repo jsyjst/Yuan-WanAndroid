@@ -9,7 +9,10 @@
     <color name="background">#fafafa</color>
     <color name="colorWanStyle">#01d2fb</color>
     <color name="colorNavNormal">#707070</color>
-    <color name="bottomNavBackground">#f9f7f7</color>
+    <color name="bottomNavBackground">#f9f7f7</color>\
+
+    <color name="while_short">#e4e4e4</color>
+    <color name="black_trans">#5c000000</color>
 
 
 </resources>

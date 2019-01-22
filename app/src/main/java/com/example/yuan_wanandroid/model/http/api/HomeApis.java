@@ -1,12 +1,14 @@
 package com.example.yuan_wanandroid.model.http.api;
 
-import com.example.yuan_wanandroid.model.entiy.BannerData;
-import com.example.yuan_wanandroid.model.entiy.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BannerData;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 
 /**
@@ -26,4 +28,12 @@ public interface HomeApis {
      */
     @GET("banner/json")
     Observable<BaseResponse<List<BannerData>>> getBannerData();
+
+
+    /**
+     * 首页文章列表
+     * http://www.wanandroid.com/article/list/1/json
+     */
+    @GET("article/list/{pageNum}/json")
+    Observable<BaseResponse<Articles>> getArticles(@Path("pageNum") int pageNum);
 }

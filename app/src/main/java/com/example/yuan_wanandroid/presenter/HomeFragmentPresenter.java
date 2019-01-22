@@ -1,17 +1,22 @@
 package com.example.yuan_wanandroid.presenter;
 
+import android.util.Log;
+
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.contract.HomeFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
-import com.example.yuan_wanandroid.model.entiy.BannerData;
+import com.example.yuan_wanandroid.model.entity.Article;
+import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BannerData;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DefaultObserver;
 
 /**
  * <pre>
@@ -23,6 +28,7 @@ import io.reactivex.disposables.Disposable;
 
 
 public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.View>implements HomeFragmentContract.Presenter {
+    private static final String TAG="HomeFragmentPresenter";
 
     @Inject
     public HomeFragmentPresenter(DataModel model){
@@ -39,9 +45,27 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                     @Override
                     public void onNext(List<BannerData> bannerData) {
                         super.onNext(bannerData);
+                        Log.d(TAG, "BannerOnNext: "+bannerData.size());
                         mView.showBannerData(bannerData);
                     }
                 })
+        );
+    }
+
+    @Override
+    public void loadArticles(int pageNum) {
+        addRxSubscribe(
+                mModel.getArticles(pageNum)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribeWith(new BaseObserver<Articles>(mView,false,false) {
+                            @Override
+                            public void onNext(Articles articles) {
+                                super.onNext(articles);
+                                Log.d(TAG, "onNext: "+articles.isOver());
+                                mView.showArticles(articles.getDatas());
+                            }
+                        })
         );
     }
 

@@ -1,6 +1,7 @@
 package com.example.yuan_wanandroid.base;
 
 import android.net.ParseException;
+import android.util.Log;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
@@ -16,6 +17,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
 
+import static com.example.yuan_wanandroid.utils.LogUtil.TAG_COMMON;
 import static com.example.yuan_wanandroid.utils.LogUtil.TAG_ERROR;
 
 /**
@@ -52,11 +54,13 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     protected void onStart() {
+        Log.d(LogUtil.TAG_COMMON, "onStart: ");
         if (isShowProgress) mView.showLoading();
     }
 
     @Override
     public void onNext(T t) {
+        Log.d(TAG_COMMON, "onNext: ");
         mView.showNormalView();
     }
 

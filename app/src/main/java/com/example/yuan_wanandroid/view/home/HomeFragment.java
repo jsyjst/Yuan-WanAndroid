@@ -1,15 +1,25 @@
 package com.example.yuan_wanandroid.view.home;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+
 import com.example.yuan_wanandroid.R;
+import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.HomeFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.HomeFragmentModule;
-import com.example.yuan_wanandroid.model.entiy.BannerData;
+import com.example.yuan_wanandroid.model.entity.Article;
+import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.presenter.HomeFragmentPresenter;
 import com.example.yuan_wanandroid.utils.BannerImageLoader;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
+import com.github.jdsjlzx.recyclerview.LRecyclerView;
+import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -20,8 +30,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import butterknife.BindView;
-
-import static com.example.yuan_wanandroid.utils.LogUtil.TAG_COMMON;
 
 /**
  * <pre>
@@ -34,6 +42,8 @@ import static com.example.yuan_wanandroid.utils.LogUtil.TAG_COMMON;
 
 public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> implements HomeFragmentContract.View {
 
+    private static final String TAG = "HomeFragment";
+
     @Inject
     HomeFragmentPresenter mPresenter;
     @Inject
@@ -42,10 +52,18 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
     @Inject
     @Named("bannerImages")
     List<String> bannerImages;
-    @BindView(R.id.banner)
-    Banner banner;
+    @Inject
+    LinearLayoutManager mLinearLayoutManager;
+    @Inject
+    List<Article> mArticleList;
+    @Inject
+    ArticlesAdapter mArticlesAdapter;
 
 
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+    private Banner banner;
 
     @Override
     protected int getLayoutId() {
@@ -55,6 +73,17 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
     @Override
     protected void initView() {
         super.initView();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView(){
+        //添加轮播图到RecyclerView的Header
+        View bannerLayout = LayoutInflater.from(mActivity).inflate(R.layout.banner_layout, null);
+        banner = bannerLayout.findViewById(R.id.banner);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mArticlesAdapter.openLoadAnimation();
+        mArticlesAdapter.addHeaderView(bannerLayout);
+        mRecyclerView.setAdapter(mArticlesAdapter);
     }
 
     @Override
@@ -74,6 +103,7 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
     @Override
     protected void loadData() {
         mPresenter.loadBannerData();
+        mPresenter.loadArticles(0);
     }
 
     @Override
@@ -106,6 +136,15 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
     }
 
     @Override
+    public void showArticles(List<Article> articlesList) {
+        if(!CommonUtils.isEmptyList(mArticleList)){
+            mArticleList.clear();
+        }
+        mArticleList.addAll(articlesList);
+        mArticlesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         if (banner != null) {
@@ -120,4 +159,5 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
             banner.stopAutoPlay();
         }
     }
+
 }

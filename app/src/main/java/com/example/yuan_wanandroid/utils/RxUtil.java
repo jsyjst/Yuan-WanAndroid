@@ -1,12 +1,9 @@
 package com.example.yuan_wanandroid.utils;
 
-import com.example.yuan_wanandroid.model.entiy.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.http.exception.ApiException;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;

@@ -1,7 +1,8 @@
 package com.example.yuan_wanandroid.model.http;
 
-import com.example.yuan_wanandroid.model.entiy.BannerData;
-import com.example.yuan_wanandroid.model.entiy.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BannerData;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 
 import java.util.List;
@@ -30,5 +31,10 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mHomeApis.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getArticles(int pageNum) {
+        return mHomeApis.getArticles(pageNum);
     }
 }

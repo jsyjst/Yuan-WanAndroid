@@ -1,7 +1,8 @@
 package com.example.yuan_wanandroid.model.http;
 
-import com.example.yuan_wanandroid.model.entiy.BannerData;
-import com.example.yuan_wanandroid.model.entiy.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BannerData;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 
 import java.util.List;
 
@@ -21,5 +22,8 @@ public interface NetworkHelper {
     /**
      *  home
      */
-    Observable<BaseResponse<List<BannerData>>> getBannerData(); //获取轮播图的数据
+    //获取轮播图的数据
+    Observable<BaseResponse<List<BannerData>>> getBannerData();
+    //获取首页文章
+    Observable<BaseResponse<Articles>> getArticles(int pageNum);
 }

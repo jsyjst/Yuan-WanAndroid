@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp_10"
+    android:background="@drawable/list_item_selector"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/homeItemHeadIv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:src="@mipmap/ic_launcher"
+        tools:ignore="ContentDescription"/>
+
+    <TextView
+        android:id="@+id/homeItemAuthorTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/homeItemHeadIv"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/homeItemHeadIv"
+        android:layout_toStartOf="@+id/homeItemLoveIv"
+        android:gravity="bottom"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@android:color/tertiary_text_light"
+        tools:text="作者"/>
+
+    <TextView
+        android:id="@+id/homeItemDateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/homeItemHeadIv"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/dp_10"
+        android:textColor="@android:color/tertiary_text_light"
+        tools:ignore="RtlSymmetry"
+        android:textSize="@dimen/sp_14"
+        tools:text="日期"/>
+
+    <TextView
+        android:id="@+id/homeItemTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/homeItemHeadIv"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_4"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="@dimen/sp_16"
+        tools:text="标题"/>
+
+    <TextView
+        android:id="@+id/homeItemTypeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/homeItemLoveIv"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@id/homeItemLoveIv"
+        android:layout_toStartOf="@+id/homeItemLoveIv"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/tertiary_text_light"
+        android:textSize="@dimen/sp_14"
+        tools:text="类型" />
+
+    <ImageView
+        android:id="@+id/homeItemLoveIv"
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_45"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/homeItemTitleTv"
+        android:padding="@dimen/dp_10"
+        android:src="@drawable/ic_love"
+        tools:ignore="ContentDescription"/>
+</RelativeLayout>

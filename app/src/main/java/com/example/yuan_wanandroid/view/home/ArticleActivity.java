@@ -194,11 +194,21 @@ public class ArticleActivity extends BaseActivity {
         ShareUtils.openBrowser(this, mUrl);
     }
 
+    /**
+     * 获取传入的数据
+     */
     private void getBundleData() {
         mUrl = getIntent().getStringExtra(Constant.KEY_ARTICLE_URL);
         mTitle = getIntent().getStringExtra(Constant.KEY_ARTICLE_TITLE);
     }
 
+    /**
+     * 给其他需要传入数据的碎片使用
+     * @param activity
+     * @param fragment
+     * @param url
+     * @param title
+     */
     public static void startActivityByFragment(Activity activity, Fragment fragment, String url, String title) {
         Intent intent = new Intent(activity, ArticleActivity.class);
         intent.putExtra(Constant.KEY_ARTICLE_URL, url);

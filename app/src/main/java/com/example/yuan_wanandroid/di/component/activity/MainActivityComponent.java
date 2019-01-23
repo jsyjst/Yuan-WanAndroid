@@ -2,8 +2,10 @@ package com.example.yuan_wanandroid.di.component.activity;
 
 import com.example.yuan_wanandroid.di.component.AppComponent;
 import com.example.yuan_wanandroid.di.component.fragment.HomeFragmentComponent;
+import com.example.yuan_wanandroid.di.component.fragment.SystemFragmentComponent;
 import com.example.yuan_wanandroid.di.module.activity.MainActivityModule;
 import com.example.yuan_wanandroid.di.module.fragment.HomeFragmentModule;
+import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
 import com.example.yuan_wanandroid.di.scope.PerActivity;
 import com.example.yuan_wanandroid.view.MainActivity;
 
@@ -23,4 +25,5 @@ public interface MainActivityComponent {
     void inject(MainActivity mainActivity);
 
     HomeFragmentComponent getHomeFragmentComponent(HomeFragmentModule homeFragmentModule);
+    SystemFragmentComponent getSystemFragmentComponent(SystemFragmentModule systemFragmentModule);
 }

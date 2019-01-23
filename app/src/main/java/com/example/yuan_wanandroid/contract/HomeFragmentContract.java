@@ -11,7 +11,7 @@ import java.util.List;
  * <pre>
  *     author : 残渊
  *     time   : 2019/01/21
- *     desc   :
+ *     desc   : 首页的MVP接口集合
  * </pre>
  */
 

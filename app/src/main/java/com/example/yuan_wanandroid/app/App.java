@@ -1,8 +1,6 @@
 package com.example.yuan_wanandroid.app;
 
 import android.app.Application;
-import android.content.Context;
-import android.support.annotation.NonNull;
 
 
 import com.example.yuan_wanandroid.R;
@@ -10,7 +8,6 @@ import com.example.yuan_wanandroid.di.component.AppComponent;
 import com.example.yuan_wanandroid.di.component.DaggerAppComponent;
 import com.example.yuan_wanandroid.di.module.AppModule;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 

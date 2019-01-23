@@ -3,6 +3,7 @@ package com.example.yuan_wanandroid.di.module;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
+import com.example.yuan_wanandroid.model.http.api.SystemApis;
 
 import java.util.concurrent.TimeUnit;
 
@@ -70,6 +71,12 @@ public class AppModule {
     @Singleton
     HomeApis provideHomeApis(Retrofit retrofit){
         return retrofit.create(HomeApis.class);
+    }
+
+    @Provides
+    @Singleton
+    SystemApis provideSystemApis(Retrofit retrofit){
+        return retrofit.create(SystemApis.class);
     }
 
 

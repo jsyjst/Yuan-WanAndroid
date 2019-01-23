@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
+import com.example.yuan_wanandroid.adapter.home.ArticlesAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.HomeFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.HomeFragmentModule;

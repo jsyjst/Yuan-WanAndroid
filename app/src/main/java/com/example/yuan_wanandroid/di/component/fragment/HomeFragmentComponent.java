@@ -17,6 +17,5 @@ import dagger.Subcomponent;
 @PerFragment
 @Subcomponent(modules = HomeFragmentModule.class)
 public interface HomeFragmentComponent {
-
     void inject(HomeFragment homeFragment);
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_selector"
+    android:paddingStart="@dimen/dp_15"
+    android:paddingEnd="@dimen/dp_15"
+    android:paddingTop="@dimen/dp_10">
+
+    <TextView
+        android:id="@+id/systemItemFirstTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/systemItemPointIv"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="18sp"
+        tools:text="一级目录"/>
+
+    <TextView
+        android:id="@+id/systemItemSecondTv"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/systemItemFirstTv"
+        android:layout_marginTop="20dp"
+        android:layout_toStartOf="@+id/systemItemPointIv"
+        android:textColor="@android:color/tertiary_text_light"
+        android:textSize="@dimen/sp_14"
+        tools:text="二级目录"/>
+
+    <ImageView
+        android:id="@+id/systemItemPointIv"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_system_item_point"
+        tools:ignore="ContentDescription"/>
+    <View
+        android:layout_below="@id/systemItemSecondTv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/black_trans"/>
+</RelativeLayout>

@@ -6,9 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.View;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -17,6 +18,8 @@ import android.widget.LinearLayout;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
+import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.ShareUtils;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
@@ -52,7 +55,7 @@ public class ArticleActivity extends BaseActivity {
         mToolbar.setTitle(Html.fromHtml(mTitle));
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         mToolbar.setNavigationOnClickListener(v -> finish());
@@ -91,9 +94,24 @@ public class ArticleActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.article_detail_menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_article_detail, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.shareItem:
+                shareLink();
+                break;
+            case R.id.collectionItem:
+                collection();
+                break;
+            case R.id.browserItem:
+                openArticlesByBrowser();
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 
     @Override
@@ -112,6 +130,7 @@ public class ArticleActivity extends BaseActivity {
         mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
     }
+
     @Override
     public void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
@@ -148,12 +167,39 @@ public class ArticleActivity extends BaseActivity {
 
     }
 
-    private void getBundleData(){
+    /**
+     * 分享链接
+     */
+    private void shareLink() {
+        if (!TextUtils.isEmpty(mTitle) || !TextUtils.isEmpty(mUrl)) {
+            ShareUtils.shareText(this,
+                    getString(R.string.article_share_link) + "\n" + "【" + mTitle + "】" + "\n" + mUrl,
+                    getString(R.string.article_share_title));
+        }else{
+            CommonUtils.toastShow(getString(R.string.article_share_error));
+        }
+    }
+
+    /**
+     * 收藏
+     */
+    private void collection() {
+
+    }
+
+    /**
+     * 使用系统浏览器打开
+     */
+    private void openArticlesByBrowser() {
+        ShareUtils.openBrowser(this, mUrl);
+    }
+
+    private void getBundleData() {
         mUrl = getIntent().getStringExtra(Constant.KEY_ARTICLE_URL);
         mTitle = getIntent().getStringExtra(Constant.KEY_ARTICLE_TITLE);
     }
 
-    public static void startActivityByFragment(Activity activity, Fragment fragment, String url,String title) {
+    public static void startActivityByFragment(Activity activity, Fragment fragment, String url, String title) {
         Intent intent = new Intent(activity, ArticleActivity.class);
         intent.putExtra(Constant.KEY_ARTICLE_URL, url);
         intent.putExtra(Constant.KEY_ARTICLE_TITLE, title);

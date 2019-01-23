@@ -5,17 +5,17 @@
     <group>
 
         <item
-            android:id="@+id/item_share"
+            android:id="@+id/shareItem"
             android:title="@string/article_share"
             app:showAsAction="never"/>
 
         <item
-            android:id="@+id/item_collection"
+            android:id="@+id/collectionItem"
             android:title="@string/article_collect"
             app:showAsAction="never"/>
 
         <item
-            android:id="@+id/item_browser"
+            android:id="@+id/browserItem"
             android:title="@string/article_browser"
             app:showAsAction="never"/>
 

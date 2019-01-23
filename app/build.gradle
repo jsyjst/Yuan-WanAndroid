@@ -60,5 +60,6 @@ dependencies {
     implementation rootProject.ext.dependencies["baseAdapter"]
     implementation rootProject.ext.dependencies["smartrefresh"]
     implementation rootProject.ext.dependencies["agentWeb"]
+    implementation rootProject.ext.dependencies["flycoTabLayout_Lib"]
 
 }

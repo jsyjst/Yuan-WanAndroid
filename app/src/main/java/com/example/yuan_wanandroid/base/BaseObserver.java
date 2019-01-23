@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.view.BaseView;
+import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.utils.LogUtil;
 import com.google.gson.JsonParseException;
 
@@ -54,13 +55,12 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     protected void onStart() {
-        Log.d(LogUtil.TAG_COMMON, "onStart: ");
         if (isShowProgress) mView.showLoading();
     }
 
     @Override
     public void onNext(T t) {
-        Log.d(TAG_COMMON, "onNext: ");
+     //   if(t instanceof Articles)LogUtil.d(TAG_COMMON,""+((Articles) t).getDatas().get(0).getChapterName());
         mView.showNormalView();
     }
 

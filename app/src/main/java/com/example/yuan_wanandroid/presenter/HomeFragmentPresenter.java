@@ -18,6 +18,8 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DefaultObserver;
 
+import static com.example.yuan_wanandroid.utils.LogUtil.TAG_COMMON;
+
 /**
  * <pre>
  *     author : 残渊

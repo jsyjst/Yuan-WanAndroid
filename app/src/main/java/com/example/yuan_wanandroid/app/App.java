@@ -23,7 +23,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 public class App extends Application {
     private static App mApp;
-    private AppComponent mAppComponent;
+    private static AppComponent mAppComponent;
 
     //static代码段可以防止内存泄露
     //static代码段可以防止内存泄露
@@ -49,7 +49,7 @@ public class App extends Application {
         return mApp;
     }
 
-    public AppComponent getAppComponent() {
+    public static AppComponent getAppComponent() {
         return mAppComponent;
     }
 }

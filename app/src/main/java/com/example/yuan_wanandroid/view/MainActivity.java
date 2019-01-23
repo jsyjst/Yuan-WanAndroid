@@ -52,10 +52,6 @@ public class MainActivity extends BaseActivity {
         loadMultipleFragment(R.id.frameContain, 0, mFragments);
     }
 
-    @Override
-    public void setStatusBarColor() {
-        StatusBarUtil.setStatusColor(getWindow(), getResources().getColor(R.color.colorPrimaryDark), 1f);
-    }
 
     @Override
     protected void inject() {
@@ -76,30 +72,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    public void showNormalView() {
-
-    }
-
-    @Override
-    public void showErrorView() {
-
-    }
-
-    @Override
-    public void reLoad() {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showToast(String msg) {
-
-    }
 
     private void initBottomNavigationView() {
         //通过反射去除BottomNav的位移效果

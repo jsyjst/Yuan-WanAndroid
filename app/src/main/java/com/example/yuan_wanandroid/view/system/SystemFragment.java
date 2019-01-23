@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.view.system;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,9 +15,11 @@ import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.presenter.SystemFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,6 +56,8 @@ public class SystemFragment extends BaseMvpFragment<SystemFragmentPresenter>
     SmartRefreshLayout mRefreshLayout;
 
     private boolean isRefresh=false;
+    private List<String> secondSystemNames;
+    private List<Integer> ids ;
 
     @Override
     protected int getLayoutId() {
@@ -69,6 +74,9 @@ public class SystemFragment extends BaseMvpFragment<SystemFragmentPresenter>
     private void initRecyclerView(){
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mFirstSystemAdapter);
+        secondSystemNames = new ArrayList<>();
+        ids = new ArrayList<>();
+        mFirstSystemAdapter.setOnItemClickListener((adapter, view, position) ->toSystemArticlesActivity(position));
     }
 
     private void initRefresh(){
@@ -116,5 +124,19 @@ public class SystemFragment extends BaseMvpFragment<SystemFragmentPresenter>
         }
         mFirstSystemList.addAll(firstSystemList);
         mFirstSystemAdapter.notifyDataSetChanged();
+    }
+
+    private void toSystemArticlesActivity(int position){
+        secondSystemNames.clear();
+        ids.clear();
+        for(FirstSystem.ChildrenBean secondSystem:mFirstSystemList.get(position).getChildren()){
+            secondSystemNames.add(secondSystem.getName());
+            ids.add(secondSystem.getId());
+        }
+
+        SystemArticlesActivity.startActivityByData(mActivity,
+                mFirstSystemList.get(position).getName(),
+                secondSystemNames,
+                ids);
     }
 }

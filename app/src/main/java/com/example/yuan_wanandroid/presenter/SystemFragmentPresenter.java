@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.contract.SystemFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class SystemFragmentPresenter extends BasePresenter<SystemFragmentContrac
 
     @Override
     public void loadSystemData() {
-        mModel.getFirstSystemData()
+        addRxSubscribe(mModel.getFirstSystemData()
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
                 .subscribeWith(new BaseObserver<List<FirstSystem>>(mView,false,false){
@@ -39,6 +40,7 @@ public class SystemFragmentPresenter extends BasePresenter<SystemFragmentContrac
                         super.onNext(firstSystemList);
                         mView.showSystemData(firstSystemList);
                     }
-                });
+                }));
+
     }
 }

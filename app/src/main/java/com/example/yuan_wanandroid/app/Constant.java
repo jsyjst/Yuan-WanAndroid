@@ -16,4 +16,10 @@ public class Constant {
     //文章详细的url的key
     public final static String KEY_ARTICLE_URL="article_url";
     public final static String KEY_ARTICLE_TITLE="article_title";
+
+    //二级体系key
+    public final static String KEY_SYSTEM_FIRST_NAME="system_first_name";
+    public final static String KEY_SYSTEM_SECOND_NAME_LIST="system_second_name_list";
+    public final static String KEY_SYSTEM_SECOND_ID_LIST="system_second_id_list";
+    public final static String KEY_SYSTEM_SECOND_ID="system_second_name";
 }

@@ -18,7 +18,7 @@ import java.util.List;
 public class CommonUtils {
 
     public static void toastShow(String msg){
-        Toast.makeText(App.getContext(),msg,Toast.LENGTH_SHORT);
+        Toast.makeText(App.getContext(),msg,Toast.LENGTH_SHORT).show();
     }
     public static boolean isEmptyList(List<?> list) {
         return list == null || list.size() == 0;

@@ -4,6 +4,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.model.entity.Article;
+import com.example.yuan_wanandroid.utils.LogUtil;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class ArticlesAdapter extends BaseQuickAdapter<Article, BaseViewHolder> {
     public ArticlesAdapter(int layoutResId, List<Article> data) {
         super(layoutResId, data);
+        LogUtil.d(LogUtil.TAG_ERROR,"yes");
     }
 
     @Override

@@ -20,7 +20,8 @@
             android:background="@color/colorPrimary"
             app:tl_textAllCaps="false"
             app:tl_textBold="BOTH"
-            app:tl_textsize="@dimen/sp_14" />
+            app:tl_textsize="@dimen/sp_14"
+            app:tl_indicator_width="@dimen/dp_25"/>
 
     </android.support.design.widget.AppBarLayout>
 

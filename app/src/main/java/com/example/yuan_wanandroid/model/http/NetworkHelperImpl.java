@@ -4,8 +4,10 @@ import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
+import com.example.yuan_wanandroid.model.entity.WxTab;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
+import com.example.yuan_wanandroid.model.http.api.WxApis;
 
 import java.util.List;
 
@@ -25,11 +27,13 @@ import io.reactivex.Observable;
 public class NetworkHelperImpl implements NetworkHelper{
     private HomeApis mHomeApis;
     private SystemApis mSystemApis;
+    private WxApis mWxApis;
 
     @Inject
-    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis){
+    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis){
         mHomeApis = homeApis;
         mSystemApis = systemApis;
+        mWxApis = wxApis;
     }
 
     @Override
@@ -50,6 +54,16 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse<Articles>> getSecondSystemArticles(int pageNum, int id) {
         return mSystemApis.getSecondSystemArticles(pageNum,id);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<WxTab>>> getWxTabs() {
+        return mWxApis.getWxTabs();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getWxArticles(int pageNum, int id) {
+        return mWxApis.getWxArticles(pageNum,id);
     }
 
 

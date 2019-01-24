@@ -2,20 +2,17 @@ package com.example.yuan_wanandroid.view.system;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.system.FirstSystemAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
-import com.example.yuan_wanandroid.contract.SystemFragmentContract;
-import com.example.yuan_wanandroid.di.component.activity.DaggerMainActivityComponent;
+import com.example.yuan_wanandroid.contract.system.SystemFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
-import com.example.yuan_wanandroid.presenter.SystemFragmentPresenter;
+import com.example.yuan_wanandroid.presenter.system.SystemFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 

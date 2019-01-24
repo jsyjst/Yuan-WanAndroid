@@ -1,4 +1,4 @@
-package com.example.yuan_wanandroid.contract;
+package com.example.yuan_wanandroid.contract.home;
 
 import com.example.yuan_wanandroid.base.presenter.IPresenter;
 import com.example.yuan_wanandroid.base.view.BaseView;

@@ -80,7 +80,6 @@ public class SystemArticlesActivity extends BaseActivity {
     private void initViewPage() {
         mFragmentList = new ArrayList<>();
         for (int i = 0; i < mIdList.size(); i++) {
-
             mFragmentList.add(SystemArticlesFragment.newInstance(mIdList.get(i)));
         }
         mTabAdapter = new TabAdapter(getSupportFragmentManager(), mFragmentList, mSecondSystemNameList);

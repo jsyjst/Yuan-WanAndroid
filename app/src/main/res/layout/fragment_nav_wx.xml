@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/include_search_toolbar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wx"
-        android:layout_centerInParent="true"/>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/wxTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_35"
+        android:background="@color/white"
+        app:tl_textAllCaps="false"
+        app:tl_textsize="@dimen/sp_16"
+        app:tl_textBold="BOTH"
+        app:tl_indicator_width="@dimen/dp_0"
+        app:tl_textUnselectColor="@color/black"
+        app:tl_textSelectColor="@color/colorPrimaryDark"
+        app:elevation="@dimen/dp_5"
+        >
+    </com.flyco.tablayout.SlidingTabLayout>
 
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.1"
+        android:background="@color/black_trans"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/wxViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       />
+
+</LinearLayout>

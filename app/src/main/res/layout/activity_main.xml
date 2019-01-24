@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,6 +14,7 @@
         tools:ignore="PrivateResource">
 
     </FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/BottomBnv"
         android:layout_width="match_parent"
@@ -22,10 +22,8 @@
         android:layout_gravity="bottom"
         android:clickable="true"
         android:focusable="true"
+        app:elevation="@dimen/dp_5"
         app:itemBackground="@color/bottomNavBackground"
         app:itemTextColor="@drawable/nav_btm_color"
-        app:menu="@menu/bottom_nav_main"
-        app:elevation="@dimen/dp_5">
-    </android.support.design.widget.BottomNavigationView>
-
+        app:menu="@menu/bottom_nav_main" />
 </android.support.design.widget.CoordinatorLayout>

@@ -3,9 +3,13 @@ package com.example.yuan_wanandroid.di.component.activity;
 import com.example.yuan_wanandroid.di.component.AppComponent;
 import com.example.yuan_wanandroid.di.component.fragment.HomeFragmentComponent;
 import com.example.yuan_wanandroid.di.component.fragment.SystemFragmentComponent;
+import com.example.yuan_wanandroid.di.component.fragment.WxArticlesFragmentComponent;
+import com.example.yuan_wanandroid.di.component.fragment.WxFragmentComponent;
 import com.example.yuan_wanandroid.di.module.activity.MainActivityModule;
 import com.example.yuan_wanandroid.di.module.fragment.HomeFragmentModule;
 import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
+import com.example.yuan_wanandroid.di.module.fragment.WxArticlesFragmentModule;
+import com.example.yuan_wanandroid.di.module.fragment.WxFragmentModule;
 import com.example.yuan_wanandroid.di.scope.PerActivity;
 import com.example.yuan_wanandroid.view.MainActivity;
 
@@ -26,4 +30,6 @@ public interface MainActivityComponent {
 
     HomeFragmentComponent getHomeFragmentComponent(HomeFragmentModule homeFragmentModule);
     SystemFragmentComponent getSystemFragmentComponent(SystemFragmentModule systemFragmentModule);
+    WxFragmentComponent getWxFragmentComponent(WxFragmentModule wxFragmentModule);
+    WxArticlesFragmentComponent getWxArticlesFragmentComponent(WxArticlesFragmentModule wxArticlesFragmentModule);
 }

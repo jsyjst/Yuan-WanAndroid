@@ -4,6 +4,7 @@ import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
+import com.example.yuan_wanandroid.model.entity.WxTab;
 
 import java.util.List;
 
@@ -32,5 +33,10 @@ public interface NetworkHelper {
     Observable<BaseResponse<List<FirstSystem>>> getFirstSystemData(); //获取知识体系的一级目录
     Observable<BaseResponse<Articles>> getSecondSystemArticles(int pageNum,int id);//获取二级体系文章
 
+    /**
+     * wx
+     */
 
+    Observable<BaseResponse<List<WxTab>>> getWxTabs(); //获取公众号列表
+    Observable<BaseResponse<Articles>> getWxArticles(int pageNum,int id);//获取公众号文章
 }

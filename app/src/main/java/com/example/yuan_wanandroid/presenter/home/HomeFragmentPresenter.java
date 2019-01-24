@@ -1,24 +1,18 @@
-package com.example.yuan_wanandroid.presenter;
+package com.example.yuan_wanandroid.presenter.home;
 
 import android.util.Log;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
-import com.example.yuan_wanandroid.contract.HomeFragmentContract;
+import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
-import com.example.yuan_wanandroid.model.entity.Article;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.observers.DefaultObserver;
-
-import static com.example.yuan_wanandroid.utils.LogUtil.TAG_COMMON;
 
 /**
  * <pre>

@@ -1,11 +1,10 @@
-package com.example.yuan_wanandroid.presenter;
+package com.example.yuan_wanandroid.presenter.system;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
-import com.example.yuan_wanandroid.contract.SystemFragmentContract;
+import com.example.yuan_wanandroid.contract.system.SystemFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import java.util.List;

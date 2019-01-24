@@ -22,16 +22,6 @@
             app:tl_textBold="BOTH"
             app:tl_textsize="@dimen/sp_14" />
 
-        <!--<android.support.design.widget.TabLayout-->
-            <!--android:id="@+id/secondSystemTabs"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:tabGravity="center"-->
-            <!--app:tabIndicatorColor="@color/yellow"-->
-            <!--app:tabIndicatorHeight="@dimen/dp_2"-->
-            <!--app:tabMode="scrollable"-->
-            <!--app:tabSelectedTextColor="@color/yellow"-->
-            <!--app:tabTextAppearance="@style/TextAppearance.Design.Tab"/>-->
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

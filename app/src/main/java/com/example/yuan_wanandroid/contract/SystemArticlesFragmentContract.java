@@ -20,6 +20,8 @@ public interface SystemArticlesFragmentContract {
         void showSystemArticles(List<Article> articlesList);//显示二级体系的文章
         void showMoreSystemArticles(List<Article> articlesList); //显示更多
     }
+
+
     interface Presenter extends IPresenter<SystemArticlesFragmentContract.View>{
         void loadSystemArticlesData(int pageNum,int id);//加载二级体系的文章
         void loadMoreSystemArticlesData(int pageNum,int id); //加载更多

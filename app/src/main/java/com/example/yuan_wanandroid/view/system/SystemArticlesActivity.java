@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.system.TabAdapter;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
+import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class SystemArticlesActivity extends BaseActivity {
     @BindView(R.id.commonToolbarTv)
     TextView mToolbarTitle;
     @BindView(R.id.secondSystemTabs)
-    TabLayout mSecondSystemTabs;
+    SlidingTabLayout mSecondSystemTabs;
     @BindView(R.id.secondSystemAppbar)
     AppBarLayout mSecondSystemAppbar;
     @BindView(R.id.secondSystemViewPager)
@@ -84,8 +85,7 @@ public class SystemArticlesActivity extends BaseActivity {
         }
         mTabAdapter = new TabAdapter(getSupportFragmentManager(), mFragmentList, mSecondSystemNameList);
         mSecondSystemViewPager.setAdapter(mTabAdapter);
-        mSecondSystemViewPager.setOffscreenPageLimit(mIdList.size());
-        mSecondSystemTabs.setupWithViewPager(mSecondSystemViewPager);
+        mSecondSystemTabs.setViewPager(mSecondSystemViewPager);
     }
 
     @Override

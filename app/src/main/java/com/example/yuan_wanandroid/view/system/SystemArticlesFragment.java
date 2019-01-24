@@ -50,9 +50,9 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
-    private static int mId;
-    private int mPageNum = 0;
-    private boolean isRefresh = false;
+    private int mId;
+    private int mPageNum = 0;  //用于刷新
+    private boolean isRefresh = false;  //是否为向上刷新
 
     @Override
     protected int getLayoutId() {
@@ -60,9 +60,9 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
     }
 
 
-
     @Override
     protected void initView() {
+        super.initView();
         getData();
         initRecyclerView();
         initRefresh();
@@ -83,7 +83,7 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPageNum = 0;
             isRefresh = true;
-            mPresenter.loadMoreSystemArticlesData(0,mId);
+            mPresenter.loadMoreSystemArticlesData(0, mId);
         });
     }
 
@@ -107,34 +107,36 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
 
     @Override
     public void showSystemArticles(List<Article> articlesList) {
-        if(!CommonUtils.isEmptyList(mArticleList)){
+        if (!CommonUtils.isEmptyList(mArticleList)) {
             mArticleList.clear();
         }
-        LogUtil.d(LogUtil.TAG_ERROR,""+articlesList.size());
+        LogUtil.d(LogUtil.TAG_ERROR, "" + articlesList.size());
         mArticleList.addAll(articlesList);
         mArticlesAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void showMoreSystemArticles(List<Article> articlesList) {
-        if(isRefresh){
-            if(!CommonUtils.isEmptyList(mArticleList)){
+        if (isRefresh) {
+            if (!CommonUtils.isEmptyList(mArticleList)) {
                 mArticleList.clear();
             }
             mRefreshLayout.finishRefresh();
-        }else{
-            mRefreshLayout.finishLoadMore();
+        } else {
+            if (CommonUtils.isEmptyList(articlesList)) {
+                mRefreshLayout.finishLoadMoreWithNoMoreData();
+            } else {
+                mRefreshLayout.finishLoadMore(500);
+            }
         }
         mArticleList.addAll(articlesList);
         mArticlesAdapter.notifyDataSetChanged();
     }
 
-
     @Override
     public void showToast(String msg) {
         CommonUtils.toastShow(msg);
     }
-
 
 
     /**
@@ -143,7 +145,7 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_SYSTEM_SECOND_ID,-1);
+            mId = bundle.getInt(Constant.KEY_SYSTEM_SECOND_ID, -1);
         }
     }
 

@@ -16,6 +16,7 @@ import com.example.yuan_wanandroid.model.entity.Article;
 import com.example.yuan_wanandroid.presenter.SystemArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.LogUtil;
+import com.example.yuan_wanandroid.view.home.ArticleActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;
@@ -70,8 +71,15 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
 
     private void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mArticlesAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mArticlesAdapter);
+
+        //文章点击效果
+        mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
+            ArticleActivity.startActivityByFragment(mActivity,
+                    this,
+                    mArticleList.get(position).getLink(),
+                    mArticleList.get(position).getTitle());
+        }));
     }
 
     private void initRefresh() {

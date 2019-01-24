@@ -6,16 +6,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.home.ArticlesAdapter;
-import com.example.yuan_wanandroid.adapter.system.TabAdapter;
+import com.example.yuan_wanandroid.adapter.TabAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.wx.WxFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.WxFragmentModule;
-import com.example.yuan_wanandroid.model.entity.Articles;
-import com.example.yuan_wanandroid.model.entity.WxTab;
+import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.presenter.wx.WxFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 
@@ -78,8 +75,8 @@ public class WxFragment extends BaseMvpFragment<WxFragmentPresenter>
     }
 
     @Override
-    public void showWxTab(List<WxTab> wxTabList) {
-        for(WxTab tab : wxTabList){
+    public void showWxTab(List<Tab> tabList) {
+        for(Tab tab : tabList){
             mWxTabList.add(tab.getName());
             mIdList.add(tab.getId());
         }

@@ -14,13 +14,12 @@ import dagger.Provides;
  * <pre>
  *     author : 残渊
  *     time   : 2019/01/24
- *     desc   : 公众号Tab的实例提供
+ *     desc   : 项目Tab
  * </pre>
  */
 
-
 @Module
-public class WxFragmentModule {
+public class ProjectFragmentModule {
     @Provides
     @PerFragment
     List<Fragment> provideSupportFragment(){

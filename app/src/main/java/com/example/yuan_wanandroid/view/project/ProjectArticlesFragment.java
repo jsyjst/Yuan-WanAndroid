@@ -1,4 +1,4 @@
-package com.example.yuan_wanandroid.view.wx;
+package com.example.yuan_wanandroid.view.project;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,15 +7,18 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
+import com.example.yuan_wanandroid.adapter.ProjectAdapter;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
-import com.example.yuan_wanandroid.contract.wx.WxArticlesFragmentContract;
-import com.example.yuan_wanandroid.di.module.fragment.WxArticlesFragmentModule;
+import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
+import com.example.yuan_wanandroid.di.module.fragment.ProjectArticlesFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Article;
+import com.example.yuan_wanandroid.presenter.project.ProjectArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.presenter.wx.WxArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.home.ArticleActivity;
+import com.example.yuan_wanandroid.view.wx.WxArticlesFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;
@@ -28,22 +31,22 @@ import butterknife.BindView;
  * <pre>
  *     author : 残渊
  *     time   : 2019/01/24
- *     desc   :
+ *     desc   : 项目文章
  * </pre>
  */
 
 
-public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresenter>
-        implements WxArticlesFragmentContract.View{
+public class ProjectArticlesFragment extends BaseMvpFragment<ProjectArticlesFragmentPresenter>
+        implements ProjectArticlesFragmentContract.View{
 
     @Inject
-    WxArticlesFragmentPresenter mPresenter;
+    ProjectArticlesFragmentPresenter mPresenter;
     @Inject
     LinearLayoutManager mLinearLayoutManager;
     @Inject
     List<Article> mArticleList;
     @Inject
-    ArticlesAdapter mArticlesAdapter;
+    ProjectAdapter mProjectAdapter;
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -53,10 +56,9 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
     private int mId;
     private int mPageNum = 1;  //用于刷新
     private boolean isRefresh = false;  //是否为向上刷新
-
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_common_articles;
+    protected ProjectArticlesFragmentPresenter getPresenter() {
+        return mPresenter;
     }
 
     @Override
@@ -68,26 +70,16 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
     }
 
     @Override
-    protected WxArticlesFragmentPresenter getPresenter() {
-        return mPresenter;
-    }
-
-    @Override
-    public void showToast(String msg) {
-        CommonUtils.toastShow(msg);
-    }
-
-    @Override
-    public void showWxArticles(List<Article> articleList) {
+    public void showProjectArticles(List<Article> articleList) {
         if (!CommonUtils.isEmptyList(mArticleList)) {
             mArticleList.clear();
         }
         mArticleList.addAll(articleList);
-        mArticlesAdapter.notifyDataSetChanged();
+        mProjectAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showMoreWxArticles(List<Article> articleList) {
+    public void showMoreProjectArticles(List<Article> articleList) {
         if (isRefresh) {
             if (!CommonUtils.isEmptyList(mArticleList)) {
                 mArticleList.clear();
@@ -101,16 +93,16 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
             }
         }
         mArticleList.addAll(articleList);
-        mArticlesAdapter.notifyDataSetChanged();
+        mProjectAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void initRecyclerView() {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mRecyclerView.setAdapter(mArticlesAdapter);
+        mRecyclerView.setAdapter(mProjectAdapter);
 
         //文章点击效果
-        mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
+        mProjectAdapter.setOnItemClickListener(((adapter, view, position) -> {
             ArticleActivity.startActivityByFragment(mActivity,
                     this,
                     mArticleList.get(position).getLink(),
@@ -123,29 +115,32 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
             mPageNum++;
             isRefresh = false;
-            mPresenter.loadMoreWxArticlesData(mPageNum, mId);
+            mPresenter.loadMoreProjectArticlesData(mPageNum, mId);
         });
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
             mPageNum = 0;
             isRefresh = true;
-            mPresenter.loadMoreWxArticlesData(1, mId);
+            mPresenter.loadMoreProjectArticlesData(1, mId);
         });
     }
 
     @Override
     protected void inject() {
-        ((MainActivity) getActivity())
+        ((MainActivity)getActivity())
                 .getComponent()
-                .getWxArticlesFragmentComponent(new WxArticlesFragmentModule())
+                .getProjectArticlesFragmentComponent(new ProjectArticlesFragmentModule())
                 .inject(this);
     }
 
     @Override
     protected void loadData() {
-        mPresenter.loadWxArticlesData(1,mId);
+        mPresenter.loadProjectArticlesData(1,mId);
     }
 
-
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_common_articles;
+    }
 
     /**
      * 获取数据
@@ -160,7 +155,7 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
         bundle.putInt(Constant.KEY_SYSTEM_SECOND_ID, id);
-        Fragment fragment= new WxArticlesFragment();
+        Fragment fragment= new ProjectArticlesFragment();
         fragment.setArguments(bundle);
         return fragment;
     }

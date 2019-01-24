@@ -2,7 +2,7 @@ package com.example.yuan_wanandroid.model.http.api;
 
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
-import com.example.yuan_wanandroid.model.entity.WxTab;
+import com.example.yuan_wanandroid.model.entity.Tab;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface WxApis {
      * http://wanandroid.com/wxarticle/chapters/json
      */
     @GET("wxarticle/chapters/json")
-    Observable<BaseResponse<List<WxTab>>> getWxTabs();
+    Observable<BaseResponse<List<Tab>>> getWxTabs();
 
     /**
      * 获得某个公共号的文章列表

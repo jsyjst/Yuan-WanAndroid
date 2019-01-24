@@ -4,17 +4,14 @@ package com.example.yuan_wanandroid.view.system;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.system.TabAdapter;
+import com.example.yuan_wanandroid.adapter.TabAdapter;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 

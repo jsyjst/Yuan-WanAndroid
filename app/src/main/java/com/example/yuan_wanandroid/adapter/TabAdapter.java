@@ -1,4 +1,4 @@
-package com.example.yuan_wanandroid.adapter.system;
+package com.example.yuan_wanandroid.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

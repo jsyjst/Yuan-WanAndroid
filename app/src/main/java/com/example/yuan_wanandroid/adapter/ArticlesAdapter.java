@@ -1,4 +1,4 @@
-package com.example.yuan_wanandroid.adapter.home;
+package com.example.yuan_wanandroid.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

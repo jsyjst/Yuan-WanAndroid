@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.system.FirstSystemAdapter;
+import com.example.yuan_wanandroid.adapter.FirstSystemAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.system.SystemFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;

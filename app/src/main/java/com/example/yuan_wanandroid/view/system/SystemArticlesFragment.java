@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.home.ArticlesAdapter;
+import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
@@ -15,7 +15,6 @@ import com.example.yuan_wanandroid.di.component.fragment.DaggerSystemArticlesFra
 import com.example.yuan_wanandroid.model.entity.Article;
 import com.example.yuan_wanandroid.presenter.system.SystemArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.home.ArticleActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 

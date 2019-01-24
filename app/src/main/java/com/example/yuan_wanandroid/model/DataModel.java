@@ -4,7 +4,7 @@ import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
-import com.example.yuan_wanandroid.model.entity.WxTab;
+import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.http.NetworkHelper;
 import com.example.yuan_wanandroid.model.http.NetworkHelperImpl;
 
@@ -52,12 +52,22 @@ public class DataModel implements NetworkHelper {
     }
 
     @Override
-    public Observable<BaseResponse<List<WxTab>>> getWxTabs() {
+    public Observable<BaseResponse<List<Tab>>> getWxTabs() {
         return mNetworkHelper.getWxTabs();
     }
 
     @Override
     public Observable<BaseResponse<Articles>> getWxArticles(int pageNum, int id) {
         return mNetworkHelper.getWxArticles(pageNum,id);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<Tab>>> getProjectTab() {
+        return mNetworkHelper.getProjectTab();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getProjectArticles(int pageNum, int id) {
+        return mNetworkHelper.getProjectArticles(pageNum,id);
     }
 }

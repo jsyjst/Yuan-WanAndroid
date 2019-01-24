@@ -1,9 +1,8 @@
 package com.example.yuan_wanandroid.contract.wx;
 
-import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.base.presenter.IPresenter;
 import com.example.yuan_wanandroid.base.view.BaseView;
-import com.example.yuan_wanandroid.model.entity.WxTab;
+import com.example.yuan_wanandroid.model.entity.Tab;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
 
 public interface WxFragmentContract {
     interface View extends BaseView{
-        void showWxTab(List<WxTab> wxTabList);
+        void showWxTab(List<Tab> tabList);
     }
 
     interface Presenter extends IPresenter<WxFragmentContract.View>{

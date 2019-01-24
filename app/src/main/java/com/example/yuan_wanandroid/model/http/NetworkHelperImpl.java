@@ -4,8 +4,9 @@ import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
-import com.example.yuan_wanandroid.model.entity.WxTab;
+import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
+import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 
@@ -28,12 +29,14 @@ public class NetworkHelperImpl implements NetworkHelper{
     private HomeApis mHomeApis;
     private SystemApis mSystemApis;
     private WxApis mWxApis;
+    private ProjectApis mProjectApis;
 
     @Inject
-    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis){
+    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis,ProjectApis projectApis){
         mHomeApis = homeApis;
         mSystemApis = systemApis;
         mWxApis = wxApis;
+        mProjectApis =projectApis;
     }
 
     @Override
@@ -57,13 +60,23 @@ public class NetworkHelperImpl implements NetworkHelper{
     }
 
     @Override
-    public Observable<BaseResponse<List<WxTab>>> getWxTabs() {
+    public Observable<BaseResponse<List<Tab>>> getWxTabs() {
         return mWxApis.getWxTabs();
     }
 
     @Override
     public Observable<BaseResponse<Articles>> getWxArticles(int pageNum, int id) {
         return mWxApis.getWxArticles(pageNum,id);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<Tab>>> getProjectTab() {
+        return mProjectApis.getProjectTab();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getProjectArticles(int pageNum, int id) {
+        return mProjectApis.getProjectArticles(pageNum,id);
     }
 
 

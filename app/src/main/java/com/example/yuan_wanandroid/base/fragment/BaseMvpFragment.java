@@ -1,6 +1,9 @@
 package com.example.yuan_wanandroid.base.fragment;
 
 import com.example.yuan_wanandroid.base.presenter.IPresenter;
+import com.example.yuan_wanandroid.utils.CommonUtils;
+
+import javax.inject.Inject;
 
 /**
  * <pre>
@@ -29,5 +32,9 @@ public abstract class BaseMvpFragment<T extends IPresenter> extends BaseFragment
             mPresenter = null;
         }
         super.onDestroy();
+    }
+    @Override
+    public void showToast(String msg) {
+        CommonUtils.toastShow(msg);
     }
 }

@@ -4,8 +4,7 @@ import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.contract.wx.WxFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
-import com.example.yuan_wanandroid.model.entity.BaseResponse;
-import com.example.yuan_wanandroid.model.entity.WxTab;
+import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import java.util.List;
@@ -35,11 +34,11 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContract.View>
                 mModel.getWxTabs()
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<List<WxTab>>(mView,false,false){
+                .subscribeWith(new BaseObserver<List<Tab>>(mView,false,false){
                     @Override
-                    public void onNext(List<WxTab> wxTabList){
-                        super.onNext(wxTabList);
-                        mView.showWxTab(wxTabList);
+                    public void onNext(List<Tab> tabList){
+                        super.onNext(tabList);
+                        mView.showWxTab(tabList);
                     }
                 })
         );

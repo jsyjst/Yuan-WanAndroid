@@ -3,7 +3,7 @@ package com.example.yuan_wanandroid.di.module.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.home.ArticlesAdapter;
+import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.di.scope.PerFragment;
 import com.example.yuan_wanandroid.model.entity.Article;

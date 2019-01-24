@@ -20,8 +20,8 @@ public class ImageUtil {
     public static void loadImage(Context context, ImageView imageView, String path) {
         GlideApp.with(context)
                 .load(path)
-                .placeholder(R.mipmap.ic_icon)
-                .error(R.mipmap.ic_icon)
+                .placeholder(R.drawable.test_jay)
+                .error(R.drawable.test_jay)
                 .into(imageView);
     }
 }

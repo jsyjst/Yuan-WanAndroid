@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 
-public class WxTab {
+public class Tab {
 
     /**
      * children : []

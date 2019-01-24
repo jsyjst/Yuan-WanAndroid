@@ -3,6 +3,7 @@ package com.example.yuan_wanandroid.di.module;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
+import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 
@@ -86,5 +87,9 @@ public class AppModule {
         return retrofit.create(WxApis.class);
     }
 
-
+    @Provides
+    @Singleton
+    ProjectApis provideProjectApis(Retrofit retrofit){
+        return retrofit.create(ProjectApis.class);
+    }
 }

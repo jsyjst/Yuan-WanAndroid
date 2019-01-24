@@ -1,7 +1,26 @@
 package com.example.yuan_wanandroid.view.project;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.base.fragment.BaseFragment;
+import com.example.yuan_wanandroid.adapter.TabAdapter;
+import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
+import com.example.yuan_wanandroid.contract.project.ProjectFragmentContract;
+import com.example.yuan_wanandroid.di.module.fragment.ProjectFragmentModule;
+import com.example.yuan_wanandroid.model.entity.Tab;
+import com.example.yuan_wanandroid.presenter.project.ProjectFragmentPresenter;
+import com.example.yuan_wanandroid.view.MainActivity;
+import com.example.yuan_wanandroid.view.wx.WxArticlesFragment;
+import com.flyco.tablayout.SlidingTabLayout;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
 
 /**
  * <pre>
@@ -12,29 +31,60 @@ import com.example.yuan_wanandroid.base.fragment.BaseFragment;
  */
 
 
-public class ProjectFragment extends BaseFragment {
-    @Override
-    protected void inject() {
+public class ProjectFragment extends BaseMvpFragment<ProjectFragmentPresenter>
+        implements ProjectFragmentContract.View{
 
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected void loadData() {
-
-    }
+    @Inject
+    ProjectFragmentPresenter mPresenter;
+    @Inject
+    List<String> mProjectTabList;
+    @Inject
+    List<Fragment> mFragmentList;
+    @Inject
+    List<Integer> mIdList;
+    @BindView(R.id.searchTv)
+    TextView mSearchTv;
+    @BindView(R.id.searchRelative)
+    RelativeLayout mSearchRelative;
+    @BindView(R.id.projectTabLayout)
+    SlidingTabLayout mProjectTabLayout;
+    @BindView(R.id.projectViewPager)
+    ViewPager mProjectViewPager;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_nav_project;
     }
+    @Override
+    protected void inject() {
+        ((MainActivity) getActivity())
+                .getComponent()
+                .getProjectFragmentComponent(new ProjectFragmentModule())
+                .inject(this);
+    }
 
     @Override
-    public void showToast(String msg) {
+    protected ProjectFragmentPresenter getPresenter() {
+        return mPresenter;
+    }
 
+
+    @Override
+    protected void loadData() {
+        mPresenter.loadProjectTabData();
+    }
+
+    @Override
+    public void showProjectTab(List<Tab> tabList) {
+        for(Tab tab : tabList){
+            mProjectTabList.add(tab.getName());
+            mIdList.add(tab.getId());
+        }
+        for(int i=0;i<mIdList.size();i++){
+            mFragmentList.add(ProjectArticlesFragment.newInstance(mIdList.get(i)));
+        }
+        TabAdapter adapter = new TabAdapter(getChildFragmentManager(),mFragmentList,mProjectTabList);
+        mProjectViewPager.setAdapter(adapter);
+        mProjectTabLayout.setViewPager(mProjectViewPager);
     }
 }

@@ -9,6 +9,7 @@ import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.system.SystemArticlesFragmentContract;
 import com.example.yuan_wanandroid.di.component.fragment.DaggerSystemArticlesFragmentComponent;
@@ -33,7 +34,7 @@ import butterknife.BindView;
  */
 
 
-public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragmentPresenter>
+public class SystemArticlesFragment extends BaseLoadingFragment<SystemArticlesFragmentPresenter>
         implements SystemArticlesFragmentContract.View {
 
     @Inject
@@ -47,7 +48,7 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
 
     private int mId;
@@ -151,13 +152,13 @@ public class SystemArticlesFragment extends BaseMvpFragment<SystemArticlesFragme
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_SYSTEM_SECOND_ID, -1);
+            mId = bundle.getInt(Constant.KEY_ARTICLES_ID, -1);
         }
     }
 
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.KEY_SYSTEM_SECOND_ID, id);
+        bundle.putInt(Constant.KEY_ARTICLES_ID, id);
         SystemArticlesFragment systemArticlesFragment = new SystemArticlesFragment();
         systemArticlesFragment.setArguments(bundle);
         return systemArticlesFragment;

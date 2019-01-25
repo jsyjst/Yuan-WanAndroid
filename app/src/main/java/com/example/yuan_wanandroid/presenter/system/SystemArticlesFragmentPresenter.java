@@ -33,7 +33,7 @@ public class SystemArticlesFragmentPresenter extends BasePresenter<SystemArticle
                 mModel.getSecondSystemArticles(pageNum,id)
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<Articles>(mView,false,false){
+                .subscribeWith(new BaseObserver<Articles>(mView){
                     @Override
                     public void onNext(Articles articles){
                         super.onNext(articles);

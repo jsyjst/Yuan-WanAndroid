@@ -1,12 +1,10 @@
 package com.example.yuan_wanandroid.base;
 
 import android.net.ParseException;
-import android.util.Log;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.view.BaseView;
-import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.utils.LogUtil;
 import com.google.gson.JsonParseException;
 
@@ -18,7 +16,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
 
-import static com.example.yuan_wanandroid.utils.LogUtil.TAG_COMMON;
 import static com.example.yuan_wanandroid.utils.LogUtil.TAG_ERROR;
 
 /**
@@ -33,7 +30,7 @@ import static com.example.yuan_wanandroid.utils.LogUtil.TAG_ERROR;
 public abstract class BaseObserver<T> extends ResourceObserver<T> {
     private BaseView mView;
     private boolean isShowErrorView = true;
-    private boolean isShowProgress = true;
+    private boolean isShowLoading = true;
     private Disposable mDisposable;
 
     private BaseObserver() {
@@ -47,15 +44,15 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
         this(view, isShowErrorView, true);
     }
 
-    protected BaseObserver(BaseView view, boolean isShowErrorView, boolean isShowProgress) {
+    protected BaseObserver(BaseView view, boolean isShowErrorView, boolean isShowLoading) {
         mView = view;
         this.isShowErrorView = isShowErrorView;
-        this.isShowProgress = isShowProgress;
+        this.isShowLoading = isShowLoading;
     }
 
     @Override
     protected void onStart() {
-        if (isShowProgress) mView.showLoading();
+        if (isShowLoading) mView.showLoading();
     }
 
     @Override

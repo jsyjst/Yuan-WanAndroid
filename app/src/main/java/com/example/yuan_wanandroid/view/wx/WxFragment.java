@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.TabAdapter;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.wx.WxFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.WxFragmentModule;
@@ -31,7 +32,7 @@ import butterknife.BindView;
  */
 
 
-public class WxFragment extends BaseMvpFragment<WxFragmentPresenter>
+public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
         implements WxFragmentContract.View {
 
     @Inject
@@ -48,7 +49,7 @@ public class WxFragment extends BaseMvpFragment<WxFragmentPresenter>
     RelativeLayout mSearchRelative;
     @BindView(R.id.wxTabLayout)
     SlidingTabLayout mWxTabLayout;
-    @BindView(R.id.wxViewPager)
+    @BindView(R.id.wxPager)
     ViewPager mWxViewPager;
 
     @Override

@@ -33,7 +33,7 @@ public class ProjectFragmentPresenter extends BasePresenter<ProjectFragmentContr
                 mModel.getProjectTab()
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<List<Tab>>(mView,false,false){
+                        .subscribeWith(new BaseObserver<List<Tab>>(mView){
                             @Override
                             public void onNext(List<Tab> tabList){
                                 super.onNext(tabList);

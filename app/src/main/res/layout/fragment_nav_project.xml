@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <include layout="@layout/include_search_toolbar"/>
+    <include layout="@layout/include_search_toolbar" />
 
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/projectTabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_35"
-        android:background="@color/white"
-        app:tl_textAllCaps="false"
-        app:tl_textsize="@dimen/sp_16"
-        app:tl_textBold="BOTH"
-        app:tl_indicator_width="@dimen/dp_0"
-        app:tl_textUnselectColor="@color/black"
-        app:tl_textSelectColor="@color/colorPrimaryDark"
-        app:elevation="@dimen/dp_5"
-        >
-    </com.flyco.tablayout.SlidingTabLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0.1"
-        android:background="@color/black_trans"/>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/projectViewPager"
+    <LinearLayout
+        android:id="@+id/normalView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:orientation="vertical">
 
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/projectTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_35"
+            android:background="@color/white"
+            app:elevation="@dimen/dp_5"
+            app:tl_indicator_width="@dimen/dp_0"
+            app:tl_textAllCaps="false"
+            app:tl_textBold="BOTH"
+            app:tl_textSelectColor="@color/colorPrimaryDark"
+            app:tl_textUnselectColor="@color/black"
+            app:tl_textsize="@dimen/sp_16"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0.1"
+            android:background="@color/black_trans" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/projectPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>

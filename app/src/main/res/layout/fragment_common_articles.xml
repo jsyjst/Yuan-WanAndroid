@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+        android:id="@+id/normalView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >

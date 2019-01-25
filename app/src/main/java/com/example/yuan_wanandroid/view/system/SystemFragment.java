@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.FirstSystemAdapter;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.system.SystemFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
@@ -32,7 +33,7 @@ import butterknife.BindView;
  */
 
 
-public class SystemFragment extends BaseMvpFragment<SystemFragmentPresenter>
+public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
         implements SystemFragmentContract.View {
 
     @Inject
@@ -49,7 +50,7 @@ public class SystemFragment extends BaseMvpFragment<SystemFragmentPresenter>
     RelativeLayout mSearchRelative;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
 
     private boolean isRefresh=false;

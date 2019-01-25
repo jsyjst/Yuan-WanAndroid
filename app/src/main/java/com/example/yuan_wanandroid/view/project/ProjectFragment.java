@@ -7,13 +7,14 @@ import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.TabAdapter;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.project.ProjectFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.ProjectFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.presenter.project.ProjectFragmentPresenter;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
-import com.example.yuan_wanandroid.view.wx.WxArticlesFragment;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.List;
@@ -31,7 +32,7 @@ import butterknife.BindView;
  */
 
 
-public class ProjectFragment extends BaseMvpFragment<ProjectFragmentPresenter>
+public class ProjectFragment extends BaseLoadingFragment<ProjectFragmentPresenter>
         implements ProjectFragmentContract.View{
 
     @Inject
@@ -48,7 +49,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectFragmentPresenter>
     RelativeLayout mSearchRelative;
     @BindView(R.id.projectTabLayout)
     SlidingTabLayout mProjectTabLayout;
-    @BindView(R.id.projectViewPager)
+    @BindView(R.id.projectPager)
     ViewPager mProjectViewPager;
 
     @Override

@@ -33,7 +33,7 @@ public class SystemFragmentPresenter extends BasePresenter<SystemFragmentContrac
         addRxSubscribe(mModel.getFirstSystemData()
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<List<FirstSystem>>(mView,false,false){
+                .subscribeWith(new BaseObserver<List<FirstSystem>>(mView){
                     @Override
                     public void onNext(List<FirstSystem> firstSystemList){
                         super.onNext(firstSystemList);

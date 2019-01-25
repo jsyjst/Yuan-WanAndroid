@@ -6,19 +6,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.yuan_wanandroid.R;
-import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.adapter.ProjectAdapter;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.ProjectArticlesFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Article;
 import com.example.yuan_wanandroid.presenter.project.ProjectArticlesFragmentPresenter;
-import com.example.yuan_wanandroid.presenter.wx.WxArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.home.ArticleActivity;
-import com.example.yuan_wanandroid.view.wx.WxArticlesFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;
@@ -36,7 +34,7 @@ import butterknife.BindView;
  */
 
 
-public class ProjectArticlesFragment extends BaseMvpFragment<ProjectArticlesFragmentPresenter>
+public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticlesFragmentPresenter>
         implements ProjectArticlesFragmentContract.View{
 
     @Inject
@@ -50,7 +48,7 @@ public class ProjectArticlesFragment extends BaseMvpFragment<ProjectArticlesFrag
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
 
     private int mId;
@@ -148,13 +146,13 @@ public class ProjectArticlesFragment extends BaseMvpFragment<ProjectArticlesFrag
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_SYSTEM_SECOND_ID, -1);
+            mId = bundle.getInt(Constant.KEY_ARTICLES_ID, -1);
         }
     }
 
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.KEY_SYSTEM_SECOND_ID, id);
+        bundle.putInt(Constant.KEY_ARTICLES_ID, id);
         Fragment fragment= new ProjectArticlesFragment();
         fragment.setArguments(bundle);
         return fragment;

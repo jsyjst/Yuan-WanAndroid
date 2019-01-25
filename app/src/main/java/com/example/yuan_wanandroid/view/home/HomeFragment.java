@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.HomeFragmentModule;
@@ -37,7 +38,7 @@ import butterknife.BindView;
  */
 
 
-public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> implements HomeFragmentContract.View {
+public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> implements HomeFragmentContract.View {
 
     private static final String TAG = "HomeFragment";
 
@@ -62,7 +63,7 @@ public class HomeFragment extends BaseMvpFragment<HomeFragmentPresenter> impleme
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
 
     private Banner banner;

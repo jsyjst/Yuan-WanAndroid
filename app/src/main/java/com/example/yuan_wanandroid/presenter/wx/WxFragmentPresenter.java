@@ -34,7 +34,7 @@ public class WxFragmentPresenter extends BasePresenter<WxFragmentContract.View>
                 mModel.getWxTabs()
                 .compose(RxUtil.rxSchedulerHelper())
                 .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<List<Tab>>(mView,false,false){
+                .subscribeWith(new BaseObserver<List<Tab>>(mView){
                     @Override
                     public void onNext(List<Tab> tabList){
                         super.onNext(tabList);

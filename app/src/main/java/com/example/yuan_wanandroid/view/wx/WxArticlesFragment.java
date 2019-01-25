@@ -8,12 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.wx.WxArticlesFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.WxArticlesFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Article;
 import com.example.yuan_wanandroid.presenter.wx.WxArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.home.ArticleActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -33,7 +35,7 @@ import butterknife.BindView;
  */
 
 
-public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresenter>
+public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPresenter>
         implements WxArticlesFragmentContract.View{
 
     @Inject
@@ -47,7 +49,7 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
 
     private int mId;
@@ -153,13 +155,13 @@ public class WxArticlesFragment extends BaseMvpFragment<WxArticlesFragmentPresen
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_SYSTEM_SECOND_ID, -1);
+            mId = bundle.getInt(Constant.KEY_ARTICLES_ID, -1);
         }
     }
 
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.KEY_SYSTEM_SECOND_ID, id);
+        bundle.putInt(Constant.KEY_ARTICLES_ID, id);
         Fragment fragment= new WxArticlesFragment();
         fragment.setArguments(bundle);
         return fragment;

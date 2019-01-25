@@ -8,7 +8,7 @@
     <include layout="@layout/include_search_toolbar" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+        android:id="@+id/normalView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/searchRelative">

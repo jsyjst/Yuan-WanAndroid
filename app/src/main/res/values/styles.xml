@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
+        <!-- Set menu background and text color -->
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <!-- 设置Toolbar标题字体的大小 -->

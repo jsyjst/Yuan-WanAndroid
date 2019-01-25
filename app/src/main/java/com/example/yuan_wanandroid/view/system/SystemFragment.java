@@ -14,6 +14,7 @@ import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.presenter.system.SystemFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -65,6 +66,7 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
     @Override
     public void initView(){
         super.initView();
+        StatusBarUtil.setMargin(mActivity,mSearchRelative);
         initRecyclerView();
         initRefresh();
     }

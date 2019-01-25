@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yuan_wanandroid.base.view.BaseView;
+import com.example.yuan_wanandroid.utils.CommonUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -84,6 +85,10 @@ public abstract class BaseFragment extends AbstractLazyLoadFragment implements B
     @Override
     public void showLoading() {
 
+    }
+    @Override
+    public void showToast(String msg) {
+        CommonUtils.toastShow(msg);
     }
 
 }

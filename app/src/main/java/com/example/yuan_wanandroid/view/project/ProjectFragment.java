@@ -14,6 +14,7 @@ import com.example.yuan_wanandroid.di.module.fragment.ProjectFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.presenter.project.ProjectFragmentPresenter;
 import com.example.yuan_wanandroid.utils.LogUtil;
+import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 
@@ -56,6 +57,13 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectFragmentPresente
     protected int getLayoutId() {
         return R.layout.fragment_nav_project;
     }
+
+    @Override
+    public void initView(){
+        super.initView();
+        StatusBarUtil.setMargin(mActivity,mSearchRelative);
+    }
+
     @Override
     protected void inject() {
         ((MainActivity) getActivity())

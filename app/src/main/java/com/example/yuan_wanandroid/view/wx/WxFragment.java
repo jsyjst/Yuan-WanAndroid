@@ -14,6 +14,7 @@ import com.example.yuan_wanandroid.di.module.fragment.WxFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.presenter.wx.WxFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 
@@ -55,6 +56,12 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_nav_wx;
+    }
+
+    @Override
+    public void initView(){
+        super.initView();
+        StatusBarUtil.setMargin(mActivity,mSearchRelative);
     }
 
     @Override

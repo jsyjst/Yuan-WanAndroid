@@ -4,6 +4,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
@@ -16,6 +18,7 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.presenter.home.HomeFragmentPresenter;
 import com.example.yuan_wanandroid.utils.BannerImageLoader;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
@@ -65,6 +68,10 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     RecyclerView mRecyclerView;
     @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.searchTv)
+    TextView mSearchTv;
+    @BindView(R.id.searchRelative)
+    RelativeLayout mSearchRelative;
 
     private Banner banner;
     private int mPageNum = 0;//首页文章页数
@@ -78,6 +85,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     protected void initView() {
         super.initView();
+        StatusBarUtil.setMargin(mActivity,mSearchRelative);
         initRecyclerView();
         initRefreshView();
     }

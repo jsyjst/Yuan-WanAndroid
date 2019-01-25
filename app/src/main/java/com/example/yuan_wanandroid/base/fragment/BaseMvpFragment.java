@@ -33,8 +33,5 @@ public abstract class BaseMvpFragment<T extends IPresenter> extends BaseFragment
         }
         super.onDestroy();
     }
-    @Override
-    public void showToast(String msg) {
-        CommonUtils.toastShow(msg);
-    }
+
 }

@@ -1,7 +1,14 @@
 package com.example.yuan_wanandroid.view.person;
 
+import android.graphics.Color;
+import android.widget.LinearLayout;
+
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
+import com.example.yuan_wanandroid.utils.StatusBarUtil;
+
+import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * <pre>
@@ -13,6 +20,11 @@ import com.example.yuan_wanandroid.base.fragment.BaseFragment;
 
 
 public class PersonFragment extends BaseFragment {
+    @BindView(R.id.headPic)
+    CircleImageView mHeadPic;
+    @BindView(R.id.personLinear)
+    LinearLayout mPersonLinear;
+
     @Override
     protected void inject() {
 
@@ -34,7 +46,8 @@ public class PersonFragment extends BaseFragment {
     }
 
     @Override
-    public void showToast(String msg) {
-
+    public void setStatusBarColor() {
+        StatusBarUtil.immersiveInFragments(mActivity,Color.TRANSPARENT,1);
     }
+
 }

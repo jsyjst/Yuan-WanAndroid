@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/include_search_toolbar"/>
 
@@ -10,7 +11,8 @@
         android:id="@+id/normalView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/searchRelative">
+        android:layout_below="@+id/searchRelative"
+        >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"

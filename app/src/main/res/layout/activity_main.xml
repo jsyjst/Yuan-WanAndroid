@@ -6,24 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frameContain"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:ignore="PrivateResource">
+        android:layout_height="match_parent">
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/frameContain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:ignore="PrivateResource">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/BottomBnv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:clickable="true"
-        android:focusable="true"
-        app:elevation="@dimen/dp_5"
-        app:itemBackground="@color/bottomNavBackground"
-        app:itemTextColor="@drawable/nav_btm_color"
-        app:menu="@menu/bottom_nav_main" />
+        </FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0.1"
+            android:background="@color/black_trans"
+            android:layout_above="@+id/BottomBnv"/>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/BottomBnv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:elevation="@dimen/dp_5"
+            app:itemBackground="@color/bottomNavBackground"
+            app:itemTextColor="@drawable/nav_btm_color"
+            app:menu="@menu/bottom_nav_main" />
+
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

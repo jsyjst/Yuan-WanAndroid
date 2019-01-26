@@ -12,14 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_above="@+id/registerLinear"
         android:text="@string/person_register"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="@dimen/sp_24" />
 
 
     <LinearLayout
-        android:id="@+id/loginLinear"
+        android:id="@+id/registerLinear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -74,7 +75,7 @@
         android:id="@+id/loginBtn"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/loginLinear"
+        android:layout_below="@+id/registerLinear"
         android:background="@drawable/bg_login_button"
         android:gravity="center"
         android:layout_marginTop="@dimen/dp_20"

@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.Tab;
+import com.example.yuan_wanandroid.model.entity.User;
 
 import java.util.List;
 
@@ -45,4 +46,10 @@ public interface NetworkHelper {
      */
     Observable<BaseResponse<List<Tab>>> getProjectTab();//获取项目列表
     Observable<BaseResponse<Articles>> getProjectArticles(int pageNum,int id);//获取项目列表下的文章
+
+    /**
+     * person
+     */
+    Observable<BaseResponse<User>> register(String username,String password,String rePassword); //注册
+    Observable<BaseResponse<User>> login(String username,String password); //登录
 }

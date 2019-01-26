@@ -72,7 +72,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/loginBtn"
+        android:id="@+id/registerBtn"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/registerLinear"
@@ -85,8 +85,8 @@
         android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/registerBtn"
-        android:layout_below="@+id/loginBtn"
+        android:id="@+id/loginBtn"
+        android:layout_below="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/person_register_finish"

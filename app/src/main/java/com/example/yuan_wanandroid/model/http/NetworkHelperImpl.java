@@ -5,7 +5,9 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.Tab;
+import com.example.yuan_wanandroid.model.entity.User;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
+import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
@@ -30,13 +32,15 @@ public class NetworkHelperImpl implements NetworkHelper{
     private SystemApis mSystemApis;
     private WxApis mWxApis;
     private ProjectApis mProjectApis;
+    private PersonApis mPersonApis;
 
     @Inject
-    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis,ProjectApis projectApis){
+    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis,ProjectApis projectApis,PersonApis personApis){
         mHomeApis = homeApis;
         mSystemApis = systemApis;
         mWxApis = wxApis;
         mProjectApis =projectApis;
+        mPersonApis = personApis;
     }
 
     @Override
@@ -77,6 +81,16 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse<Articles>> getProjectArticles(int pageNum, int id) {
         return mProjectApis.getProjectArticles(pageNum,id);
+    }
+
+    @Override
+    public Observable<BaseResponse<User>> register(String username, String password, String rePassword) {
+        return mPersonApis.register(username,password,rePassword);
+    }
+
+    @Override
+    public Observable<BaseResponse<User>> login(String username, String password) {
+        return mPersonApis.login(username, password);
     }
 
 

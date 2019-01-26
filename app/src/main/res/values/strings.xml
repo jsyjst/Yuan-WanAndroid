@@ -17,7 +17,8 @@
     <string name="error_unknown">未知错误</string>
     <string name="error_network">当前网络不可用，请检查网络设置</string>
     <string name="error_timeout">连接超时，请重试</string>
-    <string name="error_http">网络错误</string>
+    <string name="error_http">网络错误</string>r
+    <string name="error_parse">解析错误</string>
 
     //home
     <string name="article_share">分享</string>
@@ -37,8 +38,12 @@
     <string name="person_password">密码</string>
     <string name="person_repeat_password">确认密码</string>
     <string name="person_no_register">没有账号？注册</string>
+    <string name="person_register_finish">已有账号？登录</string>
     <string name="person_register">注册</string>
-    <string name="person_register_finish">有账号？登录</string>
+    <string name="person_register_success">注册成功</string>
+    <string name="person_login_success">登录成功</string>
+    <string name="login_username_empty">用户名不能为空</string>
+    <string name="login_password_empty">密码不能为空</string>
 
 
     //other

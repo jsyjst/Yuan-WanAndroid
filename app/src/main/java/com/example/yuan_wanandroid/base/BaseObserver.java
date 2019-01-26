@@ -31,7 +31,6 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     private BaseView mView;
     private boolean isShowErrorView = true;
     private boolean isShowLoading = true;
-    private Disposable mDisposable;
 
     private BaseObserver() {
     }
@@ -50,6 +49,8 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
         this.isShowLoading = isShowLoading;
     }
 
+
+
     @Override
     protected void onStart() {
         if (isShowLoading) mView.showLoading();
@@ -57,7 +58,6 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onNext(T t) {
-     //   if(t instanceof Articles)LogUtil.d(TAG_COMMON,""+((Articles) t).getDatas().get(0).getChapterName());
         mView.showNormalView();
     }
 
@@ -97,6 +97,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
      * 解析错误
      */
     protected void parseError() {
+        mView.showToast(App.getContext().getString(R.string.error_parse));
         if (isShowErrorView) mView.showErrorView();
     }
 

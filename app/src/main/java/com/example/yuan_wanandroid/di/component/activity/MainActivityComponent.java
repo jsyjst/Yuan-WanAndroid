@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.di.component.activity;
 
 import com.example.yuan_wanandroid.di.component.AppComponent;
 import com.example.yuan_wanandroid.di.component.fragment.HomeFragmentComponent;
+import com.example.yuan_wanandroid.di.component.fragment.PersonFragmentComponent;
 import com.example.yuan_wanandroid.di.component.fragment.ProjectArticlesFragmentComponent;
 import com.example.yuan_wanandroid.di.component.fragment.ProjectFragmentComponent;
 import com.example.yuan_wanandroid.di.component.fragment.SystemFragmentComponent;
@@ -38,4 +39,5 @@ public interface MainActivityComponent {
     WxArticlesFragmentComponent getWxArticlesFragmentComponent(WxArticlesFragmentModule wxArticlesFragmentModule);
     ProjectFragmentComponent getProjectFragmentComponent(ProjectFragmentModule projectFragmentModule);
     ProjectArticlesFragmentComponent getProjectArticlesFragmentComponent(ProjectArticlesFragmentModule projectArticlesModule);
+    PersonFragmentComponent getPersonFragmentComponent();
 }

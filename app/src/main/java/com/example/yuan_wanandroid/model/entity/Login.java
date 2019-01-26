@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 
-public class User {
+public class Login {
 
     /**
      * chapterTops : []

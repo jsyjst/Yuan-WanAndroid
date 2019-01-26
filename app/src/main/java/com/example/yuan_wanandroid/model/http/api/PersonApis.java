@@ -1,7 +1,7 @@
 package com.example.yuan_wanandroid.model.http.api;
 
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
-import com.example.yuan_wanandroid.model.entity.User;
+import com.example.yuan_wanandroid.model.entity.Login;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -25,7 +25,7 @@ public interface PersonApis {
      */
     @POST("user/login")
     @FormUrlEncoded
-    Observable<BaseResponse<User>> login(
+    Observable<BaseResponse<Login>> login(
             @Field("username") String userName,
             @Field("password") String password
     );
@@ -37,8 +37,15 @@ public interface PersonApis {
      */
     @POST("user/register")
     @FormUrlEncoded
-    Observable<BaseResponse<User>> register(@Field("username") String username,
-                                                      @Field("password") String password,
-                                                      @Field("repassword") String rePassword//确认密码
+    Observable<BaseResponse<Login>> register(@Field("username") String username,
+                                             @Field("password") String password,
+                                             @Field("repassword") String rePassword//确认密码
     );
+
+    /**
+     * 退出登陆
+     * http://www.wanandroid.com/user/logout/json
+     */
+    @GET("user/logout/json")
+    Observable<BaseResponse<Login>> logout();
 }

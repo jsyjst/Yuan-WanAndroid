@@ -5,7 +5,6 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.contract.person.RegisterFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
-import com.example.yuan_wanandroid.model.entity.User;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import javax.inject.Inject;

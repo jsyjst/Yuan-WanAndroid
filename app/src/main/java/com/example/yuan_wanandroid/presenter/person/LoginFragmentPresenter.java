@@ -1,8 +1,11 @@
 package com.example.yuan_wanandroid.presenter.person;
 
+import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
+import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.person.LoginFragmentContract;
+import com.example.yuan_wanandroid.event.LoginEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.utils.RxUtil;
@@ -35,6 +38,12 @@ public class LoginFragmentPresenter extends BasePresenter<LoginFragmentContract.
                     @Override
                     public void onNext(BaseResponse baseResponse){
                         if(baseResponse.getErrorCode() == 0){
+                            User user=User.getInstance();
+                            user.setPassword(password);
+                            user.setUsername(username);
+                            user.setLoginStatus(true);
+                            user.save();
+                            RxBus.getInstance().post(new LoginEvent(true));
                             mView.showLoginSuccess();
                         }else{
                             mView.showToast(baseResponse.getErrorMsg());

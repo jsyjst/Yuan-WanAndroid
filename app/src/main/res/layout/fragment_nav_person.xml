@@ -7,6 +7,7 @@
     android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fbutton="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
    >
     
 
@@ -42,6 +43,18 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/dp_5"
             fbutton:shadowColor="@color/shadow"
+            app:layout_constraintTop_toBottomOf="@+id/personHeadPic"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+        <TextView
+            android:id="@+id/personUsernameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_15"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/personHeadPic"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -120,7 +133,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_2"
         android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10"
         android:background="@color/white"
@@ -151,5 +164,20 @@
             />
     </RelativeLayout>
 
+
+    <TextView
+        android:id="@+id/personLogout"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/sp_18"
+        android:paddingTop="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_15"
+        android:text="@string/person_logout"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

@@ -5,7 +5,7 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.Tab;
-import com.example.yuan_wanandroid.model.entity.User;
+import com.example.yuan_wanandroid.model.entity.Login;
 import com.example.yuan_wanandroid.model.http.NetworkHelper;
 import com.example.yuan_wanandroid.model.http.NetworkHelperImpl;
 
@@ -73,12 +73,17 @@ public class DataModel implements NetworkHelper {
     }
 
     @Override
-    public Observable<BaseResponse<User>> register(String username, String password, String rePassword) {
+    public Observable<BaseResponse<Login>> register(String username, String password, String rePassword) {
         return mNetworkHelper.register(username, password, rePassword);
     }
 
     @Override
-    public Observable<BaseResponse<User>> login(String username, String password) {
+    public Observable<BaseResponse<Login>> login(String username, String password) {
         return mNetworkHelper.login(username, password);
+    }
+
+    @Override
+    public Observable<BaseResponse<Login>> logout() {
+        return mNetworkHelper.logout();
     }
 }

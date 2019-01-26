@@ -44,10 +44,18 @@
     <string name="person_login_success">登录成功</string>
     <string name="login_username_empty">用户名不能为空</string>
     <string name="login_password_empty">密码不能为空</string>
+    <string name="person_logout">退出登录</string>
+
 
 
     //other
     <string name="open_browser_unknown">找不到指定应用打开浏览器</string>
     <string name="share_unknown">找不到指定应用来分享</string>
     <string name="share_email_unknown">找不到指定的应用来发送邮件</string>
+
+    //dialog
+    <string name="dialog_sure">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_title">退出登录</string>
+    <string name="dialog_text">你确定要退出登录吗？</string>
 </resources>

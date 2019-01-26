@@ -33,6 +33,13 @@
     <string name="person_collection">我的收藏</string>
     <string name="person_setting">设置</string>
     <string name="person_about">关于我们</string>
+    <string name="person_user_name">用户名</string>
+    <string name="person_password">密码</string>
+    <string name="person_repeat_password">确认密码</string>
+    <string name="person_no_register">没有账号？注册</string>
+    <string name="person_register">注册</string>
+    <string name="person_register_finish">有账号？登录</string>
+
 
     //other
     <string name="open_browser_unknown">找不到指定应用打开浏览器</string>

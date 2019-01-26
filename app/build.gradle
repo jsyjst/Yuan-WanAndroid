@@ -59,9 +59,9 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["gildeCompiler"]
     implementation rootProject.ext.dependencies["baseAdapter"]
     implementation rootProject.ext.dependencies["smartrefresh"]
-    implementation rootProject.ext.dependencies["agentWeb"]
+    implementation rootProject.ext.dependencies["agentWeb"]  //文章详细
     implementation rootProject.ext.dependencies["flycoTabLayout_Lib"]
-    implementation rootProject.ext.dependencies["circleImage"]
-    implementation rootProject.ext.dependencies["fButton"]
-
+    implementation rootProject.ext.dependencies["circleImage"] //登陆圆形头像
+    implementation rootProject.ext.dependencies["fButton"]  //登陆按钮
+    implementation rootProject.ext.dependencies["grav"]  //登陆动态圆点
 }

@@ -21,4 +21,9 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="TextStyle">
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
 </resources>

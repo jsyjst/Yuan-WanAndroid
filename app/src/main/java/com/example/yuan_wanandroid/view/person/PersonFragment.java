@@ -1,14 +1,14 @@
 package com.example.yuan_wanandroid.view.person;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.widget.LinearLayout;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 
 import butterknife.BindView;
-import de.hdodenhof.circleimageview.CircleImageView;
+import info.hoang8f.widget.FButton;
 
 /**
  * <pre>
@@ -20,10 +20,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class PersonFragment extends BaseFragment {
-    @BindView(R.id.headPic)
-    CircleImageView mHeadPic;
-    @BindView(R.id.personLinear)
-    LinearLayout mPersonLinear;
+
+
+    @BindView(R.id.personLoginButton)
+    FButton mPersonLoginButton;
 
     @Override
     protected void inject() {
@@ -32,7 +32,8 @@ public class PersonFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        mPersonLoginButton.setButtonColor(getResources().getColor(R.color.colorPrimaryDark));
+        mPersonLoginButton.setOnClickListener(v -> startActivity(new Intent(mActivity,LoginActivity.class)));
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PersonFragment extends BaseFragment {
 
     @Override
     public void setStatusBarColor() {
-        StatusBarUtil.immersiveInFragments(mActivity,Color.TRANSPARENT,1);
+        StatusBarUtil.immersiveInFragments(mActivity, Color.TRANSPARENT, 1);
     }
 
 }

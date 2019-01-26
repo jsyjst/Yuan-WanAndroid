@@ -38,6 +38,7 @@ ext {
             AgentWebVersion        : "4.0.2",
             CircleImageVersion     : '2.2.0',
             FButton                : "1.0.5"
+
     ]
 
     dependencies = [
@@ -74,6 +75,7 @@ ext {
             "flycoTabLayout_Lib"    : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "circleImage"           : "de.hdodenhof:circleimageview:${version.CircleImageVersion}",
             "fButton"               : "info.hoang8f:fbutton:${version.FButton}",
+            "grav"                  : "com.github.glomadrian:Grav:1.1",
 
             //test
             "junit"                 : "junit:junit:${version.JunitVersion}",

@@ -3,6 +3,7 @@ package com.example.yuan_wanandroid.model.http;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Collections;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
@@ -111,6 +112,16 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse> unCollectArticles(int id) {
         return mCollectApis.unCollectArticles(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<Collections>> getCollectionsData(int pageNum) {
+        return mCollectApis.getCollectionsData(pageNum);
+    }
+
+    @Override
+    public Observable<BaseResponse> unCollection(int id,int originId) {
+        return mCollectApis.unCollection(id,originId);
     }
 
 

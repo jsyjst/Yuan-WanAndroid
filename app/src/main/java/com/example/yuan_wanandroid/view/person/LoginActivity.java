@@ -1,6 +1,8 @@
 package com.example.yuan_wanandroid.view.person;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -45,5 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         transaction.replace(R.id.frameContain, fragment);
         if (fragment instanceof RegisterFragment) transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public static void startActivityforResultByFragment(Activity activity, Fragment fragment,int request){
+        Intent intent = new Intent(activity,LoginActivity.class);
+        fragment.startActivityForResult(intent,request);
     }
 }

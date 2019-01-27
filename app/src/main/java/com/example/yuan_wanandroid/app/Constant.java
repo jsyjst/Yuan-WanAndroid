@@ -18,6 +18,7 @@ public class Constant {
     public final static String KEY_ARTICLE_TITLE="article_title";
     public final static String KEY_ARTICLE_ID ="article_id";
     public final static String KEY_ARTICLE_COLLECT ="article_collect";
+    public final static String KEY_ARTICLE_COLLECT_HIDE="article_collect_hide";
 
 
     //二级体系key
@@ -32,5 +33,6 @@ public class Constant {
 
     //回调
     public static final int REQUEST_ARTICLE_ACTIVITY=0;
+    public static final int REQUEST_COLLECTION_ACTIVITY=1;
 
 }

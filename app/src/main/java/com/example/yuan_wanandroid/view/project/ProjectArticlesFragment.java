@@ -143,7 +143,7 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
             mPresenter.loadMoreProjectArticlesData(mPageNum, mId);
         });
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPageNum = 0;
+            mPageNum = 1;
             isRefresh = true;
             mPresenter.loadMoreProjectArticlesData(1, mId);
         });
@@ -178,6 +178,7 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
 
     @Override
     protected void loadData() {
+        mPresenter.subscribeEvent();
         mPresenter.loadProjectArticlesData(1,mId);
     }
 

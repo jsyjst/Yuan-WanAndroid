@@ -34,6 +34,7 @@ import com.just.agentweb.DefaultWebClient;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import retrofit2.http.GET;
 
 public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         implements ArticleActivityContract.View {
@@ -52,6 +53,7 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
     private String mTitle;
     private int mId;
     private boolean isCollect;
+    private boolean isCollectHide;
     private MenuItem mCollectionItem;
     private AgentWeb mAgentWeb;
 
@@ -131,7 +133,8 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_article_detail, menu);
         mCollectionItem = menu.findItem(R.id.collectionItem);
-        if (isCollect) mCollectionItem.setTitle(getString(R.string.article_un_collect));
+        if(isCollectHide) mCollectionItem.setVisible(false);
+        else if (isCollect) mCollectionItem.setTitle(getString(R.string.article_un_collect));
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -239,6 +242,7 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         mTitle = getIntent().getStringExtra(Constant.KEY_ARTICLE_TITLE);
         mId = getIntent().getIntExtra(Constant.KEY_ARTICLE_ID, -1);
         isCollect = getIntent().getBooleanExtra(Constant.KEY_ARTICLE_COLLECT, false);
+        isCollectHide = getIntent().getBooleanExtra(Constant.KEY_ARTICLE_COLLECT_HIDE,false);
     }
 
     /**
@@ -264,10 +268,27 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         fragment.startActivityForResult(intent,request);
     }
 
+    /**
+     * 给没有文章id的调用
+     * @param activity
+     * @param fragment
+     * @param url
+     * @param title
+     */
     public static void startActivityByFragment(Activity activity, Fragment fragment, String url, String title) {
         Intent intent = new Intent(activity, ArticleActivity.class);
         intent.putExtra(Constant.KEY_ARTICLE_URL, url);
         intent.putExtra(Constant.KEY_ARTICLE_TITLE, title);
         fragment.startActivity(intent);
     }
+
+    //
+    public static void startActivityByCollectionActivity(Activity activity, String url, String title) {
+        Intent intent = new Intent(activity, ArticleActivity.class);
+        intent.putExtra(Constant.KEY_ARTICLE_URL, url);
+        intent.putExtra(Constant.KEY_ARTICLE_TITLE, title);
+        intent.putExtra(Constant.KEY_ARTICLE_COLLECT_HIDE,true);
+        activity.startActivity(intent);
+    }
+
 }

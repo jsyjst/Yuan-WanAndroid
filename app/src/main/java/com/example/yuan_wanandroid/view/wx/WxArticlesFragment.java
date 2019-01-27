@@ -115,7 +115,6 @@ public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPr
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mArticlesAdapter);
 
-
         //文章点击效果
         mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
             mArticlesPosition = position;
@@ -154,7 +153,7 @@ public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPr
             mPresenter.loadMoreWxArticlesData(mPageNum, mId);
         });
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPageNum = 0;
+            mPageNum = 1;
             isRefresh = true;
             mPresenter.loadMoreWxArticlesData(1, mId);
         });

@@ -3,6 +3,7 @@ package com.example.yuan_wanandroid.model.http;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Collections;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
@@ -58,5 +59,7 @@ public interface NetworkHelper {
      * collect
      */
     Observable<BaseResponse> collectArticles(int id); //收藏站内文章
-    Observable<BaseResponse> unCollectArticles(int id);//取消收藏文章
+    Observable<BaseResponse> unCollectArticles(int id);//文章列表取消收藏文章
+    Observable<BaseResponse<Collections>> getCollectionsData(int pageNum); //获取收藏列表
+    Observable<BaseResponse> unCollection(int id,int originId);//收藏列表取消收藏
 }

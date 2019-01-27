@@ -47,10 +47,13 @@
     <string name="login_password_empty">密码不能为空</string>
     <string name="person_logout">退出登录</string>
 
-    //
+    //collect
     <string name="collect_success">已收藏</string>
     <string name="uncollect_success">已取消收藏</string>
     <string name="first_login">请先登录</string>
+    <string name="collection_empty">空空如也，赶紧去收藏干货吧@_@</string>
+
+
 
 
 

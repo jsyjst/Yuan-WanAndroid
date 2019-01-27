@@ -2,13 +2,19 @@ package com.example.yuan_wanandroid.view.person;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
+import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.person.PersonFragmentContract;
+import com.example.yuan_wanandroid.model.entity.Collection;
 import com.example.yuan_wanandroid.presenter.person.PersonFragmentPresenter;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
@@ -17,7 +23,11 @@ import com.example.yuan_wanandroid.widget.ConfirmDialog;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import info.hoang8f.widget.FButton;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * <pre>
@@ -40,6 +50,8 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     TextView mPersonUsernameTv;
     @BindView(R.id.personLogout)
     TextView mPersonLogout;
+    @BindView(R.id.collectionRelative)
+    RelativeLayout mCollectionRelative;
 
     @Override
     protected void inject() {
@@ -57,14 +69,22 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     @Override
     protected void initView() {
         super.initView();
-        if(User.getInstance().isLoginStatus()){
+        if (User.getInstance().isLoginStatus()) {
             showLogin();
-        }else{
+        } else {
             showLogout();
         }
         mPersonLoginButton.setButtonColor(getResources().getColor(R.color.colorPrimaryDark));
         mPersonLoginButton.setOnClickListener(v -> startActivity(new Intent(mActivity, LoginActivity.class)));
         mPersonLogout.setOnClickListener(v -> logout());
+        mCollectionRelative.setOnClickListener(v -> {
+            if(User.getInstance().isLoginStatus()){
+                startActivity(new Intent(mActivity,CollectionActivity.class));
+            }else{
+                LoginActivity.startActivityforResultByFragment(mActivity,this, Constant.REQUEST_COLLECTION_ACTIVITY);
+                showToast(getString(R.string.first_login));
+            }
+        });
     }
 
     @Override
@@ -97,7 +117,7 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
         mPersonUsernameTv.setVisibility(View.GONE);
     }
 
-    private void logout(){
+    private void logout() {
         ConfirmDialog dialog = new ConfirmDialog(mActivity);
         dialog.setOnClickListener(new ConfirmDialog.OnClickListener() {
             @Override
@@ -117,4 +137,18 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
         });
         dialog.show();
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        switch (requestCode) {
+            case Constant.REQUEST_COLLECTION_ACTIVITY:
+                startActivity(new Intent(mActivity,CollectionActivity.class));
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }

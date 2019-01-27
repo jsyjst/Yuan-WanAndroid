@@ -85,6 +85,7 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     @Override
     public void showLoginSuccess() {
         showToast(getString(R.string.person_login_success));
+        getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();
     }
 

@@ -109,7 +109,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     @Override
     public void unCollectArticles(int id) {
         addRxSubscribe(
-                mModel.collectArticles(id)
+                mModel.unCollectArticles(id)
                         .compose(RxUtil.rxSchedulerHelper())
                         .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
                             @Override

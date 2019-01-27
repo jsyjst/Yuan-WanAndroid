@@ -12,7 +12,6 @@ import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
-import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.system.SystemArticlesFragmentContract;
 import com.example.yuan_wanandroid.di.component.fragment.DaggerSystemArticlesFragmentComponent;
 import com.example.yuan_wanandroid.model.entity.Article;
@@ -27,6 +26,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * <pre>
@@ -77,12 +78,17 @@ public class SystemArticlesFragment extends BaseLoadingFragment<SystemArticlesFr
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mArticlesAdapter);
 
+
         //文章点击效果
         mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
-            ArticleActivity.startActivityByFragment(mActivity,
+            mArticlesPosition = position;
+            ArticleActivity.startActivityForResultByFragment(mActivity,
                     this,
                     mArticleList.get(position).getLink(),
-                    mArticleList.get(position).getTitle());
+                    mArticleList.get(position).getTitle(),
+                    mArticleList.get(position).getId(),
+                    mArticleList.get(position).isCollect(),
+                    Constant.REQUEST_ARTICLE_ACTIVITY);
         }));
 
         //文章收藏
@@ -176,8 +182,20 @@ public class SystemArticlesFragment extends BaseLoadingFragment<SystemArticlesFr
     }
 
     @Override
-    public void showToast(String msg) {
-        CommonUtils.toastShow(msg);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        Article article = mArticleList.get(mArticlesPosition);
+        switch (requestCode) {
+            case Constant.REQUEST_ARTICLE_ACTIVITY:
+                boolean isCollect = data.getBooleanExtra(Constant.KEY_ARTICLE_COLLECT, false);
+                if (isCollect != article.isCollect()) {
+                    article.setCollect(isCollect);
+                    mArticlesAdapter.notifyItemChanged(mArticlesPosition + mArticlesAdapter.getHeaderLayoutCount());
+                }
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -187,13 +205,13 @@ public class SystemArticlesFragment extends BaseLoadingFragment<SystemArticlesFr
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_ARTICLES_ID, -1);
+            mId = bundle.getInt(Constant.KEY_ARTICLE_ID, -1);
         }
     }
 
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.KEY_ARTICLES_ID, id);
+        bundle.putInt(Constant.KEY_ARTICLE_ID, id);
         SystemArticlesFragment systemArticlesFragment = new SystemArticlesFragment();
         systemArticlesFragment.setArguments(bundle);
         return systemArticlesFragment;

@@ -2,7 +2,9 @@ package com.example.yuan_wanandroid.presenter.project;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
+import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
+import com.example.yuan_wanandroid.event.AutoRefreshEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
@@ -25,6 +27,15 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
     @Inject
     public ProjectArticlesFragmentPresenter(DataModel model) {
         super(model);
+    }
+
+    @Override
+    public void subscribeEvent() {
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(AutoRefreshEvent.class)
+                        .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
+                        .subscribe(loginEvent -> mView.autoRefresh())
+        );
     }
 
     @Override
@@ -75,7 +86,7 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
     @Override
     public void unCollectArticles(int id) {
         addRxSubscribe(
-                mModel.collectArticles(id)
+                mModel.unCollectArticles(id)
                         .compose(RxUtil.rxSchedulerHelper())
                         .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
                             @Override

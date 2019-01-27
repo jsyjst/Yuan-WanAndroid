@@ -24,6 +24,7 @@ public interface ProjectArticlesFragmentContract {
         void initRefresh();
         void showCollectSuccess(); //收藏成功
         void showUnCollectSuccess();//取消收藏成功
+        void autoRefresh();
     }
 
     interface Presenter extends IPresenter<ProjectArticlesFragmentContract.View> {

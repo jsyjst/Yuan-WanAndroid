@@ -20,9 +20,10 @@
     <string name="error_http">网络错误</string>r
     <string name="error_parse">解析错误</string>
 
-    //home
+    //article
     <string name="article_share">分享</string>
     <string name="article_collect">收藏</string>
+    <string name="article_un_collect">取消收藏</string>
     <string name="article_browser">用系统浏览器打开</string>
     <string name="article_browser_error">该链接无法使用浏览器打开</string>
     <string name="article_share_link">来自WanAndroid的分享：</string>

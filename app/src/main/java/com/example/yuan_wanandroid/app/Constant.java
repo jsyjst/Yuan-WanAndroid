@@ -16,7 +16,9 @@ public class Constant {
     //文章详细的url的key
     public final static String KEY_ARTICLE_URL="article_url";
     public final static String KEY_ARTICLE_TITLE="article_title";
-    public final static String KEY_ARTICLES_ID ="article_id";
+    public final static String KEY_ARTICLE_ID ="article_id";
+    public final static String KEY_ARTICLE_COLLECT ="article_collect";
+
 
     //二级体系key
     public final static String KEY_SYSTEM_FIRST_NAME="system_first_name";
@@ -29,6 +31,6 @@ public class Constant {
     public static final int ERROR_STATE = 2;
 
     //回调
-    public static final int REQUEST_COLLECT_ARTICLE=0;
+    public static final int REQUEST_ARTICLE_ACTIVITY=0;
 
 }

@@ -30,4 +30,5 @@ public interface CollectApis {
     @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResponse> unCollectArticles(@Path("id") int id);
 
+
 }

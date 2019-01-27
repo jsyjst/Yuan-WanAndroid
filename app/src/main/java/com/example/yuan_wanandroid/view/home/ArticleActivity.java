@@ -16,18 +16,31 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.yuan_wanandroid.R;
+import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
+import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
+import com.example.yuan_wanandroid.contract.home.ArticleActivityContract;
+import com.example.yuan_wanandroid.di.component.activity.DaggerArticleActivityComponent;
+import com.example.yuan_wanandroid.presenter.home.ArticleActivityPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.ShareUtils;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
+import com.example.yuan_wanandroid.view.person.LoginActivity;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
-public class ArticleActivity extends BaseActivity {
+public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
+        implements ArticleActivityContract.View {
 
+
+    @Inject
+    ArticleActivityPresenter mPresenter;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.containerFrameLayout)
@@ -37,6 +50,9 @@ public class ArticleActivity extends BaseActivity {
 
     private String mUrl;
     private String mTitle;
+    private int mId;
+    private boolean isCollect;
+    private MenuItem mCollectionItem;
     private AgentWeb mAgentWeb;
 
     @Override
@@ -46,19 +62,37 @@ public class ArticleActivity extends BaseActivity {
 
     @Override
     protected void inject() {
+        DaggerArticleActivityComponent.builder()
+                .appComponent(App.getAppComponent())
+                .build()
+                .inject(this);
+    }
 
+    @Override
+    protected ArticleActivityPresenter getPresenter() {
+        return mPresenter;
     }
 
     @Override
     protected void initView() {
+        super.initView();
         getBundleData();
+        initToolbar();
+    }
+
+    private void initToolbar() {
         mToolbar.setTitle(Html.fromHtml(mTitle));
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        mToolbar.setNavigationOnClickListener(v -> finish());
+        mToolbar.setNavigationOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra(Constant.KEY_ARTICLE_COLLECT, isCollect);
+            setResult(RESULT_OK, intent);
+            finish();
+        });
     }
 
     @Override
@@ -96,6 +130,8 @@ public class ArticleActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_article_detail, menu);
+        mCollectionItem = menu.findItem(R.id.collectionItem);
+        if (isCollect) mCollectionItem.setTitle(getString(R.string.article_un_collect));
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -114,8 +150,29 @@ public class ArticleActivity extends BaseActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
+
+    @Override
+    public void showCollectSuccess() {
+        showToast(getString(R.string.collect_success));
+        isCollect = true;
+        mCollectionItem.setTitle(getString(R.string.article_un_collect));
+    }
+
+    @Override
+    public void showUnCollectSuccess() {
+        showToast(getString(R.string.uncollect_success));
+        isCollect = false;
+        mCollectionItem.setTitle(getString(R.string.article_collect));
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0){
+            Intent intent = new Intent();
+            intent.putExtra(Constant.KEY_ARTICLE_COLLECT, isCollect);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
         return mAgentWeb.handleKeyEvent(keyCode, event) || super.onKeyDown(keyCode, event);
     }
 
@@ -137,36 +194,6 @@ public class ArticleActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    @Override
-    public void setStatusBarColor() {
-        StatusBarUtil.setStatusColor(getWindow(), getResources().getColor(R.color.colorPrimaryDark), 1f);
-    }
-
-    @Override
-    public void showNormalView() {
-
-    }
-
-    @Override
-    public void showErrorView() {
-
-    }
-
-    @Override
-    public void reLoad() {
-
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showToast(String msg) {
-
-    }
-
     /**
      * 分享链接
      */
@@ -175,7 +202,7 @@ public class ArticleActivity extends BaseActivity {
             ShareUtils.shareText(this,
                     getString(R.string.article_share_link) + "\n" + "【" + mTitle + "】" + "\n" + mUrl,
                     getString(R.string.article_share_title));
-        }else{
+        } else {
             CommonUtils.toastShow(getString(R.string.article_share_error));
         }
     }
@@ -184,7 +211,16 @@ public class ArticleActivity extends BaseActivity {
      * 收藏
      */
     private void collection() {
-
+        if (!User.getInstance().isLoginStatus()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            showToast(getString(R.string.first_login));
+        } else {
+            if (isCollect) {
+                mPresenter.unCollectArticles(mId);
+            } else {
+                mPresenter.collectArticles(mId);
+            }
+        }
     }
 
     /**
@@ -194,21 +230,40 @@ public class ArticleActivity extends BaseActivity {
         ShareUtils.openBrowser(this, mUrl);
     }
 
+
     /**
      * 获取传入的数据
      */
     private void getBundleData() {
         mUrl = getIntent().getStringExtra(Constant.KEY_ARTICLE_URL);
         mTitle = getIntent().getStringExtra(Constant.KEY_ARTICLE_TITLE);
+        mId = getIntent().getIntExtra(Constant.KEY_ARTICLE_ID, -1);
+        isCollect = getIntent().getBooleanExtra(Constant.KEY_ARTICLE_COLLECT, false);
     }
 
     /**
      * 给其他需要传入数据的碎片使用
+     *
      * @param activity
      * @param fragment
      * @param url
      * @param title
      */
+    public static void startActivityForResultByFragment(Activity activity,
+                                                        Fragment fragment,
+                                                        String url,
+                                                        String title,
+                                                        int id,
+                                                        boolean isCollect,
+                                                        int request) {
+        Intent intent = new Intent(activity, ArticleActivity.class);
+        intent.putExtra(Constant.KEY_ARTICLE_URL, url);
+        intent.putExtra(Constant.KEY_ARTICLE_TITLE, title);
+        intent.putExtra(Constant.KEY_ARTICLE_ID, id);
+        intent.putExtra(Constant.KEY_ARTICLE_COLLECT, isCollect);
+        fragment.startActivityForResult(intent,request);
+    }
+
     public static void startActivityByFragment(Activity activity, Fragment fragment, String url, String title) {
         Intent intent = new Intent(activity, ArticleActivity.class);
         intent.putExtra(Constant.KEY_ARTICLE_URL, url);

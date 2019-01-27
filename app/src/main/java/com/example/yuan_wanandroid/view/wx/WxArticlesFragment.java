@@ -11,13 +11,11 @@ import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
-import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.wx.WxArticlesFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.WxArticlesFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Article;
 import com.example.yuan_wanandroid.presenter.wx.WxArticlesFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.home.ArticleActivity;
 import com.example.yuan_wanandroid.view.person.LoginActivity;
@@ -28,6 +26,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * <pre>
@@ -115,12 +115,17 @@ public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPr
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mArticlesAdapter);
 
+
         //文章点击效果
         mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
-            ArticleActivity.startActivityByFragment(mActivity,
+            mArticlesPosition = position;
+            ArticleActivity.startActivityForResultByFragment(mActivity,
                     this,
                     mArticleList.get(position).getLink(),
-                    mArticleList.get(position).getTitle());
+                    mArticleList.get(position).getTitle(),
+                    mArticleList.get(position).getId(),
+                    mArticleList.get(position).isCollect(),
+                    Constant.REQUEST_ARTICLE_ACTIVITY);
         }));
 
         //文章收藏
@@ -189,6 +194,22 @@ public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPr
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        Article article = mArticleList.get(mArticlesPosition);
+        switch (requestCode) {
+            case Constant.REQUEST_ARTICLE_ACTIVITY:
+                boolean isCollect = data.getBooleanExtra(Constant.KEY_ARTICLE_COLLECT, false);
+                if (isCollect != article.isCollect()) {
+                    article.setCollect(isCollect);
+                    mArticlesAdapter.notifyItemChanged(mArticlesPosition + mArticlesAdapter.getHeaderLayoutCount());
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     /**
      * 获取数据
@@ -196,13 +217,13 @@ public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPr
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_ARTICLES_ID, -1);
+            mId = bundle.getInt(Constant.KEY_ARTICLE_ID, -1);
         }
     }
 
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.KEY_ARTICLES_ID, id);
+        bundle.putInt(Constant.KEY_ARTICLE_ID, id);
         Fragment fragment= new WxArticlesFragment();
         fragment.setArguments(bundle);
         return fragment;

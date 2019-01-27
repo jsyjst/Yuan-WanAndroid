@@ -11,7 +11,6 @@ import com.example.yuan_wanandroid.adapter.ProjectAdapter;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
-import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.ProjectArticlesFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Article;
@@ -27,6 +26,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * <pre>
@@ -103,12 +104,17 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mProjectAdapter);
 
+
         //文章点击效果
         mProjectAdapter.setOnItemClickListener(((adapter, view, position) -> {
-            ArticleActivity.startActivityByFragment(mActivity,
+            mArticlesPosition = position;
+            ArticleActivity.startActivityForResultByFragment(mActivity,
                     this,
                     mArticleList.get(position).getLink(),
-                    mArticleList.get(position).getTitle());
+                    mArticleList.get(position).getTitle(),
+                    mArticleList.get(position).getId(),
+                    mArticleList.get(position).isCollect(),
+                    Constant.REQUEST_ARTICLE_ACTIVITY);
         }));
 
         //文章收藏
@@ -158,6 +164,11 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
     }
 
     @Override
+    public void autoRefresh() {
+        mRefreshLayout.autoRefresh();
+    }
+
+    @Override
     protected void inject() {
         ((MainActivity)getActivity())
                 .getComponent()
@@ -175,19 +186,36 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
         return R.layout.fragment_common_articles;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        Article article = mArticleList.get(mArticlesPosition);
+        switch (requestCode) {
+            case Constant.REQUEST_ARTICLE_ACTIVITY:
+                boolean isCollect = data.getBooleanExtra(Constant.KEY_ARTICLE_COLLECT, false);
+                if (isCollect != article.isCollect()) {
+                    article.setCollect(isCollect);
+                    mProjectAdapter.notifyItemChanged(mArticlesPosition + mProjectAdapter.getHeaderLayoutCount());
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     /**
      * 获取数据
      */
     private void getData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mId = bundle.getInt(Constant.KEY_ARTICLES_ID, -1);
+            mId = bundle.getInt(Constant.KEY_ARTICLE_ID, -1);
         }
     }
 
     public static Fragment newInstance(int id) {
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.KEY_ARTICLES_ID, id);
+        bundle.putInt(Constant.KEY_ARTICLE_ID, id);
         Fragment fragment= new ProjectArticlesFragment();
         fragment.setArguments(bundle);
         return fragment;

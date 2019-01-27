@@ -8,6 +8,7 @@ import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.view.BaseView;
 import com.example.yuan_wanandroid.component.ActivityCollector;
 import com.example.yuan_wanandroid.di.component.AppComponent;
+import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
@@ -89,7 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     @Override
     public void showToast(String msg) {
-
+        CommonUtils.toastShow(msg);
     }
 
 }

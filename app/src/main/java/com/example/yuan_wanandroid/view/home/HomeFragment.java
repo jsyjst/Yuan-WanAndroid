@@ -112,18 +112,22 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
         //文章点击效果
         mArticlesAdapter.setOnItemClickListener(((adapter, view, position) -> {
-            ArticleActivity.startActivityByFragment(mActivity,
+            mArticlesPosition = position;
+            ArticleActivity.startActivityForResultByFragment(mActivity,
                     this,
                     mArticleList.get(position).getLink(),
-                    mArticleList.get(position).getTitle());
+                    mArticleList.get(position).getTitle(),
+                    mArticleList.get(position).getId(),
+                    mArticleList.get(position).isCollect(),
+                    Constant.REQUEST_ARTICLE_ACTIVITY);
         }));
         //文章收藏
         mArticlesAdapter.setOnItemChildClickListener((adapter, view, position) -> {
                     mArticlesPosition = position;
-                    if(!User.getInstance().isLoginStatus()){
+                    if (!User.getInstance().isLoginStatus()) {
                         showToast(getString(R.string.first_login));
                         startActivity(new Intent(mActivity, LoginActivity.class));
-                    }else{
+                    } else {
                         collect();
                         CommonUtils.collectAnimator(mActivity, view);
                     }
@@ -235,14 +239,14 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     public void showCollectSuccess() {
         showToast(getString(R.string.collect_success));
         mArticleList.get(mArticlesPosition).setCollect(true);
-        mArticlesAdapter.notifyItemChanged(mArticlesPosition+mArticlesAdapter.getHeaderLayoutCount());
+        mArticlesAdapter.notifyItemChanged(mArticlesPosition + mArticlesAdapter.getHeaderLayoutCount());
     }
 
     @Override
     public void showUnCollectSuccess() {
         showToast(getString(R.string.uncollect_success));
         mArticleList.get(mArticlesPosition).setCollect(false);
-        mArticlesAdapter.notifyItemChanged(mArticlesPosition+mArticlesAdapter.getHeaderLayoutCount());
+        mArticlesAdapter.notifyItemChanged(mArticlesPosition + mArticlesAdapter.getHeaderLayoutCount());
     }
 
     @Override
@@ -275,5 +279,23 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
             banner.stopAutoPlay();
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        Article article = mArticleList.get(mArticlesPosition);
+        switch (requestCode) {
+            case Constant.REQUEST_ARTICLE_ACTIVITY:
+                boolean isCollect = data.getBooleanExtra(Constant.KEY_ARTICLE_COLLECT, false);
+                if (isCollect != article.isCollect()) {
+                    article.setCollect(isCollect);
+                    mArticlesAdapter.notifyItemChanged(mArticlesPosition + mArticlesAdapter.getHeaderLayoutCount());
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 
 }

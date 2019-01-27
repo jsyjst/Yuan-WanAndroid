@@ -2,11 +2,14 @@ package com.example.yuan_wanandroid.di.module;
 
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.model.http.api.CollectApis;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
+import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
+import com.example.yuan_wanandroid.model.http.interceptor.SaveCookiesInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -56,6 +59,10 @@ public class AppModule {
         builder.connectTimeout(10, TimeUnit.SECONDS);
         builder.readTimeout(20, TimeUnit.SECONDS);
         builder.writeTimeout(20, TimeUnit.SECONDS);
+
+        //cookie
+        builder.addInterceptor(new ReadCookiesInterceptor(App.getContext()));
+        builder.addInterceptor(new SaveCookiesInterceptor(App.getContext()));
         return builder.build();
     }
 
@@ -98,5 +105,11 @@ public class AppModule {
     @Singleton
     PersonApis providePersonApis(Retrofit retrofit){
         return retrofit.create(PersonApis.class);
+    }
+
+    @Provides
+    @Singleton
+    CollectApis provideCollectApis(Retrofit retrofit){
+        return retrofit.create(CollectApis.class);
     }
 }

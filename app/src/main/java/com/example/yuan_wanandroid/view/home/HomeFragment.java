@@ -1,5 +1,8 @@
 package com.example.yuan_wanandroid.view.home;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
+import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
@@ -20,6 +25,8 @@ import com.example.yuan_wanandroid.utils.BannerImageLoader;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
+import com.example.yuan_wanandroid.view.person.LoginActivity;
+import com.example.yuan_wanandroid.view.person.LoginFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -31,6 +38,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import butterknife.BindView;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * <pre>
@@ -76,6 +85,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     private Banner banner;
     private int mPageNum = 0;//首页文章页数
     private boolean isRefresh = false; //是否在上拉刷新
+    private int mArticlesPosition = 0;//文章的序号
 
     @Override
     protected int getLayoutId() {
@@ -85,9 +95,10 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     protected void initView() {
         super.initView();
-        StatusBarUtil.setMargin(mActivity,mSearchRelative);
+        StatusBarUtil.setMargin(mActivity, mSearchRelative);
         initRecyclerView();
         initRefreshView();
+
     }
 
     private void initRecyclerView() {
@@ -106,6 +117,18 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
                     mArticleList.get(position).getLink(),
                     mArticleList.get(position).getTitle());
         }));
+        //文章收藏
+        mArticlesAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+                    mArticlesPosition = position;
+                    if(!User.getInstance().isLoginStatus()){
+                        showToast(getString(R.string.first_login));
+                        startActivity(new Intent(mActivity, LoginActivity.class));
+                    }else{
+                        collect();
+                        CommonUtils.collectAnimator(mActivity, view);
+                    }
+                }
+        );
     }
 
     private void initRefreshView() {
@@ -141,6 +164,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     protected void loadData() {
         mPresenter.loadBannerData();
         mPresenter.loadArticles(0);
+        mPresenter.subscribeEvent();
     }
 
     @Override
@@ -206,6 +230,35 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
         mArticleList.addAll(articleList);
         mArticlesAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void showCollectSuccess() {
+        showToast(getString(R.string.collect_success));
+        mArticleList.get(mArticlesPosition).setCollect(true);
+        mArticlesAdapter.notifyItemChanged(mArticlesPosition+mArticlesAdapter.getHeaderLayoutCount());
+    }
+
+    @Override
+    public void showUnCollectSuccess() {
+        showToast(getString(R.string.uncollect_success));
+        mArticleList.get(mArticlesPosition).setCollect(false);
+        mArticlesAdapter.notifyItemChanged(mArticlesPosition+mArticlesAdapter.getHeaderLayoutCount());
+    }
+
+    @Override
+    public void autoRefresh() {
+        mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void collect() {
+        if (mArticleList.get(mArticlesPosition).isCollect()) {
+            mPresenter.unCollectArticles(mArticleList.get(mArticlesPosition).getId());
+        } else {
+            mPresenter.collectArticles(mArticleList.get(mArticlesPosition).getId());
+        }
+    }
+
 
     @Override
     public void onStart() {

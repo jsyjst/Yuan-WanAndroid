@@ -1,6 +1,8 @@
 package com.example.yuan_wanandroid.view.person;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -40,6 +42,7 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     TextView mLoginBtn;
     @BindView(R.id.registerBtn)
     TextView mRegisterBtn;
+
 
     @Override
     protected void inject() {
@@ -81,7 +84,7 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
 
     @Override
     public void showLoginSuccess() {
-        showToast(mActivity.getString(R.string.person_login_success));
+        showToast(getString(R.string.person_login_success));
         getActivity().finish();
     }
 

@@ -21,10 +21,15 @@ public interface WxArticlesFragmentContract {
         void showMoreWxArticles(List<Article> articleList);
         void initRecyclerView();
         void initRefresh();
+        void showCollectSuccess(); //收藏成功
+        void showUnCollectSuccess();//取消收藏成功
+        void autoRefresh();//强制刷新
     }
 
     interface Presenter extends IPresenter<WxArticlesFragmentContract.View>{
         void loadWxArticlesData(int pageNum,int id);
         void loadMoreWxArticlesData(int pageNum,int id);
+        void collectArticles(int id); //收藏首页文章
+        void unCollectArticles(int id);//取消收藏
     }
 }

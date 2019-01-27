@@ -1,5 +1,6 @@
 package com.example.yuan_wanandroid.view.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ProjectAdapter;
 import com.example.yuan_wanandroid.app.Constant;
+import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
@@ -17,6 +19,7 @@ import com.example.yuan_wanandroid.presenter.project.ProjectArticlesFragmentPres
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.home.ArticleActivity;
+import com.example.yuan_wanandroid.view.person.LoginActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.List;
@@ -54,6 +57,7 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
     private int mId;
     private int mPageNum = 1;  //用于刷新
     private boolean isRefresh = false;  //是否为向上刷新
+    private int mArticlesPosition = 0;//文章的序号
     @Override
     protected ProjectArticlesFragmentPresenter getPresenter() {
         return mPresenter;
@@ -106,6 +110,23 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
                     mArticleList.get(position).getLink(),
                     mArticleList.get(position).getTitle());
         }));
+
+        //文章收藏
+        mProjectAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+                    mArticlesPosition = position;
+                    if(!User.getInstance().isLoginStatus()){
+                        showToast(getString(R.string.first_login));
+                        startActivity(new Intent(mActivity, LoginActivity.class));
+                    }else{
+                        if(mArticleList.get(position).isCollect()) {
+                            mPresenter.unCollectArticles(mArticleList.get(position).getId());
+                        }else{
+                            mPresenter.collectArticles(mArticleList.get(position).getId());
+                        }
+                        CommonUtils.collectAnimator(mActivity, view);
+                    }
+                }
+        );
     }
 
     @Override
@@ -120,6 +141,20 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
             isRefresh = true;
             mPresenter.loadMoreProjectArticlesData(1, mId);
         });
+    }
+
+    @Override
+    public void showCollectSuccess() {
+        showToast(getString(R.string.collect_success));
+        mArticleList.get(mArticlesPosition).setCollect(true);
+        mProjectAdapter.notifyItemChanged(mArticlesPosition+mProjectAdapter.getHeaderLayoutCount());
+    }
+
+    @Override
+    public void showUnCollectSuccess() {
+        showToast(getString(R.string.uncollect_success));
+        mArticleList.get(mArticlesPosition).setCollect(false);
+        mProjectAdapter.notifyItemChanged(mArticlesPosition+mProjectAdapter.getHeaderLayoutCount());
     }
 
     @Override

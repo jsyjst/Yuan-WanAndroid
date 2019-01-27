@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.person.PersonFragmentContract;
+import com.example.yuan_wanandroid.event.AutoRefreshEvent;
 import com.example.yuan_wanandroid.event.LoginEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
@@ -46,6 +47,7 @@ public class PersonFragmentPresenter extends BasePresenter<PersonFragmentContrac
                    @Override
                    public void onNext(BaseResponse baseResponse){
                        User.getInstance().reset();
+                       RxBus.getInstance().post(new AutoRefreshEvent(true));
                        mView.showLogout();
                    }
                })

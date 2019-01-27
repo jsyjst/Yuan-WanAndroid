@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.contract.system.SystemArticlesFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import javax.inject.Inject;
 
 
 public class SystemArticlesFragmentPresenter extends BasePresenter<SystemArticlesFragmentContract.View>
-        implements SystemArticlesFragmentContract.Presenter{
+        implements SystemArticlesFragmentContract.Presenter {
 
 
     @Inject
@@ -30,30 +31,58 @@ public class SystemArticlesFragmentPresenter extends BasePresenter<SystemArticle
     @Override
     public void loadSystemArticlesData(int pageNum, int id) {
         addRxSubscribe(
-                mModel.getSecondSystemArticles(pageNum,id)
-                .compose(RxUtil.rxSchedulerHelper())
-                .compose(RxUtil.handleResult())
-                .subscribeWith(new BaseObserver<Articles>(mView){
-                    @Override
-                    public void onNext(Articles articles){
-                        super.onNext(articles);
-                        mView.showSystemArticles(articles.getDatas());
-                    }
-                })
+                mModel.getSecondSystemArticles(pageNum, id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribeWith(new BaseObserver<Articles>(mView) {
+                            @Override
+                            public void onNext(Articles articles) {
+                                super.onNext(articles);
+                                mView.showSystemArticles(articles.getDatas());
+                            }
+                        })
         );
     }
 
     @Override
     public void loadMoreSystemArticlesData(int pageNum, int id) {
         addRxSubscribe(
-                mModel.getSecondSystemArticles(pageNum,id)
+                mModel.getSecondSystemArticles(pageNum, id)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<Articles>(mView,false,false){
+                        .subscribeWith(new BaseObserver<Articles>(mView, false, false) {
                             @Override
-                            public void onNext(Articles articles){
+                            public void onNext(Articles articles) {
                                 super.onNext(articles);
                                 mView.showMoreSystemArticles(articles.getDatas());
+                            }
+                        })
+        );
+    }
+
+    @Override
+    public void collectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView, false, false) {
+                            @Override
+                            public void onNext(BaseResponse baseResponse) {
+                                mView.showCollectSuccess();
+                            }
+                        })
+        );
+    }
+
+    @Override
+    public void unCollectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView, false, false) {
+                            @Override
+                            public void onNext(BaseResponse baseResponse) {
+                                mView.showUnCollectSuccess();
                             }
                         })
         );

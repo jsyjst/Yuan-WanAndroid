@@ -28,4 +28,7 @@ public class Constant {
     public static final int LOADING_STATE = 1;
     public static final int ERROR_STATE = 2;
 
+    //回调
+    public static final int REQUEST_COLLECT_ARTICLE=0;
+
 }

@@ -6,6 +6,7 @@ import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
+import com.example.yuan_wanandroid.model.http.api.CollectApis;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
@@ -33,14 +34,18 @@ public class NetworkHelperImpl implements NetworkHelper{
     private WxApis mWxApis;
     private ProjectApis mProjectApis;
     private PersonApis mPersonApis;
+    private CollectApis mCollectApis;
 
     @Inject
-    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis,ProjectApis projectApis,PersonApis personApis){
+    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis,
+                             ProjectApis projectApis,PersonApis personApis,
+                             CollectApis collectApis){
         mHomeApis = homeApis;
         mSystemApis = systemApis;
         mWxApis = wxApis;
         mProjectApis =projectApis;
         mPersonApis = personApis;
+        mCollectApis = collectApis;
     }
 
     @Override
@@ -96,6 +101,16 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse<Login>> logout() {
         return mPersonApis.logout();
+    }
+
+    @Override
+    public Observable<BaseResponse> collectArticles(int id) {
+        return mCollectApis.collectArticles(id);
+    }
+
+    @Override
+    public Observable<BaseResponse> unCollectArticles(int id) {
+        return mCollectApis.unCollectArticles(id);
     }
 
 

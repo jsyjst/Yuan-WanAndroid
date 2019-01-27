@@ -31,8 +31,15 @@ public class ProjectAdapter extends BaseQuickAdapter<Article,BaseViewHolder>{
         helper.setText(R.id.projectTitleTv,item.getTitle())
                 .setText(R.id.projectDecsTv,item.getDesc())
                 .setText(R.id.projectAuthorTv,item.getAuthor())
-                .setText(R.id.projectDateTv,item.getNiceDate());
+                .setText(R.id.projectDateTv,item.getNiceDate())
+                .addOnClickListener(R.id.projectLoveIv);
 
         ImageUtil.loadImage(mContext,helper.getView(R.id.projectPicIv),item.getEnvelopePic());
+        if(item.isCollect()){
+            helper.getView(R.id.projectLoveIv).setSelected(true);
+        }else{
+            helper.getView(R.id.projectLoveIv).setSelected(false);
+        }
     }
+
 }

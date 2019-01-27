@@ -4,10 +4,13 @@ import android.util.Log;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
+import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
+import com.example.yuan_wanandroid.event.AutoRefreshEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import java.util.List;
@@ -29,6 +32,15 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
     @Inject
     public HomeFragmentPresenter(DataModel model){
         super(model);
+    }
+
+    @Override
+    public void subscribeEvent() {
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(AutoRefreshEvent.class)
+                        .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
+                        .subscribe(loginEvent -> mView.autoRefresh())
+        );
     }
 
     @Override
@@ -80,4 +92,31 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
         );
     }
 
+    @Override
+    public void collectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                .compose(RxUtil.rxSchedulerHelper())
+                .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                    @Override
+                    public void onNext(BaseResponse baseResponse){
+                        mView.showCollectSuccess();
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void unCollectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                            @Override
+                            public void onNext(BaseResponse baseResponse){
+                                mView.showUnCollectSuccess();
+                            }
+                        })
+        );
+    }
 }

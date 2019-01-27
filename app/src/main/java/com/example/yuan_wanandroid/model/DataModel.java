@@ -86,4 +86,14 @@ public class DataModel implements NetworkHelper {
     public Observable<BaseResponse<Login>> logout() {
         return mNetworkHelper.logout();
     }
+
+    @Override
+    public Observable<BaseResponse> collectArticles(int id) {
+        return mNetworkHelper.collectArticles(id);
+    }
+
+    @Override
+    public Observable<BaseResponse> unCollectArticles(int id) {
+        return mNetworkHelper.collectArticles(id);
+    }
 }

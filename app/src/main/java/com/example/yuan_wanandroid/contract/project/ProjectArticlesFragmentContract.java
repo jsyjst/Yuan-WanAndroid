@@ -22,10 +22,14 @@ public interface ProjectArticlesFragmentContract {
         void showMoreProjectArticles(List<Article> articleList);
         void initRecyclerView();
         void initRefresh();
+        void showCollectSuccess(); //收藏成功
+        void showUnCollectSuccess();//取消收藏成功
     }
 
     interface Presenter extends IPresenter<ProjectArticlesFragmentContract.View> {
         void loadProjectArticlesData(int pageNum,int id);
         void loadMoreProjectArticlesData(int pageNum,int id);
+        void collectArticles(int id); //收藏首页文章
+        void unCollectArticles(int id);//取消收藏
     }
 }

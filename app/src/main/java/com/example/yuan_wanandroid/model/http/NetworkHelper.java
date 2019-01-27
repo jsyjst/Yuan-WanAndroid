@@ -53,4 +53,10 @@ public interface NetworkHelper {
     Observable<BaseResponse<Login>> register(String username, String password, String rePassword); //注册
     Observable<BaseResponse<Login>> login(String username, String password); //登录
     Observable<BaseResponse<Login>> logout(); //退出登录
+
+    /**
+     * collect
+     */
+    Observable<BaseResponse> collectArticles(int id); //收藏站内文章
+    Observable<BaseResponse> unCollectArticles(int id);//取消收藏文章
 }

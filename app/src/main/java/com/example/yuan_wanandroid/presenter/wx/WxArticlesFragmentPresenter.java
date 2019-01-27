@@ -2,9 +2,12 @@ package com.example.yuan_wanandroid.presenter.wx;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
+import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.wx.WxArticlesFragmentContract;
+import com.example.yuan_wanandroid.event.AutoRefreshEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import javax.inject.Inject;
@@ -24,6 +27,15 @@ public class WxArticlesFragmentPresenter extends BasePresenter<WxArticlesFragmen
     @Inject
     public WxArticlesFragmentPresenter(DataModel model) {
         super(model);
+    }
+
+    @Override
+    public void subscribeEvent() {
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(AutoRefreshEvent.class)
+                        .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
+                        .subscribe(loginEvent -> mView.autoRefresh())
+        );
     }
 
     @Override
@@ -53,6 +65,33 @@ public class WxArticlesFragmentPresenter extends BasePresenter<WxArticlesFragmen
                             public void onNext(Articles articles){
                                 super.onNext(articles);
                                 mView.showMoreWxArticles(articles.getDatas());
+                            }
+                        })
+        );
+    }
+    @Override
+    public void collectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                            @Override
+                            public void onNext(BaseResponse baseResponse){
+                                mView.showCollectSuccess();
+                            }
+                        })
+        );
+    }
+
+    @Override
+    public void unCollectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                            @Override
+                            public void onNext(BaseResponse baseResponse){
+                                mView.showUnCollectSuccess();
                             }
                         })
         );

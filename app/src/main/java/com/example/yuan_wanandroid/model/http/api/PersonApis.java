@@ -48,4 +48,6 @@ public interface PersonApis {
      */
     @GET("user/logout/json")
     Observable<BaseResponse<Login>> logout();
+
+    
 }

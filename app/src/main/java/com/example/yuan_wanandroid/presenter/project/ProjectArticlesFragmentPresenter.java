@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.utils.RxUtil;
 
 import javax.inject.Inject;
@@ -53,6 +54,33 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
                             public void onNext(Articles articles){
                                 super.onNext(articles);
                                 mView.showMoreProjectArticles(articles.getDatas());
+                            }
+                        })
+        );
+    }
+    @Override
+    public void collectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                            @Override
+                            public void onNext(BaseResponse baseResponse){
+                                mView.showCollectSuccess();
+                            }
+                        })
+        );
+    }
+
+    @Override
+    public void unCollectArticles(int id) {
+        addRxSubscribe(
+                mModel.collectArticles(id)
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                            @Override
+                            public void onNext(BaseResponse baseResponse){
+                                mView.showUnCollectSuccess();
                             }
                         })
         );

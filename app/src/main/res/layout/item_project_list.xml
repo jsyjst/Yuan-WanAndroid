@@ -71,6 +71,7 @@
         android:layout_toRightOf="@+id/projectAuthorTv"
         android:layout_alignBottom="@+id/projectLoveIv"
         android:layout_alignTop="@+id/projectLoveIv"
+        android:layout_marginEnd="@dimen/dp_5"
         android:gravity="center"
         android:layout_marginStart="@dimen/dp_10"
         tools:text="17小时前"
@@ -83,7 +84,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/projectPicIv"
         android:padding="@dimen/dp_10"
-        android:src="@drawable/ic_no_love"
+        android:src="@drawable/selector_collect"
         tools:ignore="ContentDescription"/>
 
     <View

@@ -29,6 +29,12 @@ public class ArticlesAdapter extends BaseQuickAdapter<Article, BaseViewHolder> {
         helper.setText(R.id.homeItemAuthorTv,item.getAuthor())
                 .setText(R.id.homeItemDateTv,item.getNiceDate())
                 .setText(R.id.homeItemTitleTv,item.getTitle())
-                .setText(R.id.homeItemTypeTv,item.getSuperChapterName()+" / "+item.getChapterName());
+                .setText(R.id.homeItemTypeTv,item.getSuperChapterName()+" / "+item.getChapterName())
+                .addOnClickListener(R.id.homeItemLoveIv);
+        if(item.isCollect()){
+            helper.getView(R.id.homeItemLoveIv).setSelected(true);
+        }else{
+            helper.getView(R.id.homeItemLoveIv).setSelected(false);
+        }
     }
 }

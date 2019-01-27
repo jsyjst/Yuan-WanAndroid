@@ -70,7 +70,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/homeItemTitleTv"
         android:padding="@dimen/dp_10"
-        android:src="@drawable/ic_no_love"
+        android:src="@drawable/selector_collect"
         tools:ignore="ContentDescription"/>
 
     <View

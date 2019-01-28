@@ -2,11 +2,15 @@ package com.example.yuan_wanandroid.view.home;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.presenter.home.HomeFragmentPresenter;
 import com.example.yuan_wanandroid.utils.BannerImageLoader;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.person.LoginActivity;
@@ -77,8 +82,12 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     RecyclerView mRecyclerView;
     @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.searchTv)
-    TextView mSearchTv;
+    @BindView(R.id.statusBarView)
+    View view;
+    @BindView(R.id.searchEdit)
+    EditText mSearchTv;
+    @BindView(R.id.searchIv)
+    ImageView mSearchIv;
     @BindView(R.id.searchRelative)
     RelativeLayout mSearchRelative;
 
@@ -95,10 +104,10 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     protected void initView() {
         super.initView();
-        StatusBarUtil.setMargin(mActivity, mSearchRelative);
+        StatusBarUtil.addStatusBarView(mActivity,view);
         initRecyclerView();
         initRefreshView();
-
+        mSearchTv.setOnClickListener(v -> startActivity(new Intent(mActivity,SearchActivity.class)));
     }
 
     private void initRecyclerView() {
@@ -210,6 +219,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     public void showArticles(List<Article> articlesList) {
+        LogUtil.d(LogUtil.TAG_COMMON,articlesList.get(0).getUserId()+"");
         if (!CommonUtils.isEmptyList(mArticleList)) {
             mArticleList.clear();
         }
@@ -296,6 +306,16 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
                 break;
         }
     }
+
+//    private void toSearchActivity(){
+//        Intent intent = new Intent(mActivity,SearchActivity.class);
+//
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
+//                Pair.create(mSearchTv,"share"),
+//                Pair.create(mSearchIv,"share1"));
+//
+//        startActivity(intent,options.toBundle());
+//    }
 
 
 }

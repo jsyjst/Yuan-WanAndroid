@@ -5,7 +5,8 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimaryDark">
 
-    <TextView
+
+    <EditText
         android:id="@+id/searchTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,9 +14,22 @@
         android:layout_marginEnd="@dimen/dp_20"
         android:layout_marginStart="@dimen/dp_20"
         android:background="@drawable/bg_search_text"
+        android:hint="@string/search_text"
+        android:cursorVisible="false"
+        android:focusable="false"
         android:paddingBottom="@dimen/dp_10"
-        android:paddingStart="@dimen/dp_30"
+        android:paddingStart="@dimen/dp_40"
         android:paddingTop="@dimen/dp_10"
-        android:text="@string/search_text" />
+        android:textSize="@dimen/sp_16"
+        android:transitionName="searchEdit"/>
+
+    <ImageView
+        android:id="@+id/searchIv"
+        android:layout_width="@dimen/dp_15"
+        android:layout_height="@dimen/dp_15"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dp_35"
+        android:src="@drawable/ic_search"
+        android:transitionName="searchIv" />
 
 </RelativeLayout>

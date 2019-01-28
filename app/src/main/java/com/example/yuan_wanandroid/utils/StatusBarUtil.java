@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -332,6 +333,17 @@ public class StatusBarUtil {
             }
             view.setLayoutParams(lp);
         }
+    }
+
+    /**
+     * 动态设置View的高度，高度为状态栏的高度
+     * @param context
+     * @param view
+     */
+    public static void addStatusBarView(Context context,View view){
+        LinearLayout.LayoutParams params =(LinearLayout.LayoutParams)view.getLayoutParams();
+        params.height = getStatusBarHeight(context);
+        view.setLayoutParams(params);
     }
 
 

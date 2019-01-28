@@ -271,4 +271,5 @@ public class Article {
             this.url = url;
         }
     }
+
 }

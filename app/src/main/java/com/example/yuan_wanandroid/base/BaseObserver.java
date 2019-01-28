@@ -5,6 +5,7 @@ import android.net.ParseException;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.view.BaseView;
+import com.example.yuan_wanandroid.model.http.exception.ApiException;
 import com.example.yuan_wanandroid.utils.LogUtil;
 import com.google.gson.JsonParseException;
 
@@ -75,7 +76,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
         } else if (e instanceof JsonParseException || e instanceof JSONException || e instanceof ParseException) {
             LogUtil.e(TAG_ERROR, "解析错误：" + e.getMessage());
             parseError();
-        } else {
+        } else if(e instanceof ApiException){
             LogUtil.e(TAG_ERROR, "unknown：" + e.getMessage());
             unknown();
         }

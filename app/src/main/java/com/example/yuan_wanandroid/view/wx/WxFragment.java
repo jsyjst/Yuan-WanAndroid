@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.view.wx;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -52,6 +53,8 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     SlidingTabLayout mWxTabLayout;
     @BindView(R.id.wxPager)
     ViewPager mWxViewPager;
+    @BindView(R.id.statusBarView)
+    View view;
 
     @Override
     protected int getLayoutId() {
@@ -61,7 +64,7 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     @Override
     public void initView(){
         super.initView();
-        StatusBarUtil.setMargin(mActivity,mSearchRelative);
+        StatusBarUtil.addStatusBarView(mActivity,view);
     }
 
     @Override

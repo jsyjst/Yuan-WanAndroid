@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.view.system;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -53,6 +54,8 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
     RecyclerView mRecyclerView;
     @BindView(R.id.normalView)
     SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.statusBarView)
+    View view;
 
     private boolean isRefresh=false;
     private List<String> secondSystemNames;
@@ -66,7 +69,7 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
     @Override
     public void initView(){
         super.initView();
-        StatusBarUtil.setMargin(mActivity,mSearchRelative);
+        StatusBarUtil.addStatusBarView(mActivity,view);
         initRecyclerView();
         initRefresh();
     }

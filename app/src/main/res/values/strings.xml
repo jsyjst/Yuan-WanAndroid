@@ -53,8 +53,8 @@
     <string name="first_login">请先登录</string>
     <string name="collection_empty">空空如也，赶紧去收藏干货吧@_@</string>
 
-
-
+    //search
+    <string name="search">搜索</string>
 
 
     //other

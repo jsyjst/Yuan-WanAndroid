@@ -1,15 +1,18 @@
 package com.example.yuan_wanandroid.view.system;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.FirstSystemAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
-import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.system.SystemFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.SystemFragmentModule;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
@@ -17,6 +20,7 @@ import com.example.yuan_wanandroid.presenter.system.SystemFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
+import com.example.yuan_wanandroid.view.search.SearchActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -47,7 +51,9 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
     @Inject
     FirstSystemAdapter mFirstSystemAdapter;
     @BindView(R.id.searchTv)
-    TextView mSearchTv;
+    EditText mSearchTv;
+    @BindView(R.id.searchIv)
+    ImageView mSearchIv;
     @BindView(R.id.searchRelative)
     RelativeLayout mSearchRelative;
     @BindView(R.id.recyclerView)
@@ -72,6 +78,7 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
         StatusBarUtil.addStatusBarView(mActivity,view);
         initRecyclerView();
         initRefresh();
+        mSearchTv.setOnClickListener(v -> toSearchActivity());
     }
 
     private void initRecyclerView(){
@@ -141,5 +148,14 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
                 mFirstSystemList.get(position).getName(),
                 secondSystemNames,
                 ids);
+    }
+    private void toSearchActivity(){
+        Intent intent = new Intent(mActivity,SearchActivity.class);
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
+                Pair.create(mSearchTv,getString(R.string.share_edit)),
+                Pair.create(mSearchIv,getString(R.string.share_image))
+        );
+        startActivity(intent,options.toBundle());
     }
 }

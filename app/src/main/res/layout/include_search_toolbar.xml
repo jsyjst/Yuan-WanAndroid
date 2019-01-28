@@ -21,7 +21,7 @@
         android:paddingStart="@dimen/dp_40"
         android:paddingTop="@dimen/dp_10"
         android:textSize="@dimen/sp_16"
-        android:transitionName="searchEdit"/>
+        android:transitionName="@string/share_edit"/>
 
     <ImageView
         android:id="@+id/searchIv"
@@ -30,6 +30,6 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dp_35"
         android:src="@drawable/ic_search"
-        android:transitionName="searchIv" />
+        android:transitionName="@string/share_image" />
 
 </RelativeLayout>

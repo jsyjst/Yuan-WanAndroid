@@ -269,6 +269,27 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
     }
 
     /**
+     * 给其他需要传入数据的碎片使用
+     *
+     * @param activity
+     * @param url
+     * @param title
+     */
+    public static void startActivityForResultByActivity(Activity activity,
+                                                        String url,
+                                                        String title,
+                                                        int id,
+                                                        boolean isCollect,
+                                                        int request) {
+        Intent intent = new Intent(activity, ArticleActivity.class);
+        intent.putExtra(Constant.KEY_ARTICLE_URL, url);
+        intent.putExtra(Constant.KEY_ARTICLE_TITLE, title);
+        intent.putExtra(Constant.KEY_ARTICLE_ID, id);
+        intent.putExtra(Constant.KEY_ARTICLE_COLLECT, isCollect);
+        activity.startActivityForResult(intent,request);
+    }
+
+    /**
      * 给没有文章id的调用
      * @param activity
      * @param fragment

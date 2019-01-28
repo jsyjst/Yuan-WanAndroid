@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.Collections;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
+import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
 
@@ -62,4 +63,10 @@ public interface NetworkHelper {
     Observable<BaseResponse> unCollectArticles(int id);//文章列表取消收藏文章
     Observable<BaseResponse<Collections>> getCollectionsData(int pageNum); //获取收藏列表
     Observable<BaseResponse> unCollection(int id,int originId);//收藏列表取消收藏
+
+    /**
+     * search
+     */
+    Observable<BaseResponse<List<HotKey>>> getHotKey();//获取热搜关键词
+    Observable<BaseResponse<Articles>> getSearchArticles(String key,int pageNum); //搜索
 }

@@ -1,14 +1,10 @@
 package com.example.yuan_wanandroid.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
@@ -16,7 +12,6 @@ import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
 import com.example.yuan_wanandroid.di.component.activity.DaggerMainActivityComponent;
 import com.example.yuan_wanandroid.di.component.activity.MainActivityComponent;
-import com.example.yuan_wanandroid.di.scope.PerFragment;
 import com.example.yuan_wanandroid.utils.BottomNavigationViewHelper;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.home.HomeFragment;
@@ -160,4 +155,6 @@ public class MainActivity extends BaseActivity {
     public MainActivityComponent getComponent() {
         return mMainActivityComponent;
     }
+
+
 }

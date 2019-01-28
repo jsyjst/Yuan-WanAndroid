@@ -6,6 +6,7 @@ import com.example.yuan_wanandroid.model.http.api.CollectApis;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
+import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
@@ -111,5 +112,11 @@ public class AppModule {
     @Singleton
     CollectApis provideCollectApis(Retrofit retrofit){
         return retrofit.create(CollectApis.class);
+    }
+
+    @Provides
+    @Singleton
+    SearchApis provideSearchApis(Retrofit retrofit){
+        return retrofit.create(SearchApis.class);
     }
 }

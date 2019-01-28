@@ -37,6 +37,7 @@ public class CollectionActivityPresenter extends BasePresenter<CollectionActivit
                         .subscribeWith(new BaseObserver<Collections>(mView) {
                             @Override
                             public void onNext(Collections collections) {
+                                super.onNext(collections);
                                 mView.showCollections(collections.getDatas());
                             }
                         })
@@ -49,7 +50,7 @@ public class CollectionActivityPresenter extends BasePresenter<CollectionActivit
                 mModel.getCollectionsData(pageNum)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<Collections>(mView) {
+                        .subscribeWith(new BaseObserver<Collections>(mView,false,false) {
                             @Override
                             public void onNext(Collections collections) {
                                 mView.showMoreCollections(collections.getDatas());

@@ -1,5 +1,7 @@
 package com.example.yuan_wanandroid.adapter;
 
+import android.text.Html;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.yuan_wanandroid.R;
@@ -20,7 +22,6 @@ import java.util.List;
 public class ArticlesAdapter extends BaseQuickAdapter<Article, BaseViewHolder> {
     public ArticlesAdapter(int layoutResId, List<Article> data) {
         super(layoutResId, data);
-        LogUtil.d(LogUtil.TAG_ERROR,"yes");
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ArticlesAdapter extends BaseQuickAdapter<Article, BaseViewHolder> {
         if(item == null) return;
         helper.setText(R.id.homeItemAuthorTv,item.getAuthor())
                 .setText(R.id.homeItemDateTv,item.getNiceDate())
-                .setText(R.id.homeItemTitleTv,item.getTitle())
+                .setText(R.id.homeItemTitleTv, Html.fromHtml(item.getTitle()))
                 .setText(R.id.homeItemTypeTv,item.getSuperChapterName()+" / "+item.getChapterName())
                 .addOnClickListener(R.id.homeItemLoveIv);
         if(item.isCollect()){

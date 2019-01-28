@@ -1,10 +1,13 @@
 package com.example.yuan_wanandroid.model;
 
+import com.example.yuan_wanandroid.model.db.DbHelper;
+import com.example.yuan_wanandroid.model.db.DbHelperImpl;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.Collections;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
+import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
 import com.example.yuan_wanandroid.model.http.NetworkHelper;
@@ -25,13 +28,17 @@ import io.reactivex.Observable;
  */
 
 
-public class DataModel implements NetworkHelper {
+public class DataModel implements NetworkHelper ,DbHelper{
 
     private NetworkHelper mNetworkHelper;
+    private DbHelper mDbHelper;
+
 
     @Inject
-    public DataModel(NetworkHelperImpl networkHelper){
+    public DataModel(NetworkHelperImpl networkHelper, DbHelperImpl dbHelp){
         mNetworkHelper = networkHelper;
+        mDbHelper =dbHelp;
+
     }
 
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
@@ -106,5 +113,40 @@ public class DataModel implements NetworkHelper {
     @Override
     public Observable<BaseResponse> unCollection(int id,int originId) {
         return mNetworkHelper.unCollection(id,originId);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HotKey>>> getHotKey() {
+        return mNetworkHelper.getHotKey();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getSearchArticles(String key, int pageNum) {
+        return mNetworkHelper.getSearchArticles(key, pageNum);
+    }
+
+    @Override
+    public boolean addHistory(String key) {
+        return mDbHelper.addHistory(key);
+    }
+
+    @Override
+    public int deleteOneHistory(String key) {
+        return mDbHelper.deleteOneHistory(key);
+    }
+
+    @Override
+    public int deleteAllHistory() {
+        return mDbHelper.deleteAllHistory();
+    }
+
+    @Override
+    public boolean isExistHistory(String key) {
+        return mDbHelper.isExistHistory(key);
+    }
+
+    @Override
+    public List<String> getAllHistory() {
+        return mDbHelper.getAllHistory();
     }
 }

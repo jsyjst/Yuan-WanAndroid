@@ -1,25 +1,23 @@
 package com.example.yuan_wanandroid.view.home;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
+
+
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
-import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.HomeFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Article;
@@ -31,7 +29,7 @@ import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.view.person.LoginActivity;
-import com.example.yuan_wanandroid.view.person.LoginFragment;
+import com.example.yuan_wanandroid.view.search.SearchActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -84,7 +82,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.statusBarView)
     View view;
-    @BindView(R.id.searchEdit)
+    @BindView(R.id.searchTv)
     EditText mSearchTv;
     @BindView(R.id.searchIv)
     ImageView mSearchIv;
@@ -107,7 +105,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
         StatusBarUtil.addStatusBarView(mActivity,view);
         initRecyclerView();
         initRefreshView();
-        mSearchTv.setOnClickListener(v -> startActivity(new Intent(mActivity,SearchActivity.class)));
+        mSearchTv.setOnClickListener(v -> toSearchActivity());
     }
 
     private void initRecyclerView() {
@@ -307,15 +305,15 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
         }
     }
 
-//    private void toSearchActivity(){
-//        Intent intent = new Intent(mActivity,SearchActivity.class);
-//
-//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
-//                Pair.create(mSearchTv,"share"),
-//                Pair.create(mSearchIv,"share1"));
-//
-//        startActivity(intent,options.toBundle());
-//    }
+    private void toSearchActivity(){
+        Intent intent = new Intent(mActivity,SearchActivity.class);
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
+                Pair.create(mSearchTv,getString(R.string.share_edit)),
+                Pair.create(mSearchIv,getString(R.string.share_image))
+                );
+        startActivity(intent,options.toBundle());
+    }
 
 
 }

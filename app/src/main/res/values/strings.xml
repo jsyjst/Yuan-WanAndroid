@@ -51,10 +51,18 @@
     <string name="collect_success">已收藏</string>
     <string name="uncollect_success">已取消收藏</string>
     <string name="first_login">请先登录</string>
-    <string name="collection_empty">空空如也，赶紧去收藏干货吧@_@</string>
+    <string name="collection_empty">空空如也，赶紧去收藏干货吧@_@!</string>
 
     //search
     <string name="search">搜索</string>
+    <string name="share_edit">shareEdit</string>
+    <string name="share_image">shareImage</string>
+    <string name="search_hot">热搜</string>
+    <string name="search_history">搜索历史</string>
+    <string name="search_first_write">请输入关键字@_@!</string>
+    <string name="search_clear">清空</string>
+    <string name="search_history_empty">快来搜索干货吧@_@!</string>
+    <string name="search_empty">暂无数据，换个关键字查询吧@_@!</string>
 
 
     //other
@@ -67,4 +75,6 @@
     <string name="dialog_cancel">取消</string>
     <string name="dialog_title">退出登录</string>
     <string name="dialog_text">你确定要退出登录吗？</string>
+    <string name="dialog_delete_title">删除全部历史记录</string>
+    <string name="dialog_delete_text">你确定要删除全部搜索的历史记录吗？</string>
 </resources>

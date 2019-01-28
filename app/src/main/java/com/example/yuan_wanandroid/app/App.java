@@ -11,6 +11,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
+import org.litepal.LitePal;
+
 
 /**
  * <pre>
@@ -42,6 +44,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mApp = this;
+        LitePal.initialize(this);
         mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
     }
 

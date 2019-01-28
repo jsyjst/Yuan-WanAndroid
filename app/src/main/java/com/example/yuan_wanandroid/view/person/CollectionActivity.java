@@ -12,7 +12,9 @@ import android.widget.TextView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.CollectionAdapter;
 import com.example.yuan_wanandroid.app.App;
+import com.example.yuan_wanandroid.base.activity.BaseLoadingActivity;
 import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
+import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
 import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.person.CollectionActivityContract;
 import com.example.yuan_wanandroid.di.component.activity.DaggerCollectionActivityComponent;
@@ -30,7 +32,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class CollectionActivity extends BaseMvpActivity<CollectionActivityPresenter>
+public class CollectionActivity extends BaseLoadingActivity<CollectionActivityPresenter>
         implements CollectionActivityContract.View {
 
     @Inject

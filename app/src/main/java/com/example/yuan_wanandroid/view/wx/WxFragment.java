@@ -1,15 +1,18 @@
 package com.example.yuan_wanandroid.view.wx;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Pair;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.TabAdapter;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
-import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.wx.WxFragmentContract;
 import com.example.yuan_wanandroid.di.module.fragment.WxFragmentModule;
 import com.example.yuan_wanandroid.model.entity.Tab;
@@ -17,6 +20,7 @@ import com.example.yuan_wanandroid.presenter.wx.WxFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
+import com.example.yuan_wanandroid.view.search.SearchActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.List;
@@ -46,7 +50,9 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     @Inject
     List<Integer> mIdList;
     @BindView(R.id.searchTv)
-    TextView mSearchTv;
+    EditText mSearchTv;
+    @BindView(R.id.searchIv)
+    ImageView mSearchIv;
     @BindView(R.id.searchRelative)
     RelativeLayout mSearchRelative;
     @BindView(R.id.wxTabLayout)
@@ -65,6 +71,7 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     public void initView(){
         super.initView();
         StatusBarUtil.addStatusBarView(mActivity,view);
+        mSearchTv.setOnClickListener(v -> toSearchActivity());
     }
 
     @Override
@@ -104,5 +111,14 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
         mPresenter.loadWxTabData();
     }
 
+    private void toSearchActivity(){
+        Intent intent = new Intent(mActivity,SearchActivity.class);
+
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
+                Pair.create(mSearchTv,getString(R.string.share_edit)),
+                Pair.create(mSearchIv,getString(R.string.share_image))
+        );
+        startActivity(intent,options.toBundle());
+    }
 
 }

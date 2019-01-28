@@ -5,12 +5,14 @@ import com.example.yuan_wanandroid.model.entity.BannerData;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.Collections;
 import com.example.yuan_wanandroid.model.entity.FirstSystem;
+import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
 import com.example.yuan_wanandroid.model.http.api.CollectApis;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
+import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 
@@ -36,17 +38,23 @@ public class NetworkHelperImpl implements NetworkHelper{
     private ProjectApis mProjectApis;
     private PersonApis mPersonApis;
     private CollectApis mCollectApis;
+    private SearchApis mSearchApis;
 
     @Inject
-    public NetworkHelperImpl(HomeApis homeApis, SystemApis systemApis,WxApis wxApis,
-                             ProjectApis projectApis,PersonApis personApis,
-                             CollectApis collectApis){
+    public NetworkHelperImpl(HomeApis homeApis,
+                             SystemApis systemApis,
+                             WxApis wxApis,
+                             ProjectApis projectApis,
+                             PersonApis personApis,
+                             CollectApis collectApis,
+                             SearchApis searchApis){
         mHomeApis = homeApis;
         mSystemApis = systemApis;
         mWxApis = wxApis;
         mProjectApis =projectApis;
         mPersonApis = personApis;
         mCollectApis = collectApis;
+        mSearchApis = searchApis;
     }
 
     @Override
@@ -122,6 +130,16 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse> unCollection(int id,int originId) {
         return mCollectApis.unCollection(id,originId);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HotKey>>> getHotKey() {
+        return mSearchApis.getHotKey();
+    }
+
+    @Override
+    public Observable<BaseResponse<Articles>> getSearchArticles(String key, int pageNum) {
+        return mSearchApis.getSearchArticles(key,pageNum);
     }
 
 

@@ -37,7 +37,10 @@ ext {
             SmartrefreshVersion    : "1.1.0-alpha-14",
             AgentWebVersion        : "4.0.2",
             CircleImageVersion     : '2.2.0',
-            FButton                : "1.0.5"
+            FButton                : "1.0.5",
+
+            //数据库
+            LitePal                : "3.0.0"
 
     ]
 
@@ -76,6 +79,10 @@ ext {
             "circleImage"           : "de.hdodenhof:circleimageview:${version.CircleImageVersion}",
             "fButton"               : "info.hoang8f:fbutton:${version.FButton}",
             "grav"                  : "com.github.glomadrian:Grav:1.1",
+            "flowLayout"            : "com.hyman:flowlayout-lib:1.1.2",
+
+            //数据库
+            litePal                 : "org.litepal.android:java:${version.LitePal}",
 
             //test
             "junit"                 : "junit:junit:${version.JunitVersion}",

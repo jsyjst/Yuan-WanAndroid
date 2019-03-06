@@ -52,6 +52,8 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     TextView mPersonLogout;
     @BindView(R.id.collectionRelative)
     RelativeLayout mCollectionRelative;
+    @BindView(R.id.settingRelative)
+    RelativeLayout mSettingRelative;
 
     @Override
     protected void inject() {
@@ -85,6 +87,7 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
                 showToast(getString(R.string.first_login));
             }
         });
+        mSettingRelative.setOnClickListener(v -> startActivity(new Intent(mActivity,SettingActivity.class)));
     }
 
     @Override
@@ -100,6 +103,11 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     @Override
     public void setStatusBarColor() {
         StatusBarUtil.immersiveInFragments(mActivity, Color.TRANSPARENT, 1);
+    }
+
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
     }
 
     @Override

@@ -24,7 +24,7 @@ public interface CollectionActivityContract {
         void initRecyclerView();
         void initRefresh();
     }
-    interface Presenter extends IPresenter<CollectionActivityContract.View>{
+    interface Presenter extends IPresenter<View>{
         void loadCollections(int pageNum);//加载收藏数据
         void loadMoreCollections(int pageNum);//加载更多收藏数据
         void unCollectArticles(int id,int originId);//取消收藏

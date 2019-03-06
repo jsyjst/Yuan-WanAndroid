@@ -19,7 +19,7 @@ public interface LoginFragmentContract {
         void showLoginSuccess();//登录成功
         String getEditText(EditText editText);
     }
-    interface Presenter extends IPresenter<LoginFragmentContract.View>{
+    interface Presenter extends IPresenter<View>{
         void login(String username,String password);
     }
 }

@@ -65,6 +65,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fButton"]  //登陆按钮
     implementation rootProject.ext.dependencies["grav"]  //登陆动态圆点
     implementation rootProject.ext.dependencies["flowLayout"]  //搜索热搜流式布局
+    implementation rootProject.ext.dependencies["switchButton"]
     //数据库
     implementation rootProject.ext.dependencies["litePal"]
 }

@@ -26,7 +26,8 @@
         <activity android:name=".view.person.LoginActivity" />
         <activity android:name=".view.person.CollectionActivity" />
         <activity android:name=".view.search.SearchActivity" />
-        <activity android:name=".view.search.SearchArticlesActivity"></activity>
+        <activity android:name=".view.search.SearchArticlesActivity" />
+        <activity android:name=".view.person.SettingActivity"></activity>
     </application>
 
 </manifest>

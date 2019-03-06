@@ -116,6 +116,11 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
         CommonUtils.toastShow(msg);
     }
 
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
+
 
     @Override
     protected void loadData() {

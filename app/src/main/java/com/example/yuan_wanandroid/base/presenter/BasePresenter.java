@@ -57,4 +57,9 @@ public class BasePresenter <T extends BaseView> implements IPresenter<T> {
     public void subscribeEvent() {
 
     }
+
+    @Override
+    public boolean getNightStyleState() {
+        return mModel.getNightStyleState();
+    }
 }

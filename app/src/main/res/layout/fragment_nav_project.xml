@@ -29,7 +29,7 @@
             app:tl_textAllCaps="false"
             app:tl_textBold="BOTH"
             app:tl_textSelectColor="@color/colorPrimaryDark"
-            app:tl_textUnselectColor="@color/black"
+            app:tl_textUnselectColor="@color/textColor"
             app:tl_textsize="@dimen/sp_16"/>
 
         <View

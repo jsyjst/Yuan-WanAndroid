@@ -12,6 +12,8 @@ import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
 import com.example.yuan_wanandroid.model.http.NetworkHelper;
 import com.example.yuan_wanandroid.model.http.NetworkHelperImpl;
+import com.example.yuan_wanandroid.model.prefs.PreferencesHelper;
+import com.example.yuan_wanandroid.model.prefs.PreferencesHelperImpl;
 
 import java.util.List;
 
@@ -28,17 +30,18 @@ import io.reactivex.Observable;
  */
 
 
-public class DataModel implements NetworkHelper ,DbHelper{
+public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
 
     private NetworkHelper mNetworkHelper;
     private DbHelper mDbHelper;
+    private PreferencesHelper mPreferencesHelper;
 
 
     @Inject
-    public DataModel(NetworkHelperImpl networkHelper, DbHelperImpl dbHelp){
+    public DataModel(NetworkHelperImpl networkHelper, DbHelperImpl dbHelp, PreferencesHelperImpl preferencesHelper){
         mNetworkHelper = networkHelper;
         mDbHelper =dbHelp;
-
+        mPreferencesHelper = preferencesHelper;
     }
 
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
@@ -148,5 +151,15 @@ public class DataModel implements NetworkHelper ,DbHelper{
     @Override
     public List<String> getAllHistory() {
         return mDbHelper.getAllHistory();
+    }
+
+    @Override
+    public void setNightStyleState(boolean isNight) {
+        mPreferencesHelper.setNightStyleState(isNight);
+    }
+
+    @Override
+    public boolean getNightStyleState() {
+        return mPreferencesHelper.getNightStyleState();
     }
 }

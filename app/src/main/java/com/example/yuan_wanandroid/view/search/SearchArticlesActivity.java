@@ -248,4 +248,9 @@ public class SearchArticlesActivity extends BaseLoadingActivity<SearchArticlesAc
         intent.putExtra(Constant.KEY_ARTICLE_TITLE, key);
         activity.startActivity(intent);
     }
+
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
 }

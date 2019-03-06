@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatDelegate;
 import android.widget.FrameLayout;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
+import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
+import com.example.yuan_wanandroid.base.presenter.IPresenter;
+import com.example.yuan_wanandroid.contract.MainContract;
 import com.example.yuan_wanandroid.di.component.activity.DaggerMainActivityComponent;
 import com.example.yuan_wanandroid.di.component.activity.MainActivityComponent;
+import com.example.yuan_wanandroid.presenter.MainActivityPresenter;
 import com.example.yuan_wanandroid.utils.BottomNavigationViewHelper;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.home.HomeFragment;
@@ -20,14 +25,18 @@ import com.example.yuan_wanandroid.view.project.ProjectFragment;
 import com.example.yuan_wanandroid.view.system.SystemFragment;
 import com.example.yuan_wanandroid.view.wx.WxFragment;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseMvpActivity<MainActivityPresenter> implements MainContract.View {
 
     @BindView(R.id.frameContain)
     FrameLayout mFrameContain;
     @BindView(R.id.BottomBnv)
     BottomNavigationView mBottomBnv;
+    @Inject
+    MainActivityPresenter mPresenter;
 
     private int mPreFragmentPosition = 0;//上一个被选中的Fragment位置
     private Fragment[] mFragments;
@@ -50,7 +59,8 @@ public class MainActivity extends BaseActivity {
             mFragments[3] = new ProjectFragment();
             mFragments[4] = new PersonFragment();
             loadMultipleFragment(R.id.frameContain, 0, mFragments);
-        } else{
+            AppCompatDelegate.setDefaultNightMode(mPresenter.getNightStyleState() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
             mFragments[0] = findFragmentByTag(HomeFragment.class.getName());
             mFragments[1] = findFragmentByTag(SystemFragment.class.getName());
             mFragments[2] = findFragmentByTag(WxFragment.class.getName());
@@ -69,19 +79,31 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected MainActivityPresenter getPresenter() {
+        return mPresenter;
+    }
+
+    @Override
     protected void initView() {
+        super.initView();
         initBottomNavigationView();
     }
 
     @Override
     protected void initData() {
-
+        mPresenter.subscribeEvent();
     }
 
     @Override
     public void setStatusBarColor() {
         StatusBarUtil.immersiveInFragments(this, getResources().getColor(R.color.colorPrimaryDark), 1);
     }
+
+    @Override
+    public void changeNightStyle(boolean isNight) {
+        AppCompatDelegate.setDefaultNightMode(isNight ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+    }
+
 
     private void initBottomNavigationView() {
         //通过反射去除BottomNav的位移效果

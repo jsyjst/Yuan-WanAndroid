@@ -19,7 +19,7 @@ import javax.inject.Inject;
 
 
 public class RegisterFragmentPresenter extends BasePresenter<RegisterFragmentContract.View>
-        implements RegisterFragmentContract.Persenter  {
+        implements RegisterFragmentContract.Presenter  {
 
     @Inject
     public RegisterFragmentPresenter(DataModel model) {

@@ -312,4 +312,8 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         activity.startActivity(intent);
     }
 
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
 }

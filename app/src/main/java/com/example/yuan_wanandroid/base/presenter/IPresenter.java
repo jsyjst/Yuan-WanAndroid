@@ -22,4 +22,5 @@ public interface IPresenter<T extends BaseView> {
     void addRxSubscribe(Disposable disposable);
     //订阅事件
     void subscribeEvent();
+    boolean getNightStyleState();//得到夜间模式的状态
 }

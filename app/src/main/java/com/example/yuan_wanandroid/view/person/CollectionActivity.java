@@ -189,4 +189,9 @@ public class CollectionActivity extends BaseLoadingActivity<CollectionActivityPr
         mRefreshLayout.setVisibility(View.GONE);
         mEmptyRelative.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
 }

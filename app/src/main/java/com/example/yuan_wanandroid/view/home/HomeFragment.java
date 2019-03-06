@@ -183,6 +183,11 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
         CommonUtils.toastShow(msg);
     }
 
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
+
 
     @Override
     public void showBannerData(List<BannerData> bannerDataList) {

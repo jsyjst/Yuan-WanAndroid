@@ -20,7 +20,7 @@ public interface RegisterFragmentContract {
         void toLoginFragment();
         String getEditText(EditText editText);
     }
-    interface Persenter extends IPresenter<RegisterFragmentContract.View>{
+    interface Presenter extends IPresenter<View>{
         void register(String username,String password,String rePassword); //注册
     }
 }

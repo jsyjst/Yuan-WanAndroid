@@ -50,4 +50,8 @@ public class Constant {
             Color.parseColor("#F6BC7E")
     };
 
+    //setting
+    public static final String SHARED_PREFERENCES_NAME = "prefs";
+    public static final String KEY_PREFERS_NIGHT="night";
+
 }

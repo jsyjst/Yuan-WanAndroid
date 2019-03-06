@@ -31,7 +31,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="16sp"
-        android:textColor="@android:color/primary_text_light"
+        android:textColor="@color/textColor"
         tools:text="一个可以试试复赛和fish覅好私服hi哦好hi地覅iuidii家属及嗲"
        />
     <TextView

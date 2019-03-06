@@ -217,4 +217,8 @@ public class SystemArticlesFragment extends BaseLoadingFragment<SystemArticlesFr
         return systemArticlesFragment;
     }
 
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
 }

@@ -37,7 +37,7 @@ public class LeaderActivity extends AppCompatActivity {
                 startActivity(new Intent(LeaderActivity.this,MainActivity.class));
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
+        }
         },mDuration);
     }
 }

@@ -17,7 +17,7 @@ public interface PersonFragmentContract {
         void showLogin();
         void showLogout();
     }
-    interface Presenter extends IPresenter<PersonFragmentContract.View>{
+    interface Presenter extends IPresenter<View>{
         void logout();
     }
 }

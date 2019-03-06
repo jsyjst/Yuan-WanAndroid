@@ -77,4 +77,9 @@
     <string name="dialog_text">你确定要退出登录吗？</string>
     <string name="dialog_delete_title">删除全部历史记录</string>
     <string name="dialog_delete_text">你确定要删除全部搜索的历史记录吗？</string>
+
+    //setting
+    <string name="night_type">夜间模式</string>
+    <string name="no_image_type">无图模式</string>
+    <string name="basic_setting">基本设置</string>
 </resources>

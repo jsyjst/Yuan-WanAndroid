@@ -5,7 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="white">#ffffff</color>
+    <color name="whiteAlways">#fff</color>
     <color name="black">#000000</color>
+    <color name="textColor">#000</color>
     <color name="background">#fafafa</color>
     <color name="colorWanStyle">#01d2fb</color>
     <color name="colorNavNormal">#707070</color>
@@ -19,6 +21,12 @@
     <color name="yellow">#FFC66D</color>
     <color name="shadow">#7f8c8d</color>
     <color name="text_hint">#a8ffffff</color>
+    <color name="line">#a8ffffff</color>
+
+
+    //setting
+    <color name="type_setting">#EE5656</color>
+    <color name="setting_line">#5C222121</color>
 
 
 </resources>

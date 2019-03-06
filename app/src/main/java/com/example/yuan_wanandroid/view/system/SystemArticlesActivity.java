@@ -117,4 +117,9 @@ public class SystemArticlesActivity extends BaseActivity {
         intent.putIntegerArrayListExtra(KEY_SYSTEM_SECOND_ID_LIST, (ArrayList<Integer>) idList);
         context.startActivity(intent);
     }
+
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
 }

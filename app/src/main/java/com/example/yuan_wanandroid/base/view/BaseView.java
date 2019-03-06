@@ -16,4 +16,5 @@ public interface BaseView {
     void reLoad(); //重新加载
     void showLoading();  //显示加载布局
     void showToast(String msg);  //显示Toast
+    void changeNightStyle(boolean isNight); //改变夜间模式
 }

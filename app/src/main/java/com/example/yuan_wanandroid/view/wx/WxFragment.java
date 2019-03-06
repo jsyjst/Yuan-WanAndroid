@@ -93,6 +93,11 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     }
 
     @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
+
+    @Override
     public void showWxTab(List<Tab> tabList) {
         for(Tab tab : tabList){
             mWxTabList.add(tab.getName());

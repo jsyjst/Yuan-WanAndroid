@@ -204,4 +204,8 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
         confirmDialog.show();
     }
 
+    @Override
+    public void changeNightStyle(boolean isNight) {
+
+    }
 }

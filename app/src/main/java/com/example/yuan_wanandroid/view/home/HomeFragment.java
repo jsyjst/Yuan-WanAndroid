@@ -261,6 +261,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     public void autoRefresh() {
         mRefreshLayout.autoRefresh();
+        mPresenter.loadBannerData();
     }
 
     @Override

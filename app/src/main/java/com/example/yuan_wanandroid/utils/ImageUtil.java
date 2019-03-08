@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.example.yuan_wanandroid.R;
+import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.GlideApp;
 
 
@@ -18,6 +19,8 @@ import com.example.yuan_wanandroid.app.GlideApp;
 
 public class ImageUtil {
     public static void loadImage(Context context, ImageView imageView, String path) {
+        if(App.getContext().getAppComponent().getDataModel().getNoImgStyleState())
+            path = null;
         GlideApp.with(context)
                 .load(path)
                 .placeholder(R.drawable.test_jay)

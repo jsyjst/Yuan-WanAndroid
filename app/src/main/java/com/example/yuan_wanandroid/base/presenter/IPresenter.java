@@ -23,4 +23,5 @@ public interface IPresenter<T extends BaseView> {
     //订阅事件
     void subscribeEvent();
     boolean getNightStyleState();//得到夜间模式的状态
+    boolean getNoImgStyleState();//得到无图模式的状态
 }

@@ -7,6 +7,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
 import com.example.yuan_wanandroid.event.AutoRefreshEvent;
+import com.example.yuan_wanandroid.event.NoImgEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BannerData;
@@ -40,6 +41,11 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFragmentContract.Vi
                 RxBus.getInstance().toObservable(AutoRefreshEvent.class)
                         .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
                         .subscribe(loginEvent -> mView.autoRefresh())
+        );
+
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(NoImgEvent.class)
+                        .subscribe(noImgEvent -> mView.autoRefresh())
         );
     }
 

@@ -62,4 +62,9 @@ public class BasePresenter <T extends BaseView> implements IPresenter<T> {
     public boolean getNightStyleState() {
         return mModel.getNightStyleState();
     }
+
+    @Override
+    public boolean getNoImgStyleState() {
+        return mModel.getNoImgStyleState();
+    }
 }

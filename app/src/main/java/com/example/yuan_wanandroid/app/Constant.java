@@ -53,6 +53,7 @@ public class Constant {
     //setting
     public static final String SHARED_PREFERENCES_NAME = "prefs";
     public static final String KEY_PREFERS_NIGHT="night";
+    public static final String KEY_PREFERS_NO_IMG="no_img";
     public static final String KEY_NIGHT_CHANGE="night_change";
 
 }

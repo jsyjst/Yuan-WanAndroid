@@ -85,9 +85,10 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     public void initSwitch(){
         mPresenter.subscribeEvent();
         nightSwitchBtn.setChecked(mPresenter.getNightStyleState());
-        nightSwitchBtn.setOnCheckedChangeListener((view, isChecked) -> {
-            mPresenter.setNightStyleState(isChecked);
-        });
+        noImageSwitchBtn.setChecked(mPresenter.getNoImgStyleState());
+        nightSwitchBtn.setOnCheckedChangeListener((view, isChecked) ->
+            mPresenter.setNightStyleState(isChecked));
+        noImageSwitchBtn.setOnCheckedChangeListener(((view, isChecked) -> mPresenter.setNoImgStyleState(isChecked)));
     }
 
     @Override

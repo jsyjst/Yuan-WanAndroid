@@ -4,6 +4,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.person.SettingActivityContract;
 import com.example.yuan_wanandroid.event.NightStyleEvent;
+import com.example.yuan_wanandroid.event.NoImgEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 
 import javax.inject.Inject;
@@ -39,5 +40,11 @@ public class SettingActivityPresenter extends BasePresenter<SettingActivityContr
     public void setNightStyleState(boolean isNight) {
         mModel.setNightStyleState(isNight);
         RxBus.getInstance().post(new NightStyleEvent(isNight));
+    }
+
+    @Override
+    public void setNoImgStyleState(boolean isNoImg) {
+        mModel.setNoImgState(isNoImg);
+        RxBus.getInstance().post(new NoImgEvent());
     }
 }

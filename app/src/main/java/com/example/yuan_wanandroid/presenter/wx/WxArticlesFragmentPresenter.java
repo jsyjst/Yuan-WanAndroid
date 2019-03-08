@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.wx.WxArticlesFragmentContract;
 import com.example.yuan_wanandroid.event.AutoRefreshEvent;
+import com.example.yuan_wanandroid.event.NoImgEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
@@ -35,6 +36,11 @@ public class WxArticlesFragmentPresenter extends BasePresenter<WxArticlesFragmen
                 RxBus.getInstance().toObservable(AutoRefreshEvent.class)
                         .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
                         .subscribe(loginEvent -> mView.autoRefresh())
+        );
+
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(NoImgEvent.class)
+                        .subscribe(noImgEvent -> mView.autoRefresh())
         );
     }
 

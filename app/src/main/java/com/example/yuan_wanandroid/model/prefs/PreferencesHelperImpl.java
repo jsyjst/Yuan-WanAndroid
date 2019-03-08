@@ -36,4 +36,14 @@ public class PreferencesHelperImpl implements PreferencesHelper{
     public boolean getNightStyleState() {
         return mPreferences.getBoolean(Constant.KEY_PREFERS_NIGHT,false);
     }
+
+    @Override
+    public void setNoImgState(boolean isNoImg) {
+        mPreferences.edit().putBoolean(Constant.KEY_PREFERS_NO_IMG,isNoImg).apply();
+    }
+
+    @Override
+    public boolean getNoImgStyleState() {
+        return mPreferences.getBoolean(Constant.KEY_PREFERS_NO_IMG,false);
+    }
 }

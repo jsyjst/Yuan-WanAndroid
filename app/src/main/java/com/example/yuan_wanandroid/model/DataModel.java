@@ -162,4 +162,14 @@ public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
     public boolean getNightStyleState() {
         return mPreferencesHelper.getNightStyleState();
     }
+
+    @Override
+    public void setNoImgState(boolean isNoImg) {
+        mPreferencesHelper.setNoImgState(isNoImg);
+    }
+
+    @Override
+    public boolean getNoImgStyleState() {
+        return mPreferencesHelper.getNoImgStyleState();
+    }
 }

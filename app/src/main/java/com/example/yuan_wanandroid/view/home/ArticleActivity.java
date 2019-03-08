@@ -113,6 +113,13 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         mSettings.setDomStorageEnabled(true);
         mSettings.setDatabaseEnabled(true);
 
+
+        if(mPresenter.getNoImgStyleState()){
+            mSettings.setBlockNetworkImage(true);
+        }else{
+            mSettings.setBlockNetworkImage(false);
+        }
+
         //有网络
         mSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         mSettings.setJavaScriptEnabled(true);

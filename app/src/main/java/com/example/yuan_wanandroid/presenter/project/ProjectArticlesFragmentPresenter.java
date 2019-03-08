@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.base.presenter.BasePresenter;
 import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.project.ProjectArticlesFragmentContract;
 import com.example.yuan_wanandroid.event.AutoRefreshEvent;
+import com.example.yuan_wanandroid.event.NoImgEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Articles;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
@@ -36,17 +37,22 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
                         .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
                         .subscribe(loginEvent -> mView.autoRefresh())
         );
+
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(NoImgEvent.class)
+                        .subscribe(noImgEvent -> mView.autoRefresh())
+        );
     }
 
     @Override
     public void loadProjectArticlesData(int pageNum, int id) {
         addRxSubscribe(
-                mModel.getProjectArticles(pageNum,id)
+                mModel.getProjectArticles(pageNum, id)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<Articles>(mView){
+                        .subscribeWith(new BaseObserver<Articles>(mView) {
                             @Override
-                            public void onNext(Articles articles){
+                            public void onNext(Articles articles) {
                                 super.onNext(articles);
                                 mView.showProjectArticles(articles.getDatas());
                             }
@@ -57,26 +63,27 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
     @Override
     public void loadMoreProjectArticlesData(int pageNum, int id) {
         addRxSubscribe(
-                mModel.getProjectArticles(pageNum,id)
+                mModel.getProjectArticles(pageNum, id)
                         .compose(RxUtil.rxSchedulerHelper())
                         .compose(RxUtil.handleResult())
-                        .subscribeWith(new BaseObserver<Articles>(mView,false,false){
+                        .subscribeWith(new BaseObserver<Articles>(mView, false, false) {
                             @Override
-                            public void onNext(Articles articles){
+                            public void onNext(Articles articles) {
                                 super.onNext(articles);
                                 mView.showMoreProjectArticles(articles.getDatas());
                             }
                         })
         );
     }
+
     @Override
     public void collectArticles(int id) {
         addRxSubscribe(
                 mModel.collectArticles(id)
                         .compose(RxUtil.rxSchedulerHelper())
-                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView, false, false) {
                             @Override
-                            public void onNext(BaseResponse baseResponse){
+                            public void onNext(BaseResponse baseResponse) {
                                 mView.showCollectSuccess();
                             }
                         })
@@ -88,9 +95,9 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
         addRxSubscribe(
                 mModel.unCollectArticles(id)
                         .compose(RxUtil.rxSchedulerHelper())
-                        .subscribeWith(new BaseObserver<BaseResponse>(mView,false,false){
+                        .subscribeWith(new BaseObserver<BaseResponse>(mView, false, false) {
                             @Override
-                            public void onNext(BaseResponse baseResponse){
+                            public void onNext(BaseResponse baseResponse) {
                                 mView.showUnCollectSuccess();
                             }
                         })

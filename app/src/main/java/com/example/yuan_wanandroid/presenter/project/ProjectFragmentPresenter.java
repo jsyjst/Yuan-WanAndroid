@@ -2,7 +2,9 @@ package com.example.yuan_wanandroid.presenter.project;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
+import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.project.ProjectFragmentContract;
+import com.example.yuan_wanandroid.event.NoImgEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.utils.RxUtil;

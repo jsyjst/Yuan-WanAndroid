@@ -5,6 +5,7 @@ import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.MainContract;
 import com.example.yuan_wanandroid.event.NightStyleEvent;
 import com.example.yuan_wanandroid.model.DataModel;
+import com.example.yuan_wanandroid.utils.LogUtil;
 
 import javax.inject.Inject;
 
@@ -28,7 +29,7 @@ public class MainActivityPresenter extends BasePresenter<MainContract.View> impl
         addRxSubscribe(
                 RxBus.getInstance().toObservable(NightStyleEvent.class)
                         .subscribe(nightStyleEvent -> {
-                            mView.changeNightStyle(nightStyleEvent.isNight());
+                            mView.showNightStyle(nightStyleEvent.isNight());
                         })
         );
     }

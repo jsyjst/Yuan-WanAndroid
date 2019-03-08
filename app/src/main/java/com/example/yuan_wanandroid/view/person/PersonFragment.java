@@ -106,11 +106,6 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     }
 
     @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
-
-    @Override
     public void showLogin() {
         mPersonLoginButton.setVisibility(View.GONE);
         mPersonUsernameTv.setVisibility(View.VISIBLE);

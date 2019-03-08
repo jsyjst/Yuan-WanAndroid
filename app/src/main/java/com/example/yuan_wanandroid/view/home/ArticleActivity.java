@@ -311,9 +311,4 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         intent.putExtra(Constant.KEY_ARTICLE_COLLECT_HIDE,true);
         activity.startActivity(intent);
     }
-
-    @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
 }

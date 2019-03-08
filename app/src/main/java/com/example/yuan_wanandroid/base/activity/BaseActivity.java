@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.base.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
@@ -91,6 +92,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public void showToast(String msg) {
         CommonUtils.toastShow(msg);
+    }
+
+    @Override
+    public void showNightStyle(boolean isNight){
+        getDelegate().setDefaultNightMode(isNight ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 }

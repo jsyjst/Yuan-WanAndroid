@@ -117,12 +117,6 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
     }
 
     @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
-
-
-    @Override
     protected void loadData() {
         mPresenter.loadSystemData();
     }

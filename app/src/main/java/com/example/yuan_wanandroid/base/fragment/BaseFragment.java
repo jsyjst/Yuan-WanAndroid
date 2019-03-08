@@ -91,4 +91,8 @@ public abstract class BaseFragment extends AbstractLazyLoadFragment implements B
         CommonUtils.toastShow(msg);
     }
 
+    @Override
+    public void showNightStyle(boolean isNight) {
+    }
+
 }

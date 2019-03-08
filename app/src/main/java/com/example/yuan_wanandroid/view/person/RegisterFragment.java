@@ -111,8 +111,4 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
         return new RegisterFragment();
     }
 
-    @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
 }

@@ -115,9 +115,4 @@ public class ProjectFragment extends BaseLoadingFragment<ProjectFragmentPresente
         );
         startActivity(intent,options.toBundle());
     }
-
-    @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
 }

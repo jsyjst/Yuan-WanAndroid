@@ -216,9 +216,4 @@ public class SystemArticlesFragment extends BaseLoadingFragment<SystemArticlesFr
         systemArticlesFragment.setArguments(bundle);
         return systemArticlesFragment;
     }
-
-    @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
 }

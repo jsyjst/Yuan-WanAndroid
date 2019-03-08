@@ -84,11 +84,6 @@ public class WxArticlesFragment extends BaseLoadingFragment<WxArticlesFragmentPr
     }
 
     @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
-
-    @Override
     public void showWxArticles(List<Article> articleList) {
         if (!CommonUtils.isEmptyList(mArticleList)) {
             mArticleList.clear();

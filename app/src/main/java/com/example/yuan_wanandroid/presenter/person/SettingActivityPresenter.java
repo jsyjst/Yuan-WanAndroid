@@ -29,7 +29,8 @@ public class SettingActivityPresenter extends BasePresenter<SettingActivityContr
         addRxSubscribe(
                 RxBus.getInstance().toObservable(NightStyleEvent.class)
                         .subscribe(nightStyleEvent -> {
-                            mView.changeNightStyle(nightStyleEvent.isNight());
+                            mView.showNightStyle(nightStyleEvent.isNight());
+                            mView.showChangeNightStyle();
                         })
         );
     }

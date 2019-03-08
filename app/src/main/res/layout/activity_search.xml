@@ -55,7 +55,7 @@
             android:layout_marginEnd="@dimen/sp_15"
             android:layout_marginStart="@dimen/dp_15"
             android:text="@string/search"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteAlways"
             android:textSize="@dimen/sp_18" />
 
 

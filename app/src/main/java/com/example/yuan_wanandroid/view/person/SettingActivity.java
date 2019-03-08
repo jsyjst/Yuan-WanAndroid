@@ -5,10 +5,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
+import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
 import com.example.yuan_wanandroid.component.RxBus;
@@ -17,6 +19,7 @@ import com.example.yuan_wanandroid.di.component.activity.DaggerSettingActivityCo
 import com.example.yuan_wanandroid.event.AutoRefreshEvent;
 import com.example.yuan_wanandroid.presenter.person.SettingActivityPresenter;
 import com.example.yuan_wanandroid.utils.LogUtil;
+import com.example.yuan_wanandroid.view.MainActivity;
 import com.suke.widget.SwitchButton;
 
 import javax.inject.Inject;
@@ -37,6 +40,9 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     SwitchButton noImageSwitchBtn;
     @Inject
     SettingActivityPresenter mPresenter;
+
+    private boolean isChangeNightStyle;
+
 
     @Override
     protected int getLayoutId() {
@@ -72,7 +78,7 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
             actionBar.setDisplayShowTitleEnabled(false);//不使用原始的toolbar的title
         }
         mCommonToolbar.setNavigationOnClickListener(v -> {
-            finish();
+            goBack();
         });
     }
 
@@ -89,17 +95,30 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
 
     }
 
+
+
     @Override
     public void showChangeNightStyle() {
-
+        Intent intent = new Intent(this,SettingActivity.class);
+        intent.putExtra(Constant.KEY_NIGHT_CHANGE,true);
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_animo_alph_open, R.anim.anim_animo_alph_close);
+        finish();
     }
 
     @Override
-    public void changeNightStyle(boolean isNight) {
-        // 切换模式
-        getDelegate().setDefaultNightMode(isNight ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
-        startActivity(new Intent(this,SettingActivity.class));
-        overridePendingTransition(R.anim.anim_animo_alph_open, R.anim.anim_animo_alph_close);
+    public void onBackPressed() {
+        goBack();
+    }
+
+    private void goBack() {
+        isChangeNightStyle = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE,false);
+        if (isChangeNightStyle) {  //  如果改变了夜间模式，则重启MainActivity
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra(Constant.KEY_NIGHT_CHANGE, true);
+            startActivity(intent);
+            overridePendingTransition(R.anim.in_from_left,R.anim.out_to_right);
+        }
         finish();
     }
 }

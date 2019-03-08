@@ -221,9 +221,4 @@ public class ProjectArticlesFragment extends BaseLoadingFragment<ProjectArticles
         fragment.setArguments(bundle);
         return fragment;
     }
-
-    @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
 }

@@ -15,7 +15,7 @@
         android:layout_marginBottom="@dimen/dp_50"
         android:layout_above="@+id/loginLinear"
         android:text="@string/person_login"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteAlways"
         android:textSize="@dimen/sp_24" />
 
 
@@ -36,7 +36,7 @@
             android:paddingBottom="@dimen/dp_10"
             android:paddingStart="@dimen/dp_20"
             android:hint="@string/person_user_name"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteAlways"
             android:textColorHint="@color/text_hint" />
 
 
@@ -51,7 +51,7 @@
             android:paddingStart="@dimen/dp_20"
             android:inputType="textPassword"
             android:hint="@string/person_password"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteAlways"
             android:textColorHint="@color/text_hint" />
 
 
@@ -69,7 +69,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/person_login"
         android:textSize="@dimen/sp_18"
-        android:textColor="@color/white" />
+        android:textColor="@color/whiteAlways" />
 
     <TextView
         android:id="@+id/registerBtn"

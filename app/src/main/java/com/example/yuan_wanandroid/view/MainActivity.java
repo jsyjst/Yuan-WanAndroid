@@ -5,10 +5,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatDelegate;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
+import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
@@ -41,6 +43,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     private int mPreFragmentPosition = 0;//上一个被选中的Fragment位置
     private Fragment[] mFragments;
     private MainActivityComponent mMainActivityComponent;
+    private boolean isNightChange;
 
     @Override
     protected int getLayoutId() {
@@ -52,6 +55,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFragments = new BaseFragment[5];
+        isNightChange = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE,false);
         if (savedInstanceState == null) {
             mFragments[0] = new HomeFragment();
             mFragments[1] = new SystemFragment();
@@ -59,6 +63,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
             mFragments[3] = new ProjectFragment();
             mFragments[4] = new PersonFragment();
             loadMultipleFragment(R.id.frameContain, 0, mFragments);
+            if(isNightChange) mBottomBnv.setSelectedItemId(R.id.personItem);
             AppCompatDelegate.setDefaultNightMode(mPresenter.getNightStyleState() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         } else {
             mFragments[0] = findFragmentByTag(HomeFragment.class.getName());
@@ -97,11 +102,6 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     @Override
     public void setStatusBarColor() {
         StatusBarUtil.immersiveInFragments(this, getResources().getColor(R.color.colorPrimaryDark), 1);
-    }
-
-    @Override
-    public void changeNightStyle(boolean isNight) {
-        AppCompatDelegate.setDefaultNightMode(isNight ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 
@@ -176,6 +176,14 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
 
     public MainActivityComponent getComponent() {
         return mMainActivityComponent;
+    }
+
+
+    //设置夜间模式改变的处理
+    @Override
+    public void showNightStyle(boolean isNight){
+        super.showNightStyle(isNight);
+        finish();
     }
 
 

@@ -97,9 +97,4 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     public static Fragment newInstance() {
         return new LoginFragment();
     }
-
-    @Override
-    public void changeNightStyle(boolean isNight) {
-
-    }
 }

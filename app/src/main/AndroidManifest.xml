@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.person.AboutUsActivity"></activity>
         <activity android:name=".view.LeaderActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +28,7 @@
         <activity android:name=".view.person.CollectionActivity" />
         <activity android:name=".view.search.SearchActivity" />
         <activity android:name=".view.search.SearchArticlesActivity" />
-        <activity android:name=".view.person.SettingActivity"></activity>
+        <activity android:name=".view.person.SettingActivity" />
     </application>
 
 </manifest>

@@ -74,6 +74,7 @@ ext {
             "gildeCompiler"         : "com.github.bumptech.glide:compiler:${version.Gilde}",
             "baseAdapter"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${version.BaseAdapterVersion}",
             "smartrefresh"          : "com.scwang.smartrefresh:SmartRefreshLayout:${version.SmartrefreshVersion}",
+            "smartrefreshHeader" : "com.scwang.smartrefresh:SmartRefreshHeader:${version.SmartrefreshVersion}",
             "agentWeb"              : "com.just.agentweb:agentweb:${version.AgentWebVersion}",
             "flycoTabLayout_Lib"    : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "circleImage"           : "de.hdodenhof:circleimageview:${version.CircleImageVersion}",

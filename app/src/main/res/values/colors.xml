@@ -16,6 +16,7 @@
     <color name="white_short">#e4e4e4</color>
     <color name="black_trans">#5c000000</color>
     <color name="gray">#e2e2e2</color>
+    <color name="transparency">#00000000</color>
 
     //person
     <color name="yellow">#FFC66D</color>

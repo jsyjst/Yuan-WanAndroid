@@ -54,6 +54,8 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     RelativeLayout mCollectionRelative;
     @BindView(R.id.settingRelative)
     RelativeLayout mSettingRelative;
+    @BindView(R.id.aboutUsRelative)
+    RelativeLayout mAboutUsRelative;
 
     @Override
     protected void inject() {
@@ -88,6 +90,8 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
             }
         });
         mSettingRelative.setOnClickListener(v -> startActivity(new Intent(mActivity,SettingActivity.class)));
+        mAboutUsRelative.setOnClickListener(v -> startActivity(new Intent(mActivity,AboutUsActivity.class)));
+
     }
 
     @Override

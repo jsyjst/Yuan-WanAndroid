@@ -21,20 +21,18 @@
 ## 项目展示
 
 #### 动态图
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif)
+
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif)
+
 
 
 
 ### 截图
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png1.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png2.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png4.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png5.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png6.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png1.jpg)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png2.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png4.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png5.jpg)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png6.jpg)
+
 
 
 

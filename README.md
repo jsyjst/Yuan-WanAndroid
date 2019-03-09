@@ -41,14 +41,18 @@
 <div align="left">
 <img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png1.jpg" height="500" width="300" >
 <img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png2.jpg" height="500" width="300" >
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg" height="500" width="300" >
 </div>
 
 
 <div align="left">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg" height="500" width="300" >
 <img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png4.jpg" height="500" width="300" >
+</div>
+
+<div align="left">
 <img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png5.jpg" height="500" width="300" >
 <img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png6.jpg" height="500" width="300" >
+
 </div>
 
 
@@ -65,43 +69,51 @@
 
 - **App**
 
-[**WanAndroid**](https://github.com/rain9155/WanAndroid)
-[**Awesome WanAndroid**](https://github.com/JsonChao/Awesome-WanAndroid)
-[**GeekNews**](https://github.com/codeestX/GeekNews)
-[**WanAndroidClient**](https://github.com/wangzailfm/WanAndroidClient)
+  [**WanAndroid**](https://github.com/rain9155/WanAndroid)
+  
+  [**Awesome WanAndroid**](https://github.com/JsonChao/Awesome-WanAndroid)
+  
+  [**GeekNews**](https://github.com/codeestX/GeekNews)
+  
+  [**WanAndroidClient**](https://github.com/wangzailfm/WanAndroidClient)
 
 - **Ui Design**
 
-[**Iconfont阿里巴巴图标**]
+  [**Iconfont阿里巴巴图标**]
 
 - **RxJava**
 
-[**RxJava**](https://github.com/ReactiveX/RxJava)
+  [**RxJava**](https://github.com/ReactiveX/RxJava)
 
 - **Network**
 
-[**Retrofit**](https://github.com/square/retrofit)
-[**Okhttp**](https://github.com/square/okhttp)
-[**Gson**](https://github.com/google/gson)
+  [**Retrofit**](https://github.com/square/retrofit)
+  
+  [**Okhttp**](https://github.com/square/okhttp)
+  
+  [**Gson**](https://github.com/google/gson)
 
 - **Di**
 
-[**Dagger2**](https://github.com/google/dagger)
-[**ButterKnife**](https://github.com/JakeWharton/butterknife)
+  [**Dagger2**](https://github.com/google/dagger)
+  
+  [**ButterKnife**](https://github.com/JakeWharton/butterknife)
 
 - **Db**
 
-[**Litepal**](https://github.com/LitePalFramework/LitePal)
+  [**Litepal**](https://github.com/LitePalFramework/LitePal)
 
 - **Image Loader**
 
-[**Glide**](https://github.com/bumptech/glide)
+  [**Glide**](https://github.com/bumptech/glide)
 
 - **UI**
 
-[**Grav(登录界面动态圆点)**](https://github.com/glomadrian/Grav)
-[**SmartRefreshLayout**](https://github.com/scwang90/SmartRefreshLayout)
-[**BaseRecyclerViewAdapterHelper**](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+  [**Grav(登录界面动态圆点)**](https://github.com/glomadrian/Grav)
+  
+  [**SmartRefreshLayout**](https://github.com/scwang90/SmartRefreshLayout)
+  
+  [**BaseRecyclerViewAdapterHelper**](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 
 
 

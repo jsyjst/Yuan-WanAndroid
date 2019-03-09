@@ -131,7 +131,7 @@ public class AboutUsActivity extends BaseActivity {
             }
         });
         fab.setOnClickListener(v -> refreshLayout.autoRefresh());//点击悬浮按钮时自动刷新
-        tvContent.setText(Html.fromHtml(getString(R.string.aboutActivity_about_us_text)));
+        tvContent.setText(Html.fromHtml(getString(R.string.about_us_text)));
         tvContent.setMovementMethod(LinkMovementMethod.getInstance());
     }
 

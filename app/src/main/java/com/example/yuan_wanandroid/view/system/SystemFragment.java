@@ -91,7 +91,7 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
 
     private void initRefresh(){
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-           mPresenter.loadSystemData();
+           mPresenter.loadSystemData(false);
            isRefresh =true;
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> refreshLayout.finishLoadMoreWithNoMoreData());
@@ -118,7 +118,7 @@ public class SystemFragment extends BaseLoadingFragment<SystemFragmentPresenter>
 
     @Override
     protected void loadData() {
-        mPresenter.loadSystemData();
+        mPresenter.loadSystemData(true);
     }
 
 

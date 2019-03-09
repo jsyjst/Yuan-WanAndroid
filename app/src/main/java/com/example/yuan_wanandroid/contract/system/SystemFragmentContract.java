@@ -21,6 +21,6 @@ public interface SystemFragmentContract {
     }
 
     interface Presenter extends IPresenter<SystemFragmentContract.View>{
-        void loadSystemData(); //加载知识体系的数据
+        void loadSystemData(boolean isShowLoadingView); //加载知识体系的数据
     }
 }

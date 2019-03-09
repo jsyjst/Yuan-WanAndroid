@@ -8,31 +8,33 @@
 - 项目中所用到的api均由[wanAndroid网站](http://www.wanandroid.com/blog/show/2)提供，纯属供学习之用，不做其他用途。
 
 ## 实现功能
--[x] 首页
--[x] 知识体系
--[x] 公众号
--[x] 项目
--[x] 搜索、搜索热词、搜索记录
--[x] 登录、注册、注销、
--[x] 添加收藏、取消收藏、收藏列表显示
--[x] 夜间模式、无图模式
--[x] 文章内容，分享内容
+- [x] 首页
+- [x] 知识体系
+- [x] 公众号
+- [x] 项目
+- [x] 搜索、搜索热词、搜索记录
+- [x] 登录、注册、注销、
+- [x] 添加收藏、取消收藏、收藏列表显示
+- [x] 夜间模式、无图模式
+- [x] 文章内容，分享内容
 
 ## 项目展示
 
 #### 动态图
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / gif1.gif)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / gif2.gif)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / gif3.gif)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / gif4.gif)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif)
+
+
 
 ### 截图
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / png1.jpg)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / png2.jpg)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / png3.jpg)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / png4.jpg)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / png5.jpg)
-![](https://github.com/ jsyjst / Yuan-wanAndroid / raw / master / screenshots / png6.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png1.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png2.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png4.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png5.jpg)
+![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png6.jpg)
 
 
 

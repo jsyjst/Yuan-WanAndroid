@@ -22,14 +22,14 @@
 
 #### 动态图
 
-<div align="center">
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif" height="330" width="190" >
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif" height="330" width="190" >
+<div align="left">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif" height="500" width="300" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif" height="500" width="300" >
 </div>
 
-<div align="center">
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif" height="330" width="190" >
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif" height="330" width="190" >
+<div align="left">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif" height="500" width="300" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif" height="500" width="300" >
 </div>
 
 
@@ -37,9 +37,19 @@
 
 
 ### 截图
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png1.jpg)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png2.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png4.jpg)
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png5.jpg)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png6.jpg)
+
+<div align="left">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png1.jpg" height="330" width="190" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png2.jpg" height="330" width="190" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png3.jpg" height="330" width="190" >
+</div>
+
+<div align="left">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png4.jpg" height="330" width="190" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png5.jpg" height="330" width="190" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/png6.jpg" height="330" width="190" >
+</div>
+
 
 
 

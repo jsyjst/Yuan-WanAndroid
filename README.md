@@ -21,9 +21,17 @@
 ## 项目展示
 
 #### 动态图
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif)
 
-![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif)![](https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif)
+<div align="center">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif1.gif" height="330" width="190" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif2.gif" height="330" width="190" >
+</div>
+
+<div align="center">
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif3.gif" height="330" width="190" >
+<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/gif4.gif" height="330" width="190" >
+</div>
+
 
 
 

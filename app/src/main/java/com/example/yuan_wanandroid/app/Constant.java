@@ -13,7 +13,7 @@ import android.graphics.Color;
 
 public class Constant {
     //Url
-    public final static String BASE_URL = "http://www.wanandroid.com/";
+    public final static String BASE_URL = "https://www.wanandroid.com/";
 
     //文章详细的url的key
     public final static String KEY_ARTICLE_URL="article_url";

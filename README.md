@@ -58,12 +58,12 @@
 
 ## 下载
 
-### [apk下载]()
+### [apk下载](https://github.com/jsyjst/Yuan-WanAndroid/releases/download/V1.0/app-release.apk)
 
 
 ## 版本
-### V1.0.0
-1.提交Yuan wanAndroid第一版
+### V1.0
+1.Yuan wanAndroid第一版
 
 ## 感谢
 

@@ -5,21 +5,17 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatDelegate;
-import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
-import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
 import com.example.yuan_wanandroid.base.fragment.BaseFragment;
-import com.example.yuan_wanandroid.base.presenter.IPresenter;
 import com.example.yuan_wanandroid.contract.MainContract;
 import com.example.yuan_wanandroid.di.component.activity.DaggerMainActivityComponent;
 import com.example.yuan_wanandroid.di.component.activity.MainActivityComponent;
 import com.example.yuan_wanandroid.presenter.MainActivityPresenter;
-import com.example.yuan_wanandroid.utils.BottomNavigationViewHelper;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.home.HomeFragment;
 import com.example.yuan_wanandroid.view.person.PersonFragment;
@@ -106,8 +102,6 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
 
 
     private void initBottomNavigationView() {
-        //通过反射去除BottomNav的位移效果
-        BottomNavigationViewHelper.disableShiftMode(mBottomBnv);
         mBottomBnv.setItemIconTintList(null);
         mBottomBnv.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {

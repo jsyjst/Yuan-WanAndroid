@@ -32,6 +32,7 @@
             android:layout_alignParentBottom="true"
             android:clickable="true"
             android:focusable="true"
+            app:labelVisibilityMode="labeled"
             app:elevation="@dimen/dp_5"
             app:itemBackground="@color/bottomNavBackground"
             app:itemTextColor="@drawable/nav_btm_color"

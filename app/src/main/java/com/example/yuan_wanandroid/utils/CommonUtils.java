@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -62,5 +63,13 @@ public class CommonUtils {
             position = -position;
         }
         return Constant.TAB_COLORS[position];
+    }
+
+    /**
+     * 检查是否有可用网络
+     */
+    public static boolean isNetworkConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null;
     }
 }

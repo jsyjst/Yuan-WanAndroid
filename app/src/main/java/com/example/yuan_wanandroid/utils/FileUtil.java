@@ -1,8 +1,10 @@
 package com.example.yuan_wanandroid.utils;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.Closeable;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -81,4 +83,27 @@ public class FileUtil {
         }
 
     }
+
+    /**
+     * 得到包名所在的缓存路径
+     * 当SD卡不存在或者SD卡可被移除的时候，就调用getCacheDir()方法来获取缓存路径，
+     * 否则就调用getExternalCacheDir()方法来获取缓存路径。
+     * 前者获取到的是 /data/data/<application package>/cache 这个路径。
+     * 而后者获取到的就是 /sdcard/Android/data/<application package>/cache 这个路径，
+     * @param context
+     * @param name
+     * @return
+     */
+    public static String getCachePath(Context context, String name) {
+        String cachePath;
+        if (!"mounted".equals(Environment.getExternalStorageState()) && Environment.isExternalStorageRemovable()) {
+            cachePath = context.getCacheDir().getPath();
+        } else {
+            cachePath = context.getExternalCacheDir().getPath();
+        }
+
+        return cachePath + File.separator + name;
+    }
+
+
 }

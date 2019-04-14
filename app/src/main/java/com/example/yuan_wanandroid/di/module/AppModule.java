@@ -10,15 +10,16 @@ import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 import com.example.yuan_wanandroid.model.http.cookie.CookiesManager;
-import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
-import com.example.yuan_wanandroid.model.http.interceptor.SaveCookiesInterceptor;
+import com.example.yuan_wanandroid.model.http.interceptor.CacheInterceptor;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -55,6 +56,13 @@ public class AppModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder){
+
+        //设置缓存
+        File cacheDir = new File(Constant.PATH_NETWORKCACHE);
+        Cache cache = new Cache(cacheDir,1024 * 1024 * 10);//缓存最大大小10m
+        builder.cache(cache);
+        builder.addInterceptor(new CacheInterceptor());
+
         //错误重连
         builder.retryOnConnectionFailure(true);
         //设置超时

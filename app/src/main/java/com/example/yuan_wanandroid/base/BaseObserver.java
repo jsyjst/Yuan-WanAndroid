@@ -4,15 +4,25 @@ import android.net.ParseException;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
+import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.view.BaseView;
+import com.example.yuan_wanandroid.component.RxBus;
+import com.example.yuan_wanandroid.di.component.AppComponent;
+import com.example.yuan_wanandroid.di.module.AppModule;
+import com.example.yuan_wanandroid.event.AutoRefreshEvent;
+import com.example.yuan_wanandroid.event.CollectionEvent;
+import com.example.yuan_wanandroid.model.entity.BaseResponse;
+import com.example.yuan_wanandroid.model.entity.Login;
 import com.example.yuan_wanandroid.model.http.exception.ApiException;
 import com.example.yuan_wanandroid.utils.LogUtil;
+import com.example.yuan_wanandroid.utils.RxUtil;
 import com.google.gson.JsonParseException;
 
 import org.json.JSONException;
 
 import java.net.UnknownHostException;
 
+import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
@@ -32,6 +42,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     private BaseView mView;
     private boolean isShowErrorView = true;
     private boolean isShowLoading = true;
+    private Disposable mDisposable;
 
     private BaseObserver() {
     }
@@ -77,7 +88,43 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
             LogUtil.e(TAG_ERROR, "解析错误：" + e.getMessage());
             parseError();
         } else if(e instanceof ApiException){
-            LogUtil.e(TAG_ERROR, "unknown：" + e.getMessage());
+            LogUtil.e(TAG_ERROR, "unknown：" + ((ApiException) e).getErrorCode());
+            ApiException apiException = (ApiException)e;
+            //cookie过期处理
+            if(apiException.getErrorCode() == -1001){
+                //重新发起登录
+                App.getAppComponent().getDataModel()
+                        .login(User.getInstance().getUsername(),User.getInstance().getPassword())
+                        .compose(RxUtil.rxSchedulerHelper())
+                        .compose(RxUtil.handleResult())
+                        .subscribe(new Observer<Login>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+                                mDisposable = d;
+                            }
+
+                            @Override
+                            public void onNext(Login value) {
+                                LogUtil.d(LogUtil.TAG_ERROR,"重新登录成功");
+                                //通知
+                                RxBus.getInstance().post(new CollectionEvent()); //通知我的收藏列表
+                                RxBus.getInstance().post(new AutoRefreshEvent(true));//通知主页面
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                LogUtil.d(LogUtil.TAG_ERROR,"重新登录失败");
+                                mView.showToast(apiException.getErrorMessage());
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                if(mDisposable != null) mDisposable.dispose();
+                            }
+                        });
+            }
+        } else {
+            LogUtil.e(TAG_ERROR, "unknown：" + ((ApiException) e).getErrorCode());
             unknown();
         }
     }

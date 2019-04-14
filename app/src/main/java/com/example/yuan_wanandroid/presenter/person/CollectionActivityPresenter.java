@@ -2,7 +2,9 @@ package com.example.yuan_wanandroid.presenter.person;
 
 import com.example.yuan_wanandroid.base.BaseObserver;
 import com.example.yuan_wanandroid.base.presenter.BasePresenter;
+import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.person.CollectionActivityContract;
+import com.example.yuan_wanandroid.event.CollectionEvent;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.model.entity.BaseResponse;
 import com.example.yuan_wanandroid.model.entity.Collection;
@@ -26,6 +28,15 @@ public class CollectionActivityPresenter extends BasePresenter<CollectionActivit
     @Inject
     public CollectionActivityPresenter(DataModel model) {
         super(model);
+    }
+
+    @Override
+    public void subscribeEvent() {
+        //cookie过期后重新加载我的收藏
+        addRxSubscribe(
+                RxBus.getInstance().toObservable(CollectionEvent.class)
+                        .subscribe(collectionEvent -> mView.reLoad())
+        );
     }
 
     @Override

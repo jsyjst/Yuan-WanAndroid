@@ -1,7 +1,6 @@
 package com.example.yuan_wanandroid.view.home;
 
 
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.ArticlesAdapter;
+import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseLoadingFragment;
@@ -102,7 +102,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     @Override
     protected void initView() {
         super.initView();
-        StatusBarUtil.addStatusBarView(mActivity,view);
+        StatusBarUtil.addStatusBarView(mActivity, view);
         initRecyclerView();
         initRefreshView();
         mSearchTv.setOnClickListener(v -> toSearchActivity());
@@ -150,10 +150,14 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
         });
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPageNum = 0;
-            isRefresh = true;
-            mPresenter.loadMoreArticles(mPageNum);
-
+            if (!CommonUtils.isNetworkConnected(App.getContext())) {
+                refreshLayout.finishRefresh();
+                CommonUtils.toastShow("网络不可用");
+            } else {
+                mPageNum = 0;
+                isRefresh = true;
+                mPresenter.loadMoreArticles(mPageNum);
+            }
         });
     }
 
@@ -182,7 +186,6 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     public void showToast(String msg) {
         CommonUtils.toastShow(msg);
     }
-
 
 
     @Override
@@ -218,7 +221,7 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
 
     @Override
     public void showArticles(List<Article> articlesList) {
-        LogUtil.d(LogUtil.TAG_COMMON,articlesList.get(0).getUserId()+"");
+        LogUtil.d(LogUtil.TAG_COMMON, articlesList.get(0).getUserId() + "");
         if (!CommonUtils.isEmptyList(mArticleList)) {
             mArticleList.clear();
         }
@@ -307,14 +310,14 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
         }
     }
 
-    private void toSearchActivity(){
-        Intent intent = new Intent(mActivity,SearchActivity.class);
+    private void toSearchActivity() {
+        Intent intent = new Intent(mActivity, SearchActivity.class);
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
-                Pair.create(mSearchTv,getString(R.string.share_edit)),
-                Pair.create(mSearchIv,getString(R.string.share_image))
-                );
-        startActivity(intent,options.toBundle());
+                Pair.create(mSearchTv, getString(R.string.share_edit)),
+                Pair.create(mSearchIv, getString(R.string.share_image))
+        );
+        startActivity(intent, options.toBundle());
     }
 
 

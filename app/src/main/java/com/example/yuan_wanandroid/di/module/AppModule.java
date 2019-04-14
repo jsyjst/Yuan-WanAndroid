@@ -9,8 +9,9 @@ import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
-import com.example.yuan_wanandroid.model.http.cookie.CookiesManager;
 import com.example.yuan_wanandroid.model.http.interceptor.CacheInterceptor;
+import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
+import com.example.yuan_wanandroid.model.http.interceptor.SaveCookiesInterceptor;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -61,6 +62,10 @@ public class AppModule {
         File cacheDir = new File(Constant.PATH_NETWORKCACHE);
         Cache cache = new Cache(cacheDir,1024 * 1024 * 10);//缓存最大大小10m
         builder.cache(cache);
+        /**
+         * 这里不使用addNetInterceptor的原因是，网络拦截器比应用拦截器慢执行，
+         * 没有网的情况下，直接就ConnectException了，根本不会走到interceptor里面去了。
+         */
         builder.addInterceptor(new CacheInterceptor());
 
         //错误重连
@@ -71,7 +76,9 @@ public class AppModule {
         builder.writeTimeout(20, TimeUnit.SECONDS);
 
         //cookie
-        builder.cookieJar(new CookiesManager(mApp));
+        builder.addInterceptor(new SaveCookiesInterceptor(mApp));
+        builder.addInterceptor(new ReadCookiesInterceptor(mApp));
+        //builder.cookieJar(new CookiesManager(mApp));
         return builder.build();
     }
 

@@ -80,7 +80,14 @@ public class CollectionActivity extends BaseLoadingActivity<CollectionActivityPr
         initRecyclerView();
         initRefresh();
         mPresenter.loadCollections(0);
+        mPresenter.subscribeEvent();
     }
+
+    @Override
+    public void reLoad() {
+        mPresenter.loadCollections(0);
+    }
+
 
     @Override
     protected void initData() {

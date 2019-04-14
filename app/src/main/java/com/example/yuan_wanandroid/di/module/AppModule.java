@@ -9,6 +9,7 @@ import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
+import com.example.yuan_wanandroid.model.http.cookie.CookiesManager;
 import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
 import com.example.yuan_wanandroid.model.http.interceptor.SaveCookiesInterceptor;
 
@@ -62,8 +63,7 @@ public class AppModule {
         builder.writeTimeout(20, TimeUnit.SECONDS);
 
         //cookie
-        builder.addInterceptor(new ReadCookiesInterceptor(App.getContext()));
-        builder.addInterceptor(new SaveCookiesInterceptor(App.getContext()));
+        builder.cookieJar(new CookiesManager(mApp));
         return builder.build();
     }
 

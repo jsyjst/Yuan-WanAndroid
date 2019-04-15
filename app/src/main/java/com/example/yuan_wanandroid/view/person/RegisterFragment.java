@@ -20,6 +20,7 @@ import com.example.yuan_wanandroid.utils.LogUtil;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * <pre>
@@ -46,6 +47,8 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
     @BindView(R.id.registerBtn)
     TextView registerBtn;
 
+    private SweetAlertDialog dialog;//加载框
+
 
     @Override
     protected void inject() {
@@ -64,15 +67,27 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
     protected void initView() {
         super.initView();
         registerBtn.setOnClickListener(
-                v -> mPresenter.register(getEditText(usernameEdit),
-                getEditText(passwordEdit),
-                getEditText(passwordRepeatEdit)));
+                v -> {
+                    showLoading();
+                    mPresenter.register(getEditText(usernameEdit),
+                            getEditText(passwordEdit),
+                            getEditText(passwordRepeatEdit));
+                });
         loginBtn.setOnClickListener(v -> toLoginFragment());
     }
 
     @Override
     protected void loadData() {
 
+    }
+
+    @Override
+    public void showLoading() {
+        dialog = new SweetAlertDialog(mActivity,SweetAlertDialog.PROGRESS_TYPE);
+        dialog.getProgressHelper().setBarColor(CommonUtils.randomTagColor());
+        dialog.setTitleText("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     @Override
@@ -83,8 +98,15 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
 
     @Override
     public void showSuccess() {
+        dialog.cancel();
         CommonUtils.toastShow(mActivity.getString(R.string.person_register_success));
         toLoginFragment();
+    }
+
+    @Override
+    public void showErrorView() {
+        super.showErrorView();
+        dialog.cancel();
     }
 
     @Override

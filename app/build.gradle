@@ -71,6 +71,8 @@ dependencies {
     implementation rootProject.ext.dependencies["flowLayout"]  //搜索热搜流式布局
     implementation rootProject.ext.dependencies["switchButton"]
     implementation rootProject.ext.dependencies["smartrefreshHeader"]
+    implementation rootProject.ext.dependencies["sweetDialog"]
+
     //数据库
     implementation rootProject.ext.dependencies["litePal"]
 }

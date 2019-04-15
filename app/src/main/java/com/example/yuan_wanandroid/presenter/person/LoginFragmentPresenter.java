@@ -49,7 +49,14 @@ public class LoginFragmentPresenter extends BasePresenter<LoginFragmentContract.
                             mView.showLoginSuccess();
                         }else{
                             mView.showToast(baseResponse.getErrorMsg());
+                            mView.showErrorView();
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mView.showErrorView();
                     }
                 })
         );

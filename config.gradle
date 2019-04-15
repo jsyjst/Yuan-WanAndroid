@@ -74,7 +74,7 @@ ext {
             "gildeCompiler"         : "com.github.bumptech.glide:compiler:${version.Gilde}",
             "baseAdapter"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${version.BaseAdapterVersion}",
             "smartrefresh"          : "com.scwang.smartrefresh:SmartRefreshLayout:${version.SmartrefreshVersion}",
-            "smartrefreshHeader" : "com.scwang.smartrefresh:SmartRefreshHeader:${version.SmartrefreshVersion}",
+            "smartrefreshHeader"    : "com.scwang.smartrefresh:SmartRefreshHeader:${version.SmartrefreshVersion}",
             "agentWeb"              : "com.just.agentweb:agentweb:${version.AgentWebVersion}",
             "flycoTabLayout_Lib"    : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "circleImage"           : "de.hdodenhof:circleimageview:${version.CircleImageVersion}",
@@ -82,6 +82,7 @@ ext {
             "grav"                  : "com.github.glomadrian:Grav:1.1",
             "flowLayout"            : "com.hyman:flowlayout-lib:1.1.2",
             "switchButton"          : "com.github.zcweng:switch-button:0.0.3@aar",
+            "sweetDialog"           : 'com.github.f0ris.sweetalert:library:1.5.1',
 
             //数据库
             litePal                 : "org.litepal.android:java:${version.LitePal}",

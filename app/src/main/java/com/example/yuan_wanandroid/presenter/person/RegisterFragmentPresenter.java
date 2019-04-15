@@ -38,7 +38,14 @@ public class RegisterFragmentPresenter extends BasePresenter<RegisterFragmentCon
                             mView.showSuccess();
                         }else{
                             mView.showToast(response.getErrorMsg());
+                            mView.showErrorView();
                         }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        mView.showErrorView();
                     }
                 })
         );

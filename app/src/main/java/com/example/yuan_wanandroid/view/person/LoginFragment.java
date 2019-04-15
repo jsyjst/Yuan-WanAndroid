@@ -3,6 +3,7 @@ package com.example.yuan_wanandroid.view.person;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -14,11 +15,13 @@ import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.person.LoginFragmentContract;
 import com.example.yuan_wanandroid.di.component.fragment.DaggerLoginFragmentComponent;
 import com.example.yuan_wanandroid.presenter.person.LoginFragmentPresenter;
+import com.example.yuan_wanandroid.utils.CommonUtils;
 
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * <pre>
@@ -32,6 +35,7 @@ import butterknife.BindView;
 public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
         implements LoginFragmentContract.View {
 
+
     @Inject
     LoginFragmentPresenter mPresenter;
     @BindView(R.id.usernameEdit)
@@ -43,6 +47,16 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     @BindView(R.id.registerBtn)
     TextView mRegisterBtn;
 
+    private SweetAlertDialog dialog;
+
+    @Override
+    public void showLoading() {
+        dialog = new SweetAlertDialog(mActivity,SweetAlertDialog.PROGRESS_TYPE);
+        dialog.getProgressHelper().setBarColor(CommonUtils.randomTagColor());
+        dialog.setTitleText("Loading...");
+        dialog.setCancelable(false);
+        dialog.show();
+    }
 
     @Override
     protected void inject() {
@@ -66,6 +80,7 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
             } else if (TextUtils.isEmpty(getEditText(mPasswordEdit))) {
                 showToast(mActivity.getString(R.string.login_password_empty));
             } else {
+                showLoading();
                 mPresenter.login(getEditText(mUsernameEdit), getEditText(mPasswordEdit));
             }
         });
@@ -78,12 +93,19 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     }
 
     @Override
+    public void showErrorView() {
+        super.showErrorView();
+        dialog.cancel();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_login;
     }
 
     @Override
     public void showLoginSuccess() {
+        dialog.cancel();
         showToast(getString(R.string.person_login_success));
         getActivity().setResult(Activity.RESULT_OK);
         getActivity().finish();

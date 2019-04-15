@@ -145,6 +145,11 @@
 }
 
 ###################################### 第三方库 ##################################
+
+#SweetAlertDialog
+-keep class cn.pedant.SweetAlert.Rotate3dAnimation {
+  public <init>(...);
+}
 ### Litpal
 -keep class org.litepal.** { *;}
 -keep class * extends org.litepal.crud.DataSupport { *;}

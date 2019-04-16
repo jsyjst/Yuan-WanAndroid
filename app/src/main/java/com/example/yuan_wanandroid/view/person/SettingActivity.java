@@ -2,25 +2,24 @@ package com.example.yuan_wanandroid.view.person;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
-import com.example.yuan_wanandroid.base.activity.BaseActivity;
 import com.example.yuan_wanandroid.base.activity.BaseMvpActivity;
-import com.example.yuan_wanandroid.component.RxBus;
 import com.example.yuan_wanandroid.contract.person.SettingActivityContract;
 import com.example.yuan_wanandroid.di.component.activity.DaggerSettingActivityComponent;
-import com.example.yuan_wanandroid.event.AutoRefreshEvent;
 import com.example.yuan_wanandroid.presenter.person.SettingActivityPresenter;
-import com.example.yuan_wanandroid.utils.LogUtil;
+import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.FileUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
+import com.example.yuan_wanandroid.widget.ConfirmDialog;
 import com.suke.widget.SwitchButton;
+
+import java.io.File;
 
 import javax.inject.Inject;
 
@@ -38,11 +37,23 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     SwitchButton nightSwitchBtn;
     @BindView(R.id.noImageSwitchBtn)
     SwitchButton noImageSwitchBtn;
+    @BindView(R.id.autoCacheSwitchBtn)
+    SwitchButton autoCacheSwitchBtn;
+    @BindView(R.id.clearCacheRv)
+    RelativeLayout clearCacheRv;
+    @BindView(R.id.checkVersionRv)
+    RelativeLayout checkVersionRv;
+    @BindView(R.id.cacheSizeTv)
+    TextView cacheSizeTv;
+    @BindView(R.id.versionTv)
+    TextView versionTv;
     @Inject
     SettingActivityPresenter mPresenter;
 
-    private boolean isChangeNightStyle;
 
+    private boolean isChangeNightStyle;
+    private File mCacheFile;
+    private String mCacheSize;
 
     @Override
     protected int getLayoutId() {
@@ -66,10 +77,10 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     protected void initView() {
         super.initView();
         initToolbar();
-        initSwitch();
+        initSettings();
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
         setSupportActionBar(mCommonToolbar);
         mToolbarTitle.setText(getString(R.string.person_setting));
         ActionBar actionBar = getSupportActionBar();
@@ -82,13 +93,43 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
         });
     }
 
-    public void initSwitch(){
+    public void initSettings() {
         mPresenter.subscribeEvent();
+        mCacheFile = new File(Constant.PATH_NET_CACHE);
+        //基本设置
         nightSwitchBtn.setChecked(mPresenter.getNightStyleState());
         noImageSwitchBtn.setChecked(mPresenter.getNoImgStyleState());
         nightSwitchBtn.setOnCheckedChangeListener((view, isChecked) ->
-            mPresenter.setNightStyleState(isChecked));
+                mPresenter.setNightStyleState(isChecked));
         noImageSwitchBtn.setOnCheckedChangeListener(((view, isChecked) -> mPresenter.setNoImgStyleState(isChecked)));
+        autoCacheSwitchBtn.setChecked(mPresenter.getAutoCacheState());
+        autoCacheSwitchBtn.setOnCheckedChangeListener(((view, isChecked) -> mPresenter.setAutoCacheStyleState(isChecked)));
+        //其他设置
+        mCacheSize = FileUtil.getCacheSize(mCacheFile);
+        cacheSizeTv.setText(mCacheSize);
+        clearCacheRv.setOnClickListener(view -> {
+            ConfirmDialog dialog = new ConfirmDialog(this);
+            dialog.setOnClickListener(new ConfirmDialog.OnClickListener() {
+                @Override
+                public void selectSure() {
+                    FileUtil.deleteDir(mCacheFile);
+                    CommonUtils.toastShow(getString(R.string.clear_cache_success));
+                    cacheSizeTv.setText(getString(R.string.empty_cache));
+                }
+
+                @Override
+                public String setTitle() {
+                    return getString(R.string.clear_cache);
+                }
+
+                @Override
+                public String setText() {
+                    return "确定清空" + mCacheSize + "缓存吗?";
+                }
+            });
+            dialog.show();
+        });
+
     }
 
     @Override
@@ -97,11 +138,10 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     }
 
 
-
     @Override
     public void showChangeNightStyle() {
-        Intent intent = new Intent(this,SettingActivity.class);
-        intent.putExtra(Constant.KEY_NIGHT_CHANGE,true);
+        Intent intent = new Intent(this, SettingActivity.class);
+        intent.putExtra(Constant.KEY_NIGHT_CHANGE, true);
         startActivity(intent);
         overridePendingTransition(R.anim.anim_animo_alph_open, R.anim.anim_animo_alph_close);
         finish();
@@ -113,12 +153,12 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     }
 
     private void goBack() {
-        isChangeNightStyle = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE,false);
+        isChangeNightStyle = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE, false);
         if (isChangeNightStyle) {  //  如果改变了夜间模式，则重启MainActivity
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra(Constant.KEY_NIGHT_CHANGE, true);
             startActivity(intent);
-            overridePendingTransition(R.anim.in_from_left,R.anim.out_to_right);
+            overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
         }
         finish();
     }

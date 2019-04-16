@@ -18,5 +18,6 @@ public interface SettingActivityContract {
     interface Presenter extends IPresenter<View>{
         void setNightStyleState(boolean isNight); //设置夜间模式
         void setNoImgStyleState(boolean isNoImg); ///设置无图模式
+        void setAutoCacheStyleState(boolean isAutoCache);//设置自动缓存模式
     }
 }

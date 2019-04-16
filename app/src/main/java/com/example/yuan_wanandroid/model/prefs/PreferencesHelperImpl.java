@@ -46,4 +46,14 @@ public class PreferencesHelperImpl implements PreferencesHelper{
     public boolean getNoImgStyleState() {
         return mPreferences.getBoolean(Constant.KEY_PREFERS_NO_IMG,false);
     }
+
+    @Override
+    public void setAutoCacheState(boolean isAutoCache) {
+        mPreferences.edit().putBoolean(Constant.KEY_PREFERS_AUTO_CACHE,isAutoCache).apply();
+    }
+
+    @Override
+    public boolean getAutoCacheState() {
+        return mPreferences.getBoolean(Constant.KEY_PREFERS_AUTO_CACHE,true);
+    }
 }

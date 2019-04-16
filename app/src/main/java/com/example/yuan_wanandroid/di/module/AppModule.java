@@ -59,7 +59,7 @@ public class AppModule {
     OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder){
 
         //设置缓存
-        File cacheDir = new File(Constant.PATH_NETWORKCACHE);
+        File cacheDir = new File(Constant.PATH_NET_CACHE);
         Cache cache = new Cache(cacheDir,1024 * 1024 * 10);//缓存最大大小10m
         builder.cache(cache);
         /**

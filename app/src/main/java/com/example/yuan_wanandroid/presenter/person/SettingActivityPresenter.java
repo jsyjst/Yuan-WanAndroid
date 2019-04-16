@@ -47,4 +47,9 @@ public class SettingActivityPresenter extends BasePresenter<SettingActivityContr
         mModel.setNoImgState(isNoImg);
         RxBus.getInstance().post(new NoImgEvent());
     }
+
+    @Override
+    public void setAutoCacheStyleState(boolean isAutoCache) {
+        mModel.setAutoCacheState(isAutoCache);
+    }
 }

@@ -172,4 +172,14 @@ public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
     public boolean getNoImgStyleState() {
         return mPreferencesHelper.getNoImgStyleState();
     }
+
+    @Override
+    public void setAutoCacheState(boolean isAutoCache) {
+        mPreferencesHelper.setAutoCacheState(isAutoCache);
+    }
+
+    @Override
+    public boolean getAutoCacheState() {
+        return mPreferencesHelper.getAutoCacheState();
+    }
 }

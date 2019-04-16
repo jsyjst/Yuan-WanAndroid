@@ -67,4 +67,9 @@ public class BasePresenter <T extends BaseView> implements IPresenter<T> {
     public boolean getNoImgStyleState() {
         return mModel.getNoImgStyleState();
     }
+
+    @Override
+    public boolean getAutoCacheState() {
+        return mModel.getAutoCacheState();
+    }
 }

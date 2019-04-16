@@ -28,6 +28,7 @@
     //setting
     <color name="type_setting">#EE5656</color>
     <color name="setting_line">#5C222121</color>
+    <color name="type_other">#00695C</color>
 
 
 </resources>

@@ -81,7 +81,13 @@
     //setting
     <string name="night_type">夜间模式</string>
     <string name="no_image_type">无图模式</string>
+    <string name="auto_cache">自动缓存</string>
     <string name="basic_setting">基本设置</string>
+    <string name="other_setting">其他设置</string>
+    <string name="clear_cache">清空缓存</string>
+    <string name="clear_cache_success">已清空缓存</string>
+    <string name="empty_cache">0K</string>
+    <string name="check_version">检查版本</string>
 
     //about
     <string name="about_us">关于我们</string>

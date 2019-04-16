@@ -1,5 +1,6 @@
 package com.example.yuan_wanandroid.view.home;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -97,6 +98,7 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         });
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void initData() {
         mAgentWeb = AgentWeb.with(this)
@@ -114,14 +116,30 @@ public class ArticleActivity extends BaseMvpActivity<ArticleActivityPresenter>
         mSettings.setDatabaseEnabled(true);
 
 
+        //判断是否为无图模式
         if(mPresenter.getNoImgStyleState()){
             mSettings.setBlockNetworkImage(true);
         }else{
             mSettings.setBlockNetworkImage(false);
         }
 
-        //有网络
-        mSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        //判断是否为自动缓存模式
+        if (mPresenter.getAutoCacheState()) {
+            mSettings.setAppCacheEnabled(true);
+            mSettings.setDomStorageEnabled(true);
+            mSettings.setDatabaseEnabled(true);
+            if (CommonUtils.isNetworkConnected(App.getContext())) {
+                mSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+            } else {
+                mSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            }
+        } else {
+            mSettings.setAppCacheEnabled(false);
+            mSettings.setDomStorageEnabled(false);
+            mSettings.setDatabaseEnabled(false);
+            mSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        }
+
         mSettings.setJavaScriptEnabled(true);
         mSettings.setSupportZoom(true);
         mSettings.setBuiltInZoomControls(true);

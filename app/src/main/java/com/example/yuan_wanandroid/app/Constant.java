@@ -57,8 +57,9 @@ public class Constant {
     public static final String KEY_PREFERS_NIGHT="night";
     public static final String KEY_PREFERS_NO_IMG="no_img";
     public static final String KEY_NIGHT_CHANGE="night_change";
+    public static final String KEY_PREFERS_AUTO_CACHE="auto_cache";
 
     //path
-    public static final String PATH_NETWORKCACHE = FileUtil.getCachePath(App.getContext(), "netData");
+    public static final String PATH_NET_CACHE = FileUtil.getCachePath(App.getContext(), "netData");
 
 }

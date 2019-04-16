@@ -105,7 +105,7 @@ public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
 
     @Override
     public Observable<BaseResponse> unCollectArticles(int id) {
-        return mNetworkHelper.collectArticles(id);
+        return mNetworkHelper.unCollectArticles(id);
     }
 
     @Override

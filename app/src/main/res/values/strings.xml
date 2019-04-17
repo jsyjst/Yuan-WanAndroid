@@ -77,6 +77,16 @@
     <string name="dialog_text">你确定要退出登录吗？</string>
     <string name="dialog_delete_title">删除全部历史记录</string>
     <string name="dialog_delete_text">你确定要删除全部搜索的历史记录吗？</string>
+    
+    //versionDialog
+    <string name="dialog_version_name">版本号:  </string>
+    <string name="dialog_version_size">版本大小:  </string>
+    <string name="dialog_version_content">更新内容:  </string>
+    <string name="dialog_version_update">有版本更新啦!</string>
+    <string name="dialog_version_later">稍后更新</string>
+    <string name="dialog_version_now">马上更新</string>
+    //download
+    <string name="download_ing">新版本下载中</string>
 
     //setting
     <string name="night_type">夜间模式</string>
@@ -87,7 +97,7 @@
     <string name="clear_cache">清空缓存</string>
     <string name="clear_cache_success">已清空缓存</string>
     <string name="empty_cache">0K</string>
-    <string name="check_version">检查版本</string>
+    <string name="check_version">版本</string>
 
     //about
     <string name="about_us">关于我们</string>

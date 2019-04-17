@@ -8,6 +8,7 @@ import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
+import com.example.yuan_wanandroid.model.entity.Version;
 
 import java.util.List;
 
@@ -69,4 +70,8 @@ public interface NetworkHelper {
      */
     Observable<BaseResponse<List<HotKey>>> getHotKey();//获取热搜关键词
     Observable<BaseResponse<Articles>> getSearchArticles(String key,int pageNum); //搜索
+    /**
+     * versionUpdate
+     */
+    Observable<Version> getVersionDetail();//获取github上最新的版本信息
 }

@@ -56,4 +56,14 @@ public class PreferencesHelperImpl implements PreferencesHelper{
     public boolean getAutoCacheState() {
         return mPreferences.getBoolean(Constant.KEY_PREFERS_AUTO_CACHE,true);
     }
+
+    @Override
+    public void setDownloadId(long id) {
+        mPreferences.edit().putLong(Constant.KEY_PREFERS_DOWNLOAD_ID,id).apply();
+    }
+
+    @Override
+    public long getDownloadId() {
+        return mPreferences.getLong(Constant.KEY_PREFERS_DOWNLOAD_ID,-1L);
+    }
 }

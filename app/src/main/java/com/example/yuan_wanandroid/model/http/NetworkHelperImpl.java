@@ -8,12 +8,14 @@ import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
+import com.example.yuan_wanandroid.model.entity.Version;
 import com.example.yuan_wanandroid.model.http.api.CollectApis;
 import com.example.yuan_wanandroid.model.http.api.HomeApis;
 import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
+import com.example.yuan_wanandroid.model.http.api.VersionApi;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 
 import java.util.List;
@@ -39,6 +41,7 @@ public class NetworkHelperImpl implements NetworkHelper{
     private PersonApis mPersonApis;
     private CollectApis mCollectApis;
     private SearchApis mSearchApis;
+    private VersionApi mVersionApi;
 
     @Inject
     public NetworkHelperImpl(HomeApis homeApis,
@@ -47,7 +50,8 @@ public class NetworkHelperImpl implements NetworkHelper{
                              ProjectApis projectApis,
                              PersonApis personApis,
                              CollectApis collectApis,
-                             SearchApis searchApis){
+                             SearchApis searchApis,
+                             VersionApi versionApi){
         mHomeApis = homeApis;
         mSystemApis = systemApis;
         mWxApis = wxApis;
@@ -55,6 +59,7 @@ public class NetworkHelperImpl implements NetworkHelper{
         mPersonApis = personApis;
         mCollectApis = collectApis;
         mSearchApis = searchApis;
+        mVersionApi = versionApi;
     }
 
     @Override
@@ -140,6 +145,11 @@ public class NetworkHelperImpl implements NetworkHelper{
     @Override
     public Observable<BaseResponse<Articles>> getSearchArticles(String key, int pageNum) {
         return mSearchApis.getSearchArticles(key,pageNum);
+    }
+
+    @Override
+    public Observable<Version> getVersionDetail() {
+        return mVersionApi.getVersionDetail();
     }
 
 

@@ -8,6 +8,7 @@ import com.example.yuan_wanandroid.model.http.api.PersonApis;
 import com.example.yuan_wanandroid.model.http.api.ProjectApis;
 import com.example.yuan_wanandroid.model.http.api.SearchApis;
 import com.example.yuan_wanandroid.model.http.api.SystemApis;
+import com.example.yuan_wanandroid.model.http.api.VersionApi;
 import com.example.yuan_wanandroid.model.http.api.WxApis;
 import com.example.yuan_wanandroid.model.http.interceptor.CacheInterceptor;
 import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
@@ -16,6 +17,7 @@ import com.example.yuan_wanandroid.model.http.interceptor.SaveCookiesInterceptor
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -133,5 +135,11 @@ public class AppModule {
     @Singleton
     SearchApis provideSearchApis(Retrofit retrofit){
         return retrofit.create(SearchApis.class);
+    }
+
+    @Provides
+    @Singleton
+    VersionApi provideVersionApi(Retrofit retrofit){
+        return retrofit.create(VersionApi.class);
     }
 }

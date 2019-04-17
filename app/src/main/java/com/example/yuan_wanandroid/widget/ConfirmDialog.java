@@ -25,18 +25,21 @@ import com.example.yuan_wanandroid.R;
 public class ConfirmDialog extends Dialog implements View.OnClickListener {
 
     private OnClickListener mOnClickListener;
-    private TextView mTitle;
-    private TextView mText;
+    private TextView mTitleTv;
+    private TextView mTextTv;
+    private String mTitle;
+    private String mText;
+
+
 
     public ConfirmDialog(@NonNull Context context) {
         super(context, R.style.MyDialog);
         initView();
     }
 
+
     public interface OnClickListener {
         void selectSure();    //选择确定
-        String setTitle(); //设置标题
-        String setText(); //设置内容
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
@@ -46,8 +49,8 @@ public class ConfirmDialog extends Dialog implements View.OnClickListener {
     private void initView(){
         @SuppressLint("InflateParams")
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_confirm, null);
-        mTitle = view.findViewById(R.id.dialogTitle);        //标题
-        mText = view.findViewById(R.id.dialogText);    //内容
+        mTitleTv = view.findViewById(R.id.dialogTitle);        //标题
+        mTextTv = view.findViewById(R.id.dialogText);    //内容
         TextView cancel = view.findViewById(R.id.dialogCancel);    //取消
         TextView sure = view.findViewById(R.id.dialogSure);    //删除
         cancel.setOnClickListener(this);
@@ -88,8 +91,19 @@ public class ConfirmDialog extends Dialog implements View.OnClickListener {
         lp.height = (int) (lp.width * 0.5);     // 高度
         dialogWindow.setAttributes(lp);
 
-        mTitle.setText(mOnClickListener.setTitle());    //设置标题
-        mText.setText(mOnClickListener.setText());
+        mTitleTv.setText(mTitle);    //设置标题
+        mTextTv.setText(mText);
     }
+
+    public ConfirmDialog setTitle(String title){
+        mTitle = title;
+        return this;
+    }
+    public ConfirmDialog setText(String text){
+        mText = text;
+        return this;
+    }
+
+
 
 }

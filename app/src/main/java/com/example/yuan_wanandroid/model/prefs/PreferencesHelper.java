@@ -16,4 +16,6 @@ public interface PreferencesHelper {
     boolean getNoImgStyleState();//得到无图模式的设置
     void setAutoCacheState(boolean isAutoCache);//保存自动缓存设置，自动缓存为文章详细的内容
     boolean getAutoCacheState(); //得到自动缓存设置
+    void setDownloadId(long id);//保存更新apk的记录
+    long getDownloadId();//得到下载记录
 }

@@ -1,9 +1,14 @@
 package com.example.yuan_wanandroid.view;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 import android.widget.FrameLayout;
 
@@ -15,13 +20,17 @@ import com.example.yuan_wanandroid.base.fragment.BaseFragment;
 import com.example.yuan_wanandroid.contract.MainContract;
 import com.example.yuan_wanandroid.di.component.activity.DaggerMainActivityComponent;
 import com.example.yuan_wanandroid.di.component.activity.MainActivityComponent;
+import com.example.yuan_wanandroid.model.entity.Version;
 import com.example.yuan_wanandroid.presenter.MainActivityPresenter;
+import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.example.yuan_wanandroid.utils.DownloadUtil;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.home.HomeFragment;
 import com.example.yuan_wanandroid.view.person.PersonFragment;
 import com.example.yuan_wanandroid.view.project.ProjectFragment;
 import com.example.yuan_wanandroid.view.system.SystemFragment;
 import com.example.yuan_wanandroid.view.wx.WxFragment;
+import com.example.yuan_wanandroid.widget.VersionUpdateDialog;
 
 import javax.inject.Inject;
 
@@ -40,6 +49,8 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     private Fragment[] mFragments;
     private MainActivityComponent mMainActivityComponent;
     private boolean isNightChange;
+    private VersionUpdateDialog mVersionDialog;
+    private String mApkUrl;
 
     @Override
     protected int getLayoutId() {
@@ -51,6 +62,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFragments = new BaseFragment[5];
+        mVersionDialog = new VersionUpdateDialog();
         isNightChange = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE,false);
         if (savedInstanceState == null) {
             mFragments[0] = new HomeFragment();
@@ -135,6 +147,9 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
             }
             return true;
         });
+
+        //检查版本更新
+        mPresenter.checkVersion(DownloadUtil.getVersionName(this));
     }
 
     /**
@@ -181,4 +196,34 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     }
 
 
+    @Override
+    public void showVersionUpdateDialog(String versionDetail) {
+        mVersionDialog.setContentText(versionDetail);
+        mVersionDialog.show(getSupportFragmentManager(),"update");
+    }
+
+    @Override
+    public void downloadApk() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        }else{
+            DownloadUtil.downloadApk(this,mApkUrl);
+        }
+
+    }
+
+    @Override
+    public void setApkUrl(String apkUrl) {
+        mApkUrl = apkUrl;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 1 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            DownloadUtil.downloadApk(this,mApkUrl);
+        }else{
+            CommonUtils.toastShow("拒绝存储权限，无法更新版本");
+        }
+    }
 }

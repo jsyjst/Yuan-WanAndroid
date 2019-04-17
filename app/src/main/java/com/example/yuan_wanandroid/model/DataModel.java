@@ -10,6 +10,7 @@ import com.example.yuan_wanandroid.model.entity.FirstSystem;
 import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.model.entity.Tab;
 import com.example.yuan_wanandroid.model.entity.Login;
+import com.example.yuan_wanandroid.model.entity.Version;
 import com.example.yuan_wanandroid.model.http.NetworkHelper;
 import com.example.yuan_wanandroid.model.http.NetworkHelperImpl;
 import com.example.yuan_wanandroid.model.prefs.PreferencesHelper;
@@ -129,6 +130,11 @@ public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
     }
 
     @Override
+    public Observable<Version> getVersionDetail() {
+        return mNetworkHelper.getVersionDetail();
+    }
+
+    @Override
     public boolean addHistory(String key) {
         return mDbHelper.addHistory(key);
     }
@@ -181,5 +187,15 @@ public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
     @Override
     public boolean getAutoCacheState() {
         return mPreferencesHelper.getAutoCacheState();
+    }
+
+    @Override
+    public void setDownloadId(long id) {
+        mPreferencesHelper.setDownloadId(id);
+    }
+
+    @Override
+    public long getDownloadId() {
+        return mPreferencesHelper.getDownloadId();
     }
 }

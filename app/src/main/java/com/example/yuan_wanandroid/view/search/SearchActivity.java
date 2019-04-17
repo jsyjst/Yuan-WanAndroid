@@ -186,21 +186,10 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
 
     private void deleteAllHistories(){
         ConfirmDialog confirmDialog=new ConfirmDialog(this);
-        confirmDialog.setOnClickListener(new ConfirmDialog.OnClickListener() {
-            @Override
-            public void selectSure() {
-                mPresenter.deleteAllHistories();
-            }
-            @Override
-            public String setTitle() {
-                return getString(R.string.dialog_delete_title);
-            }
+        confirmDialog.setTitle(getString(R.string.dialog_delete_title))
+                .setText(getString(R.string.dialog_delete_text))
+                .show();
+        confirmDialog.setOnClickListener(() -> mPresenter.deleteAllHistories());
 
-            @Override
-            public String setText() {
-                return getString(R.string.dialog_delete_text);
-            }
-        });
-        confirmDialog.show();
     }
 }

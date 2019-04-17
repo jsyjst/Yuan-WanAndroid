@@ -126,23 +126,10 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
 
     private void logout() {
         ConfirmDialog dialog = new ConfirmDialog(mActivity);
-        dialog.setOnClickListener(new ConfirmDialog.OnClickListener() {
-            @Override
-            public void selectSure() {
-                mPresenter.logout();
-            }
-
-            @Override
-            public String setTitle() {
-                return mActivity.getString(R.string.dialog_title);
-            }
-
-            @Override
-            public String setText() {
-                return mActivity.getString(R.string.dialog_text);
-            }
-        });
-        dialog.show();
+        dialog.setTitle(getString(R.string.dialog_title))
+                .setText(getString(R.string.dialog_text))
+                .show();
+        dialog.setOnClickListener(() -> mPresenter.logout());
     }
 
     @Override

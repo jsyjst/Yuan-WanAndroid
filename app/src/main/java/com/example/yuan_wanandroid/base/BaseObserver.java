@@ -75,6 +75,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onError(Throwable e) {
+        e.printStackTrace();
         if (e instanceof UnknownHostException) {
             LogUtil.e(TAG_ERROR, "networkError：" + e.getMessage());
             networkError();
@@ -124,7 +125,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
                         });
             }
         } else {
-            LogUtil.e(TAG_ERROR, "unknown：" + ((ApiException) e).getErrorCode());
+            LogUtil.e(TAG_ERROR, "unknown："+e.toString() );
             unknown();
         }
     }

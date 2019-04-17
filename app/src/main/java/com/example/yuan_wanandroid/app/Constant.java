@@ -1,6 +1,7 @@
 package com.example.yuan_wanandroid.app;
 
 import android.graphics.Color;
+import android.os.Environment;
 
 import com.example.yuan_wanandroid.utils.FileUtil;
 
@@ -58,8 +59,13 @@ public class Constant {
     public static final String KEY_PREFERS_NO_IMG="no_img";
     public static final String KEY_NIGHT_CHANGE="night_change";
     public static final String KEY_PREFERS_AUTO_CACHE="auto_cache";
+    public static final String KEY_PREFERS_DOWNLOAD_ID="download_id";
 
     //path
     public static final String PATH_NET_CACHE = FileUtil.getCachePath(App.getContext(), "netData");
+    public static final String PATH_APK_DOWNLOADMANAGER = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/WanAndroid.apk";
+    public static final String PATH_APK_BROWSE = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/app-release.apk";
 
+    //download
+    public static final String KEY_APK_URL="apk_url";
 }

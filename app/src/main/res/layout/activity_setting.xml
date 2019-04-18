@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:paddingStart="@dimen/dp_15"
-        android:text="@string/basic_setting"
+        android:text="@string/setting_basic"
         android:textColor="@color/type_setting"
         android:paddingTop="@dimen/dp_15"
         android:paddingBottom="@dimen/dp_15"
@@ -47,7 +47,7 @@
             android:layout_centerVertical="true"
             android:paddingTop="@dimen/dp_15"
             android:paddingBottom="@dimen/dp_15"
-            android:text="@string/night_type"
+            android:text="@string/setting_night_type"
             android:textColor="@color/textColor"
             android:textSize="@dimen/sp_16"
             />
@@ -67,7 +67,7 @@
         android:layout_height="@dimen/dp_0.1"
         android:background="@color/setting_line"
         android:layout_marginStart="@dimen/dp_15"
-        android:layout_marginEnd="@dimen/dp_15"/>
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -82,7 +82,7 @@
             android:layout_alignParentStart="true"
             android:paddingTop="@dimen/dp_15"
             android:paddingBottom="@dimen/dp_15"
-            android:text="@string/no_image_type"
+            android:text="@string/setting_no_image_type"
             android:layout_centerVertical="true"
             android:textColor="@color/textColor"
             android:textSize="@dimen/sp_16"
@@ -100,7 +100,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0.1"
-        android:background="@color/setting_line" />
+        android:background="@color/setting_line"
+        android:layout_marginStart="@dimen/dp_15"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -114,7 +115,7 @@
             android:layout_alignParentStart="true"
             android:paddingTop="@dimen/dp_15"
             android:paddingBottom="@dimen/dp_15"
-            android:text="@string/auto_cache"
+            android:text="@string/setting_auto_cache"
             android:layout_centerVertical="true"
             android:textColor="@color/textColor"
             android:textSize="@dimen/sp_16"
@@ -139,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:paddingStart="@dimen/dp_15"
-        android:text="@string/other_setting"
+        android:text="@string/setting_other"
         android:textColor="@color/type_setting"
         android:paddingTop="@dimen/dp_15"
         android:paddingBottom="@dimen/dp_15"
@@ -150,6 +151,33 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0.1"
         android:background="@color/setting_line"/>
+    <RelativeLayout
+        android:id="@+id/feedBackRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/dp_15"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingTop="@dimen/dp_15"
+            android:paddingBottom="@dimen/dp_15"
+            android:text="@string/setting_feed_back"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/sp_16"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.1"
+        android:background="@color/setting_line"
+        android:layout_marginStart="@dimen/dp_15"/>
+
 
     <RelativeLayout
         android:id="@+id/clearCacheRv"
@@ -167,7 +195,7 @@
             android:layout_centerVertical="true"
             android:paddingTop="@dimen/dp_15"
             android:paddingBottom="@dimen/dp_15"
-            android:text="@string/clear_cache"
+            android:text="@string/setting_clear_cache"
             android:textColor="@color/textColor"
             android:textSize="@dimen/sp_16"
             />
@@ -188,7 +216,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0.1"
-        android:background="@color/setting_line"/>
+        android:background="@color/setting_line"
+        android:layout_marginStart="@dimen/dp_15"/>
 
     <RelativeLayout
         android:id="@+id/checkVersionRv"
@@ -206,7 +235,7 @@
             android:layout_centerVertical="true"
             android:paddingTop="@dimen/dp_15"
             android:paddingBottom="@dimen/dp_15"
-            android:text="@string/check_version"
+            android:text="@string/setting_check_version"
             android:textColor="@color/textColor"
             android:textSize="@dimen/sp_16"
             />
@@ -222,4 +251,8 @@
             tools:text="1.0.1"
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.1"
+        android:background="@color/setting_line" />
 </LinearLayout>

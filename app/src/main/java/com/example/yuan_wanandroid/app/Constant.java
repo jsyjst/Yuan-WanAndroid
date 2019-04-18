@@ -61,6 +61,8 @@ public class Constant {
     public static final String KEY_PREFERS_AUTO_CACHE="auto_cache";
     public static final String KEY_PREFERS_DOWNLOAD_ID="download_id";
 
+    public static final String EMAIL_ADDRESS = "1443481947@qq.com";
+
     //path
     public static final String PATH_NET_CACHE = FileUtil.getCachePath(App.getContext(), "netData");
     public static final String PATH_APK_DOWNLOADMANAGER = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/WanAndroid.apk";

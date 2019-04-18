@@ -60,7 +60,7 @@ public class MainActivityPresenter extends BasePresenter<MainContract.View> impl
                         .compose(RxUtil.rxSchedulerHelper())
                         //设置拦截器，在github的版本大于当前版本时才进行更新操作
                         .filter(version ->
-                                Float.valueOf(currentVersion)<(Float.valueOf(version.getTag_name().replace("V", "")))
+                                Float.valueOf(currentVersion) < (Float.valueOf(version.getTag_name().replace("V", "")))
                         )
                         //进行转化，提取上游的所需要的Version信息然后转化成String类型发送到下游
                         .map(version -> {

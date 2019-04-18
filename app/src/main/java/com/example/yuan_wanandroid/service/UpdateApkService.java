@@ -69,8 +69,8 @@ public class UpdateApkService extends Service {
         request.setTitle(this.getString(R.string.app_name));
         //设置描述
         request.setDescription(this.getString(R.string.download_ing));
-        // 在下载过程中通知栏会一直显示该下载的Notification，在下载完成后该Notification会继续显示，直到用户点击该Notification或者消除该Notification。
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        // 在下载进行的过程中，通知栏中会一直显示该下载的Notification，当下载完成时，该Notification会被移除，这是默认的参数值。
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
         //下载的文件可以被系统的Downloads应用扫描到并管理
         request.setVisibleInDownloadsUi(true);
         //设置请求的Mime

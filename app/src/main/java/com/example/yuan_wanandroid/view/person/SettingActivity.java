@@ -16,6 +16,7 @@ import com.example.yuan_wanandroid.presenter.person.SettingActivityPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.DownloadUtil;
 import com.example.yuan_wanandroid.utils.FileUtil;
+import com.example.yuan_wanandroid.utils.ShareUtils;
 import com.example.yuan_wanandroid.view.MainActivity;
 import com.example.yuan_wanandroid.widget.ConfirmDialog;
 import com.suke.widget.SwitchButton;
@@ -50,6 +51,8 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
     TextView versionTv;
     @Inject
     SettingActivityPresenter mPresenter;
+    @BindView(R.id.feedBackRv)
+    RelativeLayout feedBackRv;
 
 
     private boolean isChangeNightStyle;
@@ -106,17 +109,18 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
         autoCacheSwitchBtn.setChecked(mPresenter.getAutoCacheState());
         autoCacheSwitchBtn.setOnCheckedChangeListener(((view, isChecked) -> mPresenter.setAutoCacheStyleState(isChecked)));
         //其他设置
+        feedBackRv.setOnClickListener(view -> ShareUtils.sendEmail(this,Constant.EMAIL_ADDRESS,getString(R.string.setting_send_to)));
         mCacheSize = FileUtil.getCacheSize(mCacheFile);
         cacheSizeTv.setText(mCacheSize);
         clearCacheRv.setOnClickListener(view -> {
             ConfirmDialog dialog = new ConfirmDialog(this);
-            dialog.setTitle(getString(R.string.clear_cache))
+            dialog.setTitle(getString(R.string.setting_clear_cache))
                     .setText("确定清空" + mCacheSize + "缓存吗?")
                     .show();
             dialog.setOnClickListener(() -> {
                 FileUtil.deleteDir(mCacheFile);
-                CommonUtils.toastShow(getString(R.string.clear_cache_success));
-                cacheSizeTv.setText(getString(R.string.empty_cache));
+                CommonUtils.toastShow(getString(R.string.setting_clear_cache_success));
+                cacheSizeTv.setText(getString(R.string.setting_empty_cache));
             });
         });
 

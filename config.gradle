@@ -42,6 +42,7 @@ ext {
             //数据库
             LitePal                : "3.0.0"
 
+
     ]
 
     dependencies = [
@@ -90,7 +91,11 @@ ext {
             //test
             "junit"                 : "junit:junit:${version.JunitVersion}",
             "runner"                : "com.android.support.test:runner:${version.RunnerVersion}",
-            "espresso"              : "com.android.support.test.espresso:espresso-core:${version.EspressoVersion}"
+            "espresso"              : "com.android.support.test.espresso:espresso-core:${version.EspressoVersion}",
+
+            //bugly
+            "buglySDK"                 : "com.tencent.bugly:crashreport:latest.release",
+            "buglyNDK"              : 'com.tencent.bugly:nativecrashreport:latest.release'
 
     ]
 }

@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +14,9 @@ import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.contract.home.HomeFragmentContract;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -71,5 +75,34 @@ public class CommonUtils {
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo() != null;
+    }
+
+    /**
+     * 获取进程号对应的进程名
+     *
+     * @param pid 进程号
+     * @return 进程名
+     */
+    public static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
     }
 }

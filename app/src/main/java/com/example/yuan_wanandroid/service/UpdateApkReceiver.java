@@ -10,12 +10,9 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
-import com.bumptech.glide.util.ContentLengthInputStream;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.utils.LogUtil;
-
-import org.litepal.util.Const;
 
 import java.io.File;
 
@@ -77,7 +74,7 @@ public class UpdateApkReceiver extends BroadcastReceiver {
     // 通过Intent安装APK文件
     private void installApk(Context context,Uri uri){
         LogUtil.d(LogUtil.TAG_COMMON,"安装程序"+uri);
-        File file = new File(Constant.PATH_APK_DOWNLOADMANAGER);
+        File file = new File(Constant.PATH_APK_DOWNLOAD_MANAGER);
         Intent intent = new Intent("android.intent.action.VIEW");
         //适配N
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.N){

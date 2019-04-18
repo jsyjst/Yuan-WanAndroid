@@ -31,6 +31,7 @@ import com.example.yuan_wanandroid.view.project.ProjectFragment;
 import com.example.yuan_wanandroid.view.system.SystemFragment;
 import com.example.yuan_wanandroid.view.wx.WxFragment;
 import com.example.yuan_wanandroid.widget.VersionUpdateDialog;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import javax.inject.Inject;
 

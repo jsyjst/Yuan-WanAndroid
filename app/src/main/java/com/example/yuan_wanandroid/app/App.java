@@ -1,15 +1,18 @@
 package com.example.yuan_wanandroid.app;
 
 import android.app.Application;
+import android.content.Context;
 
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.di.component.AppComponent;
 import com.example.yuan_wanandroid.di.component.DaggerAppComponent;
 import com.example.yuan_wanandroid.di.module.AppModule;
+import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.litepal.LitePal;
 
@@ -45,6 +48,7 @@ public class App extends Application {
         super.onCreate();
         mApp = this;
         LitePal.initialize(this);
+        initBugly();
         mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
     }
 
@@ -54,5 +58,19 @@ public class App extends Application {
 
     public static AppComponent getAppComponent() {
         return mAppComponent;
+    }
+
+    private void initBugly() {
+        Context context = getApplicationContext();
+        // 获取当前包名
+        String packageName = context.getPackageName();
+        // 获取当前进程名
+        String processName = CommonUtils.getProcessName(android.os.Process.myPid());
+        // 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        // 初始化Bugly
+        CrashReport.initCrashReport(context, Constant.BUGLY_APP_ID, false, strategy);
+
     }
 }

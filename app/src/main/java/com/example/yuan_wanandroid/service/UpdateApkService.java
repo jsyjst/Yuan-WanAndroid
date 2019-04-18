@@ -15,7 +15,6 @@ import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.model.DataModel;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 
 import java.io.File;
 
@@ -60,7 +59,7 @@ public class UpdateApkService extends Service {
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         //创建目录, 外部存储--> Download文件夹
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).mkdir();
-        File file = new File(Constant.PATH_APK_DOWNLOADMANAGER);
+        File file = new File(Constant.PATH_APK_DOWNLOAD_MANAGER);
         if (file.exists())
             file.delete();
         //设置文件存放路径

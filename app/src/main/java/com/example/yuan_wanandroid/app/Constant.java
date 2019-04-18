@@ -65,9 +65,12 @@ public class Constant {
 
     //path
     public static final String PATH_NET_CACHE = FileUtil.getCachePath(App.getContext(), "netData");
-    public static final String PATH_APK_DOWNLOADMANAGER = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/WanAndroid.apk";
+    public static final String PATH_APK_DOWNLOAD_MANAGER = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/WanAndroid.apk";
     public static final String PATH_APK_BROWSE = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/app-release.apk";
 
     //download
     public static final String KEY_APK_URL="apk_url";
+
+    //bugly
+    public static final String BUGLY_APP_ID="eb2d4b003b";
 }

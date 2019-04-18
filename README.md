@@ -17,6 +17,7 @@
 - [x] 添加收藏、取消收藏、收藏列表显示
 - [x] 夜间模式、无图模式
 - [x] 文章内容，分享内容
+- [x] 应用内自动检查更新
 
 ## 项目展示
 
@@ -58,12 +59,19 @@
 
 ## 下载
 
-### [apk下载](https://github.com/jsyjst/Yuan-WanAndroid/releases/download/V1.0/app-release.apk)
+### [apk下载](https://github.com/jsyjst/Yuan-WanAndroid/releases/download/V1.1/app-release.apk)
 
 
 ## 版本
 ### V1.0
-1.Yuan wanAndroid第一版
+1. Yuan wanAndroid第一版
+
+### V1.1
+1. 实现持久化登录
+2. 增加登录和注册时显示加载框功能
+3. 增加自动缓存和清空缓存功能
+4. 增加应用内更新功能
+5. 修复登录后首页文章收藏后，取消收藏时依旧是收藏状态的问题
 
 ## 感谢
 

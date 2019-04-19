@@ -1,6 +1,7 @@
 package com.example.yuan_wanandroid.app;
 
 import android.app.Application;
+import android.content.ComponentCallbacks2;
 import android.content.Context;
 
 
@@ -12,6 +13,8 @@ import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import org.litepal.LitePal;
@@ -29,6 +32,7 @@ import org.litepal.LitePal;
 public class App extends Application {
     private static App mApp;
     private static AppComponent mAppComponent;
+    private RefWatcher mRefWatcher;//leakCanary内存泄漏监控
 
     //static代码段可以防止内存泄露
     //static代码段可以防止内存泄露
@@ -49,7 +53,24 @@ public class App extends Application {
         mApp = this;
         LitePal.initialize(this);
         initBugly();
+        initLeakCanary();
         mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        //当应用所有UI隐藏时应该释放UI上所有占用的资源
+        if(ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN == level)
+            GlideApp.get(this).clearMemory();
+        //根据level级别来清除一些图片缓存
+        GlideApp.get(this).onTrimMemory(level);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        GlideApp.get(this).clearMemory();
     }
 
     public static App getContext() {
@@ -58,6 +79,12 @@ public class App extends Application {
 
     public static AppComponent getAppComponent() {
         return mAppComponent;
+    }
+
+    //用于fragment的监控内存泄漏
+    public static RefWatcher getRefWatcher(Context context) {
+        App application =(App) context.getApplicationContext();
+        return application.mRefWatcher;
     }
 
     private void initBugly() {
@@ -72,5 +99,12 @@ public class App extends Application {
         // 初始化Bugly
         CrashReport.initCrashReport(context, Constant.BUGLY_APP_ID, false, strategy);
 
+    }
+
+    private void initLeakCanary(){
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        mRefWatcher=LeakCanary.install(this);
     }
 }

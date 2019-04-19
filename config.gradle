@@ -40,7 +40,10 @@ ext {
             FButton                : "1.0.5",
 
             //数据库
-            LitePal                : "3.0.0"
+            LitePal                : "3.0.0",
+
+            //leakCanary内存泄漏检测
+            LeakCanary             : '1.6.3',
 
 
     ]
@@ -94,8 +97,13 @@ ext {
             "espresso"              : "com.android.support.test.espresso:espresso-core:${version.EspressoVersion}",
 
             //bugly
-            "buglySDK"                 : "com.tencent.bugly:crashreport:latest.release",
-            "buglyNDK"              : 'com.tencent.bugly:nativecrashreport:latest.release'
+            "buglySDK"              : "com.tencent.bugly:crashreport:latest.release",
+            "buglyNDK"              : 'com.tencent.bugly:nativecrashreport:latest.release',
+
+            //LeakCanary
+            "leakCanaryDebug"       : "com.squareup.leakcanary:leakcanary-android:${version.LeakCanary}",
+            "leakCanaryRelease"       : "com.squareup.leakcanary:leakcanary-android-no-op:${version.LeakCanary}",
+            "leakCanaryDebugSupport"       : "com.squareup.leakcanary:leakcanary-support-fragment:${version.LeakCanary}",
 
     ]
 }

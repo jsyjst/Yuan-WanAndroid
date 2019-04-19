@@ -96,4 +96,10 @@ dependencies {
     implementation rootProject.ext.dependencies["buglySDK"]
     implementation rootProject.ext.dependencies["buglyNDK"]
 
+
+    //leakCanary
+    debugImplementation rootProject.ext.dependencies["leakCanaryDebug"]
+    releaseImplementation rootProject.ext.dependencies["leakCanaryRelease"]
+    debugImplementation rootProject.ext.dependencies["leakCanaryDebugSupport"]
+
 }

@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.view.BaseView;
 import com.example.yuan_wanandroid.utils.CommonUtils;
+import com.squareup.leakcanary.RefWatcher;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -54,11 +56,19 @@ public abstract class BaseFragment extends AbstractLazyLoadFragment implements B
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroyView() {
+        super.onDestroyView();
         if(mBinder != null && mBinder != Unbinder.EMPTY){
             mBinder.unbind();
+            mBinder = null;
         }
+    }
+
+    @Override
+    public void onDestroy() {
         super.onDestroy();
+        RefWatcher refWatcher = App.getRefWatcher(mActivity);
+        refWatcher.watch(this);
     }
 
 

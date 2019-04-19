@@ -2,3 +2,7 @@ file=F:\Android\YuanWanAndroid\app\build\outputs\mapping\release\mapping.txt
 sha1=fc22a2fe2768e7500d7610f8771fdd9828a45b3c
 appId=eb2d4b003b
 
+file=F:\Android\YuanWanAndroid\app\build\outputs\mapping\release\mapping.txt
+sha1=2d8d853e0276df63bfbb91b6108854c93f9d6b67
+appId=eb2d4b003b
+

@@ -2,10 +2,7 @@ package com.example.yuan_wanandroid.view.person;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,7 +11,6 @@ import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
 import com.example.yuan_wanandroid.contract.person.PersonFragmentContract;
-import com.example.yuan_wanandroid.model.entity.Collection;
 import com.example.yuan_wanandroid.presenter.person.PersonFragmentPresenter;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
@@ -23,8 +19,6 @@ import com.example.yuan_wanandroid.widget.ConfirmDialog;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import info.hoang8f.widget.FButton;
 
 import static android.app.Activity.RESULT_OK;
@@ -85,7 +79,7 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
             if(User.getInstance().isLoginStatus()){
                 startActivity(new Intent(mActivity,CollectionActivity.class));
             }else{
-                LoginActivity.startActivityforResultByFragment(mActivity,this, Constant.REQUEST_COLLECTION_ACTIVITY);
+                LoginActivity.startActivityForResultByFragment(mActivity,this, Constant.REQUEST_COLLECTION_ACTIVITY);
                 showToast(getString(R.string.first_login));
             }
         });

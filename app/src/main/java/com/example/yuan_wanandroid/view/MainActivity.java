@@ -87,7 +87,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     @Override
     protected void inject() {
         mMainActivityComponent = DaggerMainActivityComponent.builder()
-                .appComponent(((App) getApplication()).getAppComponent())
+                .appComponent(App.getAppComponent())
                 .build();
         mMainActivityComponent.inject(this);
     }

@@ -183,6 +183,14 @@ public class HomeFragment extends BaseLoadingFragment<HomeFragmentPresenter> imp
     }
 
     @Override
+    public void reLoad() {
+        super.reLoad();
+        mPresenter.loadBannerData();
+        mPresenter.loadArticles(0);
+        mPresenter.subscribeEvent();
+    }
+
+    @Override
     public void showToast(String msg) {
         CommonUtils.toastShow(msg);
     }

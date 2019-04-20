@@ -19,6 +19,8 @@
     <string name="error_timeout">连接超时，请重试</string>
     <string name="error_http">网络错误</string>r
     <string name="error_parse">解析错误</string>
+    <string name="error_view_network">网络不给力</string>
+    <string name="error_view_retry">重试</string>
 
     //article
     <string name="article_share">分享</string>

@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.base.presenter.IPresenter;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.TypefacesUtil;
 import com.example.yuan_wanandroid.widget.Lead;
 import com.example.yuan_wanandroid.widget.LeadTextView;
@@ -20,14 +22,15 @@ import static com.example.yuan_wanandroid.app.Constant.NORMAL_STATE;
  * <pre>
  *     author : 残渊
  *     time   : 2019/01/25
- *     desc   :
+ *     desc   : 布局切换的碎片
  * </pre>
  */
 
 
 public abstract class BaseLoadingFragment<T extends IPresenter> extends BaseMvpFragment<T>{
-    private View mLoadingView;
-    private ViewGroup mNormalView;
+    private View mLoadingView; //加载布局
+    private ViewGroup mNormalView; //正常布局
+    private View mErrorView; //错误布局
     private LeadTextView mLoadingText;
     private Lead lead ;
 
@@ -35,6 +38,7 @@ public abstract class BaseLoadingFragment<T extends IPresenter> extends BaseMvpF
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view,savedInstanceState);
         if(getView()==null) return;
         mNormalView = view.findViewById(R.id.normalView);
         if(mNormalView == null) {
@@ -45,27 +49,32 @@ public abstract class BaseLoadingFragment<T extends IPresenter> extends BaseMvpF
         }
         ViewGroup parent = (ViewGroup)mNormalView.getParent();
         View.inflate(mActivity,R.layout.loading_view,parent);
+        View.inflate(mActivity,R.layout.error_view,parent);
+
+        //loading
         mLoadingView = parent.findViewById(R.id.loadingView);
         mLoadingText = mLoadingView.findViewById(R.id.loadingText);
         mLoadingText.setTypeface(TypefacesUtil.get(mActivity,"Satisfy-Regular.ttf"));
         lead = new Lead(1000);
+        //error
+        mErrorView = parent.findViewById(R.id.errorView);
+        //重试
+        TextView mErrorRetry = mErrorView.findViewById(R.id.retryTv);
+        mErrorRetry.setOnClickListener(view1 -> loadData());
+
+
         mNormalView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.GONE);
+        mErrorView.setVisibility(View.GONE);
 
-        super.onViewCreated(view,savedInstanceState);
     }
 
-    @Override
-    public void onDestroyView() {
-        if (lead != null) {
-            lead.cancel();
-        }
-        super.onDestroyView();
-    }
+
 
     @Override
     public void showLoading() {
         if(mCurrentState == LOADING_STATE) return;
+        LogUtil.d(LogUtil.TAG_COMMON,"current:"+mCurrentState+"Loading......");
         hideCurrentViewByState();
         mCurrentState = LOADING_STATE;
         mLoadingView.setVisibility(View.VISIBLE);
@@ -80,19 +89,41 @@ public abstract class BaseLoadingFragment<T extends IPresenter> extends BaseMvpF
         mNormalView.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void showErrorView() {
+        if(mCurrentState == ERROR_STATE) return;
+        LogUtil.d(LogUtil.TAG_COMMON,"current:"+mCurrentState);
+        hideCurrentViewByState();
+        mCurrentState = ERROR_STATE;
+        mErrorView.setVisibility(View.VISIBLE);
+        LogUtil.d(LogUtil.TAG_COMMON,"now"+mErrorView.getVisibility());
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (lead != null) {
+            lead.cancel();
+        }
+        super.onDestroyView();
+    }
+
     /**
      * 隐藏当前布局根据mCurrentState
      */
     private void hideCurrentViewByState() {
         switch (mCurrentState) {
             case NORMAL_STATE:
+                if(mNormalView ==null) return;
                 mNormalView.setVisibility(View.GONE);
                 break;
             case LOADING_STATE:
+                if(mLoadingView == null) return;
                 lead.cancel();
                 mLoadingView.setVisibility(View.GONE);
                 break;
             case ERROR_STATE:
+                if(mErrorView == null) return;
+                mErrorView.setVisibility(View.GONE);
                 break;
             default:
                 break;

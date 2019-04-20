@@ -31,5 +31,7 @@
     <color name="setting_line">#5C222121</color>
     <color name="type_other">#00695C</color>
 
+    <color name="error_view_retry">#651FFF</color>
+
 
 </resources>

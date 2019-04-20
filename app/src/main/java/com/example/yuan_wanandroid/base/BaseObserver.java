@@ -155,7 +155,10 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
      */
     protected void httpError() {
         mView.showToast(App.getContext().getString(R.string.error_http));
-        if (isShowErrorView) mView.showErrorView();
+        if (isShowErrorView) {
+            LogUtil.d(LogUtil.TAG_COMMON,"errorView");
+            mView.showErrorView();
+        }
     }
 
     /**

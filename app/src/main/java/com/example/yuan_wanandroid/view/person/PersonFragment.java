@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;

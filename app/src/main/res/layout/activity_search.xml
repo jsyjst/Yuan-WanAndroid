@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/searchRelative"
@@ -31,9 +31,9 @@
             android:layout_toRightOf="@id/backIv"
             android:background="@drawable/bg_search_text"
             android:hint="@string/search_text"
-            android:paddingBottom="@dimen/dp_10"
             android:paddingStart="@dimen/dp_40"
             android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
             android:textSize="@dimen/sp_16"
             android:transitionName="@string/share_edit" />
 
@@ -46,18 +46,22 @@
             android:src="@drawable/ic_search"
             android:transitionName="@string/share_image" />
 
-        <TextView
+        <com.andexert.library.RippleView
             android:id="@+id/searchTv"
+            rv_centered="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/sp_15"
             android:layout_marginStart="@dimen/dp_15"
-            android:text="@string/search"
-            android:textColor="@color/whiteAlways"
-            android:textSize="@dimen/sp_18" />
-
+            android:layout_marginEnd="@dimen/sp_15">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search"
+                android:textColor="@color/whiteAlways"
+                android:textSize="@dimen/sp_18" />
+        </com.andexert.library.RippleView>
 
     </RelativeLayout>
 
@@ -65,9 +69,9 @@
         android:id="@+id/searchScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/searchRelative"
         android:scrollbars="none"
         android:visibility="visible"
-        android:layout_below="@id/searchRelative"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -100,8 +104,7 @@
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_search_clear_all"
-                    />
+                    android:src="@drawable/ic_search_clear_all" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -118,8 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_20"
                 android:text="@string/search_history_empty"
                 android:visibility="gone" />
 
@@ -128,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_12"
-                tools:listitem="@layout/item_search_history"/>
+                tools:listitem="@layout/item_search_history" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

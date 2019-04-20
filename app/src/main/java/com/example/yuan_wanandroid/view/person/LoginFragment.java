@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
@@ -43,7 +44,7 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     @BindView(R.id.passwordEdit)
     EditText mPasswordEdit;
     @BindView(R.id.loginBtn)
-    TextView mLoginBtn;
+    RippleView mLoginBtn;
     @BindView(R.id.registerBtn)
     TextView mRegisterBtn;
 
@@ -74,7 +75,8 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     @Override
     protected void initView() {
         super.initView();
-        mLoginBtn.setOnClickListener(v -> {
+        //触摸反馈结束后执行
+        mLoginBtn.setOnRippleCompleteListener(rippleView -> {
             if (TextUtils.isEmpty(getEditText(mUsernameEdit))) {
                 showToast(mActivity.getString(R.string.login_username_empty));
             } else if (TextUtils.isEmpty(getEditText(mPasswordEdit))) {

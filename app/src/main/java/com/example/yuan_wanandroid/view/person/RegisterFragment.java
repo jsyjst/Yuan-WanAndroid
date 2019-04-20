@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
@@ -45,7 +46,7 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
     @BindView(R.id.loginBtn)
     TextView loginBtn;
     @BindView(R.id.registerBtn)
-    TextView registerBtn;
+    RippleView registerBtn;
 
     private SweetAlertDialog dialog;//加载框
 
@@ -66,7 +67,7 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
     @Override
     protected void initView() {
         super.initView();
-        registerBtn.setOnClickListener(
+        registerBtn.setOnRippleCompleteListener(
                 v -> {
                     showLoading();
                     mPresenter.register(getEditText(usernameEdit),

@@ -155,7 +155,7 @@
         android:id="@+id/feedBackRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/selector_pressed_ripple"
         android:paddingStart="@dimen/dp_15"
         tools:ignore="RtlSymmetry">
 
@@ -183,7 +183,7 @@
         android:id="@+id/clearCacheRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/selector_pressed_ripple"
         android:paddingStart="@dimen/dp_15"
 
         >
@@ -223,7 +223,7 @@
         android:id="@+id/checkVersionRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/selector_pressed_ripple"
         android:paddingStart="@dimen/dp_15"
 
         >

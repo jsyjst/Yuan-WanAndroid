@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.HistoryAdapter;
 import com.example.yuan_wanandroid.app.App;
@@ -42,7 +43,7 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
     @BindView(R.id.searchEdit)
     EditText searchEdit;
     @BindView(R.id.searchTv)
-    TextView searchTv;
+    RippleView searchTv;
     @BindView(R.id.searchHotFlowLayout)
     TagFlowLayout searchHotFlowLayout;
     @BindView(R.id.searchClearAllIv)
@@ -83,7 +84,7 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
         initRecyclerView();
         mPresenter.loadSearchHotKeyData();
         backIv.setOnClickListener(v -> finish());
-        searchTv.setOnClickListener(v -> toSearchArticlesActivity(getSearchEditText()));
+        searchTv.setOnRippleCompleteListener(v -> toSearchArticlesActivity(getSearchEditText()));
         searchClearAllIv.setOnClickListener(v -> deleteAllHistories());
     }
 

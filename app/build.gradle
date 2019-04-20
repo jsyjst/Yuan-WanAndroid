@@ -89,6 +89,7 @@ dependencies {
     implementation rootProject.ext.dependencies["switchButton"]
     implementation rootProject.ext.dependencies["smartrefreshHeader"]
     implementation rootProject.ext.dependencies["sweetDialog"]
+    implementation rootProject.ext.dependencies["ripple"]//触摸反馈
 
     //数据库
     implementation rootProject.ext.dependencies["litePal"]

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ripple="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
     android:orientation="vertical">
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/registerLinear"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/dp_50"
-        android:layout_above="@+id/registerLinear"
         android:text="@string/person_register"
         android:textColor="@color/whiteAlways"
         android:textSize="@dimen/sp_24" />
@@ -32,10 +32,10 @@
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/bg_login_edit"
+            android:hint="@string/person_user_name"
+            android:paddingStart="@dimen/dp_20"
             android:paddingTop="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_10"
-            android:paddingStart="@dimen/dp_20"
-            android:hint="@string/person_user_name"
             android:textColor="@color/whiteAlways"
             android:textColorHint="@color/text_hint" />
 
@@ -46,53 +46,58 @@
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/bg_login_edit"
+            android:hint="@string/person_password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dp_20"
             android:paddingTop="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_10"
-            android:paddingStart="@dimen/dp_20"
-            android:inputType="textPassword"
-            android:hint="@string/person_password"
             android:textColor="@color/whiteAlways"
             android:textColorHint="@color/text_hint" />
+
         <EditText
             android:id="@+id/passwordRepeatEdit"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/bg_login_edit"
+            android:hint="@string/person_repeat_password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dp_20"
             android:paddingTop="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_10"
-            android:paddingStart="@dimen/dp_20"
-            android:inputType="textPassword"
-            android:hint="@string/person_repeat_password"
             android:textColor="@color/whiteAlways"
             android:textColorHint="@color/text_hint" />
 
 
-
     </LinearLayout>
 
-    <TextView
+    <com.andexert.library.RippleView
         android:id="@+id/registerBtn"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/registerLinear"
-        android:background="@drawable/bg_login_button"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/dp_20"
         android:layout_centerHorizontal="true"
-        android:text="@string/person_register"
-        android:textSize="@dimen/sp_18"
-        android:textColor="@color/whiteAlways" />
+        android:layout_marginTop="@dimen/dp_20"
+        ripple:rv_type="rectangle">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_login_button"
+            android:gravity="center"
+            android:text="@string/person_register"
+            android:textColor="@color/whiteAlways"
+            android:textSize="@dimen/sp_18" />
+    </com.andexert.library.RippleView>
 
     <TextView
         android:id="@+id/loginBtn"
-        android:layout_below="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_20"
         android:text="@string/person_register_finish"
         android:textColor="@color/white_short"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_below="@+id/registerBtn"/>
 
 </RelativeLayout>

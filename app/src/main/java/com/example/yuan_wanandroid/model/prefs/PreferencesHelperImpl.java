@@ -66,4 +66,14 @@ public class PreferencesHelperImpl implements PreferencesHelper{
     public long getDownloadId() {
         return mPreferences.getLong(Constant.KEY_PREFERS_DOWNLOAD_ID,-1L);
     }
+
+    @Override
+    public void setNavCurrentItem(int position) {
+        mPreferences.edit().putInt(Constant.KEY_PREFERS_NAV_ITEM,position).apply();
+    }
+
+    @Override
+    public int getNavCurrentItem() {
+        return mPreferences.getInt(Constant.KEY_PREFERS_NAV_ITEM,0);
+    }
 }

@@ -2,6 +2,7 @@ package com.example.yuan_wanandroid.view.wx;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Pair;
@@ -114,11 +115,16 @@ public class WxFragment extends BaseLoadingFragment<WxFragmentPresenter>
     private void toSearchActivity(){
         Intent intent = new Intent(mActivity,SearchActivity.class);
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
-                Pair.create(mSearchTv,getString(R.string.share_edit)),
-                Pair.create(mSearchIv,getString(R.string.share_image))
-        );
-        startActivity(intent,options.toBundle());
+        //适配5.0以下的机型
+        if (Build.VERSION.SDK_INT >= 21) {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
+                    Pair.create(mSearchTv, getString(R.string.share_edit)),
+                    Pair.create(mSearchIv, getString(R.string.share_image))
+            );
+            startActivity(intent, options.toBundle());
+        }else{
+            startActivity(intent);
+        }
     }
 
 }

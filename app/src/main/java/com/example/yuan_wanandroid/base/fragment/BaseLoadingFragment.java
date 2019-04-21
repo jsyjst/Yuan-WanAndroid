@@ -74,7 +74,6 @@ public abstract class BaseLoadingFragment<T extends IPresenter> extends BaseMvpF
     @Override
     public void showLoading() {
         if(mCurrentState == LOADING_STATE) return;
-        LogUtil.d(LogUtil.TAG_COMMON,"current:"+mCurrentState+"Loading......");
         hideCurrentViewByState();
         mCurrentState = LOADING_STATE;
         mLoadingView.setVisibility(View.VISIBLE);
@@ -92,11 +91,9 @@ public abstract class BaseLoadingFragment<T extends IPresenter> extends BaseMvpF
     @Override
     public void showErrorView() {
         if(mCurrentState == ERROR_STATE) return;
-        LogUtil.d(LogUtil.TAG_COMMON,"current:"+mCurrentState);
         hideCurrentViewByState();
         mCurrentState = ERROR_STATE;
         mErrorView.setVisibility(View.VISIBLE);
-        LogUtil.d(LogUtil.TAG_COMMON,"now"+mErrorView.getVisibility());
     }
 
     @Override

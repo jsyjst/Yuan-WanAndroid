@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * <pre>
@@ -87,22 +88,23 @@ public class FileUtil {
 
     /**
      * 得到包名所在的缓存路径
-     * 当SD卡不存在或者SD卡可被移除的时候，就调用getCacheDir()方法来获取缓存路径，
-     * 否则就调用getExternalCacheDir()方法来获取缓存路径。
-     * 前者获取到的是 /data/data/<application package>/cache 这个路径。
-     * 而后者获取到的就是 /sdcard/Android/data/<application package>/cache 这个路径，
-     * @param context
-     * @param name
-     * @return
+     * 当SD卡存在或者SD卡不可被移除的时候，就调用getExternalCacheDir()方法来获取缓存路径
+     * 否则就调用getCacheDir()方法来获取缓存路径。
+     * 前者获取到的就是 /sdcard/Android/data/<application package>/cache 这个路径
+     * 而后者获取到的是 /data/data/<application package>/cache 这个路径
+     * @param context 上下文
+     * @param name 文件名
+     * @return 路径
      */
     public static String getCachePath(Context context, String name) {
         String cachePath;
-        if (!"mounted".equals(Environment.getExternalStorageState()) && Environment.isExternalStorageRemovable()) {
-            cachePath = context.getCacheDir().getPath();
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            //允许为null
+            cachePath = Objects.requireNonNull(context.getExternalCacheDir()).getPath();
         } else {
-            cachePath = context.getExternalCacheDir().getPath();
+            cachePath = context.getCacheDir().getPath();
         }
-
         return cachePath + File.separator + name;
     }
     /**

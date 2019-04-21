@@ -18,4 +18,6 @@ public interface PreferencesHelper {
     boolean getAutoCacheState(); //得到自动缓存设置
     void setDownloadId(long id);//保存更新apk的记录
     long getDownloadId();//得到下载记录
+    void setNavCurrentItem(int position);//保存主活动的页面状态
+    int getNavCurrentItem();//得到主活动的页面状态
 }

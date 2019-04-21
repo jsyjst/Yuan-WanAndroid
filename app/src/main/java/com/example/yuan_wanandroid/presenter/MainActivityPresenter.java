@@ -81,4 +81,14 @@ public class MainActivityPresenter extends BasePresenter<MainContract.View> impl
                 })
         );
     }
+
+    @Override
+    public void setNavCurrentItem(int position) {
+        mModel.setNavCurrentItem(position);
+    }
+
+    @Override
+    public int getNavCurrentItem() {
+        return mModel.getNavCurrentItem();
+    }
 }

@@ -53,14 +53,16 @@ public class Constant {
             Color.parseColor("#F6BC7E")
     };
 
-    //setting
+    //prefs
     public static final String SHARED_PREFERENCES_NAME = "prefs";
     public static final String KEY_PREFERS_NIGHT="night";
     public static final String KEY_PREFERS_NO_IMG="no_img";
     public static final String KEY_NIGHT_CHANGE="night_change";
     public static final String KEY_PREFERS_AUTO_CACHE="auto_cache";
     public static final String KEY_PREFERS_DOWNLOAD_ID="download_id";
+    public static final String KEY_PREFERS_NAV_ITEM="nav_item"; //底部导航item，用于打开夜间模式后重新打开app
 
+    //setting
     public static final String EMAIL_ADDRESS = "1443481947@qq.com";
 
     //path

@@ -13,11 +13,12 @@ import com.example.yuan_wanandroid.model.http.api.WxApis;
 import com.example.yuan_wanandroid.model.http.interceptor.CacheInterceptor;
 import com.example.yuan_wanandroid.model.http.interceptor.ReadCookiesInterceptor;
 import com.example.yuan_wanandroid.model.http.interceptor.SaveCookiesInterceptor;
+import com.example.yuan_wanandroid.model.ssl.SSLSocketCompatFactory;
+import com.example.yuan_wanandroid.model.ssl.TrustAllCert;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -60,6 +61,10 @@ public class AppModule {
     @Singleton
     OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder){
 
+
+        //设置ssl,解决4.4以下机型ssl问题
+        TrustAllCert trustAllCert = new TrustAllCert();
+        builder.sslSocketFactory(new SSLSocketCompatFactory(trustAllCert), trustAllCert);
         //设置缓存
         File cacheDir = new File(Constant.PATH_NET_CACHE);
         Cache cache = new Cache(cacheDir,1024 * 1024 * 10);//缓存最大大小10m

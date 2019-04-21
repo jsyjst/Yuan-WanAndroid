@@ -198,4 +198,14 @@ public class DataModel implements NetworkHelper ,DbHelper,PreferencesHelper{
     public long getDownloadId() {
         return mPreferencesHelper.getDownloadId();
     }
+
+    @Override
+    public void setNavCurrentItem(int position) {
+        mPreferencesHelper.setNavCurrentItem(position);
+    }
+
+    @Override
+    public int getNavCurrentItem() {
+        return mPreferencesHelper.getNavCurrentItem();
+    }
 }

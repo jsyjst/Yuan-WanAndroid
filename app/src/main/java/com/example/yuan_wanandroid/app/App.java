@@ -58,8 +58,6 @@ public class App extends Application {
         initBugly();
         initLeakCanary();
         mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
-        //夜间模式
-        AppCompatDelegate.setDefaultNightMode(mAppComponent.getDataModel().getNightStyleState() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     @Override

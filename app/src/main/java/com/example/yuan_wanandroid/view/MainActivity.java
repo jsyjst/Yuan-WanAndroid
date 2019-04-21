@@ -73,14 +73,15 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
             mFragments[4] = new PersonFragment();
             loadMultipleFragment(R.id.frameContain, 0, mFragments);
             if (isNightChange) mBottomBnv.setSelectedItemId(R.id.personItem);
+            AppCompatDelegate.setDefaultNightMode(mPresenter.getNightStyleState() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
         } else {
-            LogUtil.d(LogUtil.TAG_COMMON, "saveInstanceState!=null");
+            //屏幕翻转后回到当前页面，夜间模式开启后重新登录app
             mFragments[0] = findFragmentByTag(HomeFragment.class.getName());
             mFragments[1] = findFragmentByTag(SystemFragment.class.getName());
             mFragments[2] = findFragmentByTag(WxFragment.class.getName());
             mFragments[3] = findFragmentByTag(ProjectFragment.class.getName());
             mFragments[4] = findFragmentByTag(PersonFragment.class.getName());
-            mBottomBnv.setSelectedItemId(getSelectedItemId(mPresenter.getNavCurrentItem())); //屏幕翻转后回到当前页面
+            mBottomBnv.setSelectedItemId(getSelectedItemId(mPresenter.getNavCurrentItem()));
         }
     }
 
@@ -91,6 +92,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        LogUtil.d(LogUtil.TAG_COMMON,"navItem:"+mPreFragmentPosition);
         mPresenter.setNavCurrentItem(mPreFragmentPosition);
     }
 
@@ -221,7 +223,8 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
      * 显示和隐藏fragment
      */
     private void showAndHideFragment(Fragment show, Fragment hide) {
-        LogUtil.d(LogUtil.TAG_COMMON,"show:"+show.toString()+"hide:"+hide.toString());
+        LogUtil.d(LogUtil.TAG_COMMON,"show:"+show.toString());
+        LogUtil.d(LogUtil.TAG_COMMON,"hide:"+hide.toString());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (show != hide)
             transaction.show(show).hide(hide).commitAllowingStateLoss();
@@ -234,7 +237,8 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         for (int i = 0; i < fragments.length; i++) {
             Fragment fragment = fragments[i];
-            transaction.add(containerId, fragment);
+            //最后一个参数为tag,add的时候添加一个tag来可以通过findFragmentByTag来查找fragment的实例
+            transaction.add(containerId, fragment,fragment.getClass().getName());
             if (i != showFragment) {
                 transaction.hide(fragment);
             }

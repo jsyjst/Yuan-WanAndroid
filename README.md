@@ -59,9 +59,9 @@
 
 ## 下载（目前只支持4.2及其以上机型）
 
-### [apk下载](https://github.com/jsyjst/Yuan-WanAndroid/releases/download/V1.2/app-release.apk)
+### [Apk(V1.2)下载](https://github.com/jsyjst/Yuan-WanAndroid/releases/download/V1.2/app-release.apk)
 
-
+低版本到releases页面下载
 ## 版本
 
 ### V1.2

@@ -3,6 +3,7 @@ package com.example.yuan_wanandroid.app;
 import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
+import android.support.v7.app.AppCompatDelegate;
 
 
 import com.example.yuan_wanandroid.R;
@@ -37,6 +38,8 @@ public class App extends Application {
     //static代码段可以防止内存泄露
     //static代码段可以防止内存泄露
     static {
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO);
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(((context, layout) -> {
             layout.setPrimaryColorsId(R.color.gray, R.color.colorNavNormal);//全局设置主题颜色
@@ -55,6 +58,8 @@ public class App extends Application {
         initBugly();
         initLeakCanary();
         mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        //夜间模式
+        AppCompatDelegate.setDefaultNightMode(mAppComponent.getDataModel().getNightStyleState() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     @Override

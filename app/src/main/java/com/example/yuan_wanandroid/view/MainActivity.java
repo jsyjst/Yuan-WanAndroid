@@ -24,6 +24,7 @@ import com.example.yuan_wanandroid.model.entity.Version;
 import com.example.yuan_wanandroid.presenter.MainActivityPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.DownloadUtil;
+import com.example.yuan_wanandroid.utils.LogUtil;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.home.HomeFragment;
 import com.example.yuan_wanandroid.view.person.PersonFragment;
@@ -49,7 +50,6 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
     private int mPreFragmentPosition = 0;//上一个被选中的Fragment位置
     private Fragment[] mFragments;
     private MainActivityComponent mMainActivityComponent;
-    private boolean isNightChange;
     private VersionUpdateDialog mVersionDialog;
     private String mApkUrl;
 
@@ -64,7 +64,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
         super.onCreate(savedInstanceState);
         mFragments = new BaseFragment[5];
         mVersionDialog = new VersionUpdateDialog();
-        isNightChange = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE,false);
+        boolean isNightChange = getIntent().getBooleanExtra(Constant.KEY_NIGHT_CHANGE, false);
         if (savedInstanceState == null) {
             mFragments[0] = new HomeFragment();
             mFragments[1] = new SystemFragment();
@@ -72,15 +72,26 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
             mFragments[3] = new ProjectFragment();
             mFragments[4] = new PersonFragment();
             loadMultipleFragment(R.id.frameContain, 0, mFragments);
-            if(isNightChange) mBottomBnv.setSelectedItemId(R.id.personItem);
-            AppCompatDelegate.setDefaultNightMode(mPresenter.getNightStyleState() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+            if (isNightChange) mBottomBnv.setSelectedItemId(R.id.personItem);
         } else {
+            LogUtil.d(LogUtil.TAG_COMMON, "saveInstanceState!=null");
             mFragments[0] = findFragmentByTag(HomeFragment.class.getName());
             mFragments[1] = findFragmentByTag(SystemFragment.class.getName());
             mFragments[2] = findFragmentByTag(WxFragment.class.getName());
             mFragments[3] = findFragmentByTag(ProjectFragment.class.getName());
             mFragments[4] = findFragmentByTag(PersonFragment.class.getName());
+            mBottomBnv.setSelectedItemId(getSelectedItemId(mPresenter.getNavCurrentItem())); //屏幕翻转后回到当前页面
         }
+    }
+
+    /**
+     * 屏幕翻转后记录当前的页面状态
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mPresenter.setNavCurrentItem(mPreFragmentPosition);
     }
 
 
@@ -124,6 +135,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
                     setStatusBarColor();
                     break;
                 case R.id.systemItem:
+                    LogUtil.d(LogUtil.TAG_COMMON, "system");
                     showAndHideFragment(mFragments[1], mFragments[mPreFragmentPosition]);
                     mPreFragmentPosition = 1;
                     setStatusBarColor();
@@ -153,6 +165,51 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
         mPresenter.checkVersion(DownloadUtil.getVersionName(this));
     }
 
+
+    public MainActivityComponent getComponent() {
+        return mMainActivityComponent;
+    }
+
+
+    //设置夜间模式改变的处理
+    @Override
+    public void showNightStyle(boolean isNight) {
+        super.showNightStyle(isNight);
+        finish();
+    }
+
+
+    @Override
+    public void showVersionUpdateDialog(String versionDetail) {
+        mVersionDialog.setContentText(versionDetail);
+        mVersionDialog.show(getSupportFragmentManager(), "update");
+    }
+
+    @Override
+    public void downloadApk() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+            DownloadUtil.downloadApk(this, mApkUrl);
+        }
+
+    }
+
+    @Override
+    public void setApkUrl(String apkUrl) {
+        mApkUrl = apkUrl;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            DownloadUtil.downloadApk(this, mApkUrl);
+        } else {
+            CommonUtils.toastShow("拒绝存储权限，无法更新版本");
+        }
+    }
+
     /**
      * 根据tag找到fragment实例
      */
@@ -164,6 +221,7 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
      * 显示和隐藏fragment
      */
     private void showAndHideFragment(Fragment show, Fragment hide) {
+        LogUtil.d(LogUtil.TAG_COMMON,"show:"+show.toString()+"hide:"+hide.toString());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (show != hide)
             transaction.show(show).hide(hide).commitAllowingStateLoss();
@@ -184,47 +242,22 @@ public class MainActivity extends BaseMvpActivity<MainActivityPresenter> impleme
         transaction.commitAllowingStateLoss();
     }
 
-    public MainActivityComponent getComponent() {
-        return mMainActivityComponent;
-    }
-
-
-    //设置夜间模式改变的处理
-    @Override
-    public void showNightStyle(boolean isNight){
-        super.showNightStyle(isNight);
-        finish();
-    }
-
-
-    @Override
-    public void showVersionUpdateDialog(String versionDetail) {
-        mVersionDialog.setContentText(versionDetail);
-        mVersionDialog.show(getSupportFragmentManager(),"update");
-    }
-
-    @Override
-    public void downloadApk() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        }else{
-            DownloadUtil.downloadApk(this,mApkUrl);
+    //根据保存的页面状态获取底部导航id
+    private int getSelectedItemId(int position) {
+        switch (position) {
+            case 0:
+                return R.id.homeItem;
+            case 1:
+                return R.id.systemItem;
+            case 2:
+                return R.id.wxItem;
+            case 3:
+                return R.id.projectItem;
+            case 4:
+                return R.id.personItem;
+            default:
+                break;
         }
-
-    }
-
-    @Override
-    public void setApkUrl(String apkUrl) {
-        mApkUrl = apkUrl;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == 1 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-            DownloadUtil.downloadApk(this,mApkUrl);
-        }else{
-            CommonUtils.toastShow("拒绝存储权限，无法更新版本");
-        }
+        return 0;
     }
 }

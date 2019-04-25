@@ -34,7 +34,7 @@ public class ProjectArticlesFragmentPresenter extends BasePresenter<ProjectArtic
     public void subscribeEvent() {
         addRxSubscribe(
                 RxBus.getInstance().toObservable(AutoRefreshEvent.class)
-                        .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
+                        .filter(AutoRefreshEvent::isAutoRefresh)
                         .subscribe(loginEvent -> mView.autoRefresh())
         );
 

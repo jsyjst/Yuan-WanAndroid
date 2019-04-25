@@ -1,18 +1,14 @@
 package com.example.yuan_wanandroid.view;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.utils.TypefacesUtil;
 import com.example.yuan_wanandroid.widget.Lead;
 import com.example.yuan_wanandroid.widget.LeadTextView;
-
-import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

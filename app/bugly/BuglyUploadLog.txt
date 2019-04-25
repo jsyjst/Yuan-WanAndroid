@@ -10,3 +10,7 @@ file=F:\Android\YuanWanAndroid\app\build\outputs\mapping\release\mapping.txt
 sha1=2ecaa93b86d91c6e455fbd9156fec7683e1d6cd7
 appId=eb2d4b003b
 
+file=F:\Android\YuanWanAndroid\app\build\outputs\mapping\release\mapping.txt
+sha1=a36ac203399b0199816273d184b95d9ef61d6a97
+appId=eb2d4b003b
+

@@ -34,13 +34,8 @@ public class WxArticlesFragmentPresenter extends BasePresenter<WxArticlesFragmen
     public void subscribeEvent() {
         addRxSubscribe(
                 RxBus.getInstance().toObservable(AutoRefreshEvent.class)
-                        .filter(autoRefreshEvent -> autoRefreshEvent.isAutoRefresh())
+                        .filter(AutoRefreshEvent::isAutoRefresh)
                         .subscribe(loginEvent -> mView.autoRefresh())
-        );
-
-        addRxSubscribe(
-                RxBus.getInstance().toObservable(NoImgEvent.class)
-                        .subscribe(noImgEvent -> mView.autoRefresh())
         );
     }
 

@@ -77,7 +77,7 @@
     <string name="dialog_cancel">取消</string>
     <string name="dialog_title">退出登录</string>
     <string name="dialog_text">你确定要退出登录吗？</string>
-    <string name="dialog_delete_title">删除全部历史记录</string>
+    <string name="dialog_delete_title">删除</string>
     <string name="dialog_delete_text">你确定要删除全部搜索的历史记录吗？</string>
     
     //versionDialog

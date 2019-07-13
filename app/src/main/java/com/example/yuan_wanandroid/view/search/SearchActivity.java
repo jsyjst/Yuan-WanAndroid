@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.andexert.library.RippleView;
+import com.example.SpeedDialog.dialog.SpeedDialog;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.adapter.HistoryAdapter;
 import com.example.yuan_wanandroid.app.App;
@@ -21,8 +21,6 @@ import com.example.yuan_wanandroid.model.entity.HotKey;
 import com.example.yuan_wanandroid.presenter.search.SearchActivityPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 import com.example.yuan_wanandroid.utils.KeyBoardUtil;
-import com.example.yuan_wanandroid.utils.LogUtil;
-import com.example.yuan_wanandroid.widget.ConfirmDialog;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -89,15 +87,16 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         searchEdit.setText("");
         mPresenter.loadHistoriesData();
     }
-    private void initRecyclerView(){
+
+    private void initRecyclerView() {
         mLinearLayoutManager = new LinearLayoutManager(this);
         mHistoryList = new ArrayList<>();
-        mAdapter = new HistoryAdapter(R.layout.item_search_history,mHistoryList);
+        mAdapter = new HistoryAdapter(R.layout.item_search_history, mHistoryList);
         searchHistoryRecycler.setLayoutManager(mLinearLayoutManager);
         searchHistoryRecycler.setAdapter(mAdapter);
 
@@ -133,14 +132,14 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
         });
         //标签点击事件
         searchHotFlowLayout.setOnTagClickListener((view, position, parent) -> {
-                toSearchArticlesActivity(mHotKeys.get(position).getName());
-                return true;
+            toSearchArticlesActivity(mHotKeys.get(position).getName());
+            return true;
         });
     }
 
     @Override
     public void showHistoryData(List<String> historyList) {
-        if(!CommonUtils.isEmptyList(mHistoryList)) mHistoryList.clear();
+        if (!CommonUtils.isEmptyList(mHistoryList)) mHistoryList.clear();
         mHistoryList.addAll(historyList);
         mAdapter.notifyDataSetChanged();
     }
@@ -148,7 +147,7 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
     @Override
     public void showDeleteHistory() {
         mHistoryList.remove(mPosition);
-        if(CommonUtils.isEmptyList(mHistoryList)) showHistoriesEmptyView();
+        if (CommonUtils.isEmptyList(mHistoryList)) showHistoriesEmptyView();
         else mAdapter.notifyDataSetChanged();
     }
 
@@ -171,12 +170,12 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
 
     @Override
     public void toSearchArticlesActivity(String key) {
-        if(TextUtils.isEmpty(key)) {
-            KeyBoardUtil.closeKeyboard(this,searchEdit);
+        if (TextUtils.isEmpty(key)) {
+            KeyBoardUtil.closeKeyboard(this, searchEdit);
             showToast(getString(R.string.search_first_write));
         } else {
             mPresenter.addHistory(key);
-            SearchArticlesActivity.startActivityBySearchActivity(this,key);
+            SearchArticlesActivity.startActivityBySearchActivity(this, key);
         }
     }
 
@@ -185,12 +184,11 @@ public class SearchActivity extends BaseMvpActivity<SearchActivityPresenter> imp
         return searchEdit.getText().toString();
     }
 
-    private void deleteAllHistories(){
-        ConfirmDialog confirmDialog=new ConfirmDialog(this);
-        confirmDialog.setTitle(getString(R.string.dialog_delete_title))
-                .setText(getString(R.string.dialog_delete_text))
+    private void deleteAllHistories() {
+        new SpeedDialog(this).setTitle(getString(R.string.dialog_delete_title))
+                .setMessage(getString(R.string.dialog_delete_text))
+                .setSureClickListener(dialog -> mPresenter.deleteAllHistories())
                 .show();
-        confirmDialog.setOnClickListener(() -> mPresenter.deleteAllHistories());
 
     }
 }

@@ -2,14 +2,13 @@ package com.example.yuan_wanandroid.view.person;
 
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.andexert.library.RippleView;
+import com.example.SpeedDialog.dialog.SpeedDialog;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
@@ -18,11 +17,9 @@ import com.example.yuan_wanandroid.di.component.fragment.DaggerLoginFragmentComp
 import com.example.yuan_wanandroid.presenter.person.LoginFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
 
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * <pre>
@@ -48,15 +45,12 @@ public class LoginFragment extends BaseMvpFragment<LoginFragmentPresenter>
     @BindView(R.id.registerBtn)
     TextView mRegisterBtn;
 
-    private SweetAlertDialog dialog;
+    private SpeedDialog dialog;
 
     @Override
     public void showLoading() {
-        dialog = new SweetAlertDialog(mActivity,SweetAlertDialog.PROGRESS_TYPE);
-        dialog.getProgressHelper().setBarColor(CommonUtils.randomTagColor());
-        dialog.setTitleText("Loading...");
-        dialog.setCancelable(false);
-        dialog.show();
+        dialog = new SpeedDialog(mActivity,SpeedDialog.PROGRESS_TYPE);
+        dialog.setProgressColor(CommonUtils.randomTagColor()).setProgressText("加载中...").show();
     }
 
     @Override

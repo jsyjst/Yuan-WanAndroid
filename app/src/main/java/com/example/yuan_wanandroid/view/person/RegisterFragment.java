@@ -2,13 +2,12 @@ package com.example.yuan_wanandroid.view.person;
 
 import android.app.Instrumentation;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.andexert.library.RippleView;
+import com.example.SpeedDialog.dialog.SpeedDialog;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.base.fragment.BaseMvpFragment;
@@ -16,12 +15,11 @@ import com.example.yuan_wanandroid.contract.person.RegisterFragmentContract;
 import com.example.yuan_wanandroid.di.component.fragment.DaggerRegisterFragmentComponent;
 import com.example.yuan_wanandroid.presenter.person.RegisterFragmentPresenter;
 import com.example.yuan_wanandroid.utils.CommonUtils;
-import com.example.yuan_wanandroid.utils.LogUtil;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 /**
  * <pre>
@@ -48,7 +46,7 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
     @BindView(R.id.registerBtn)
     RippleView registerBtn;
 
-    private SweetAlertDialog dialog;//加载框
+    private SpeedDialog dialog;//加载框
 
 
     @Override
@@ -84,11 +82,8 @@ public class RegisterFragment extends BaseMvpFragment<RegisterFragmentPresenter>
 
     @Override
     public void showLoading() {
-        dialog = new SweetAlertDialog(mActivity,SweetAlertDialog.PROGRESS_TYPE);
-        dialog.getProgressHelper().setBarColor(CommonUtils.randomTagColor());
-        dialog.setTitleText("Loading...");
-        dialog.setCancelable(false);
-        dialog.show();
+        dialog = new SpeedDialog(mActivity,SpeedDialog.PROGRESS_TYPE);
+        dialog.setProgressColor(CommonUtils.randomTagColor()).setProgressText("加载中...").show();
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.andexert.library.RippleView;
+import com.example.SpeedDialog.dialog.SpeedDialog;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.Constant;
 import com.example.yuan_wanandroid.app.User;
@@ -15,7 +15,6 @@ import com.example.yuan_wanandroid.contract.person.PersonFragmentContract;
 import com.example.yuan_wanandroid.presenter.person.PersonFragmentPresenter;
 import com.example.yuan_wanandroid.utils.StatusBarUtil;
 import com.example.yuan_wanandroid.view.MainActivity;
-import com.example.yuan_wanandroid.widget.ConfirmDialog;
 
 import javax.inject.Inject;
 
@@ -120,11 +119,10 @@ public class PersonFragment extends BaseMvpFragment<PersonFragmentPresenter>
     }
 
     private void logout() {
-        ConfirmDialog dialog = new ConfirmDialog(mActivity);
-        dialog.setTitle(getString(R.string.dialog_title))
-                .setText(getString(R.string.dialog_text))
+        new SpeedDialog(mActivity).setTitle(getString(R.string.dialog_title))
+                .setMessage(getString(R.string.dialog_text))
+                .setSureClickListener(dialog -> mPresenter.logout())
                 .show();
-        dialog.setOnClickListener(() -> mPresenter.logout());
     }
 
     @Override

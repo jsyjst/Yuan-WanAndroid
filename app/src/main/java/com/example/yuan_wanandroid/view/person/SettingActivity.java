@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.SpeedDialog.dialog.SpeedDialog;
 import com.example.yuan_wanandroid.R;
 import com.example.yuan_wanandroid.app.App;
 import com.example.yuan_wanandroid.app.Constant;
@@ -18,7 +19,6 @@ import com.example.yuan_wanandroid.utils.DownloadUtil;
 import com.example.yuan_wanandroid.utils.FileUtil;
 import com.example.yuan_wanandroid.utils.ShareUtils;
 import com.example.yuan_wanandroid.view.MainActivity;
-import com.example.yuan_wanandroid.widget.ConfirmDialog;
 import com.suke.widget.SwitchButton;
 
 import java.io.File;
@@ -113,17 +113,15 @@ public class SettingActivity extends BaseMvpActivity<SettingActivityPresenter>
         mCacheSize = FileUtil.getCacheSize(mCacheFile);
         cacheSizeTv.setText(mCacheSize);
         clearCacheRv.setOnClickListener(view -> {
-            ConfirmDialog dialog = new ConfirmDialog(this);
-            dialog.setTitle(getString(R.string.setting_clear_cache))
-                    .setText("确定清空" + mCacheSize + "缓存吗?")
+           new SpeedDialog(this).setTitle(getString(R.string.setting_clear_cache))
+                    .setMessage("确定清空" + mCacheSize + "缓存吗?")
+                   .setSureClickListener(dialog -> {
+                       FileUtil.deleteDir(mCacheFile);
+                       CommonUtils.toastShow(getString(R.string.setting_clear_cache_success));
+                       cacheSizeTv.setText(getString(R.string.setting_empty_cache));
+                   })
                     .show();
-            dialog.setOnClickListener(() -> {
-                FileUtil.deleteDir(mCacheFile);
-                CommonUtils.toastShow(getString(R.string.setting_clear_cache_success));
-                cacheSizeTv.setText(getString(R.string.setting_empty_cache));
-            });
         });
-
         versionTv.setText(DownloadUtil.getVersionName(this));//版本号
 
     }
